@@ -19,4 +19,28 @@
 
 * [ ] Outline draft
 * [ ] Check if supervisor has a github account
+* [x] Number of pages
 
+## Technical specifications
+
+### Number of pages
+
+Type            #M2.1-doc   Ratio   #M2.2-doc   #M2.1-real   #M2.2-real
+-------------  ----------- ------- ----------- ------------ ------------
+Introduction     4          0.14     6.90          7           11.3
+Materials        6          0.21    10.34          7           11.3
+Results          10         0.34    17.24          14          22.6
+Discussion       6          0.21    10.34          -           -
+Conclusion       3          0.10     5.17          3           4.8
+Total            29          -       50            32          32
+
+
+
+
+
+
+
+## Random Ideas section
+
+* Graphical abstract (like several journals)
+* Don't forget named bibliography references (Author and al.2014)
