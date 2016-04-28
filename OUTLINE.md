@@ -1,17 +1,17 @@
-# Introduction
+# Introduction (7-15p)
 
 Outline : around a metagenomics analysis tool
 
-## Food-Microbiome projects
+## Food-Microbiome projects 
 
-### Why? 
+### Why? (1p)
 
 * Industrials partners and academics both wants insights into cheese ecosystems.
 * Common interests crystallized in two ANR projects:
 	+ Food-Microbiome Project
 	+ Food-Microbiome Transfert Project
 
-### Who?
+### Who? (0.75-1p)
 
 #### Personal involvement in both projects
 
@@ -20,7 +20,7 @@ Outline : around a metagenomics analysis tool
 
 #### Several actors and contributors to these projects
 
-* Academics: INRA mainly.
+* Academics: INRA mainly (Jouy, Grignon and Aurillac)
 * Industrials partners and CNIEL: define needs.
 
 * BAC Team: 
@@ -33,7 +33,7 @@ Outline : around a metagenomics analysis tool
 
 * Figure from CNIEL presentation to summarise how data flows and by who is it produced or handled.
 
-## Cheese ecosystems particularities
+## Cheese ecosystems particularities (1p)
 
 * Define micro-organisms and taxonomy hierarchy.
 * Ecosystems described as a _good_ model : both simple and complex (see Dutton)
@@ -45,14 +45,14 @@ Outline : around a metagenomics analysis tool
 	+ Sometimes (everytime) cheese is _not only_ milk and micro-organisms
 	+ Environment influence is significant (others sources micro-organisms, possible interactions, abiotic parameters) (see Irlinger)
 
-## State-of-art tools for ecosystems exploration
+## State-of-art tools for ecosystems exploration (2.5-3p)
 
-### Methods
+### Methods (1p)
 
 * Focus on metagenomics.
 * Different sequencing approaches and their limits.
 
-### Post sequencing strategies 
+### Post sequencing strategies (1.5-2p)
 
 * Hence different tools and their limits.
 
@@ -62,7 +62,7 @@ Outline : around a metagenomics analysis tool
 * Exploration of strategy taking into account potential divergence between environmental and reference genomes.
  
 
-# Materials and methods
+# Materials and methods (7p)
 
 * How do I work?
 * What tools and data did I used?
@@ -71,7 +71,7 @@ Outline : around a metagenomics analysis tool
 * Private GitHub for report.
 
 
-# Results 
+# Results (22p)
 
 Ecosystems particularities leads to :
 
@@ -120,7 +120,7 @@ This part could be in prospects if time is running out.
 **Message:** are mismatches information an addition to metagenomics analysis?
 
 
-# Conclusion and prospects
+# Conclusion and prospects (5p)
 
 ## Prospects
 
