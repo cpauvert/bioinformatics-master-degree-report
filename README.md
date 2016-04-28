@@ -51,3 +51,6 @@ Total        |    29      |    -  |     50    |    32      |     50     |     50
 
 * Graphical abstract (like several journals)
 * Don't forget named bibliography references (Author and al.2014)
+* Verify how to write foreign abbreviations:
+	+ Keep french abbreviations with english details between parenthesis? 
+	+ Propose both abbreviations?
