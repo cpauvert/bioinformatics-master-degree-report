@@ -2,7 +2,7 @@
 
 Outline : around a metagenomics analysis tool
 
-## Food-Microbiome projects 
+## Food-Microbiome projects
 
 ### Why? (1p)
 
@@ -37,15 +37,20 @@ Outline : around a metagenomics analysis tool
 
 * Define micro-organisms and taxonomy hierarchy.
 * Ecosystems described as a _good_ model : both simple and complex (see Dutton)
-* Why simple ? 
-	+ Numbers of species compared to others. 
-	+ Milk is an accessible media for culturing.
-	+ Wide overall knowledge : literature available 
-* Why complex ? 
-	+ Sometimes (everytime) cheese is _not only_ milk and micro-organisms
-	+ Environment influence is significant (others sources micro-organisms, possible interactions, abiotic parameters) (see Irlinger)
 
-## State-of-art tools for ecosystems exploration (2.5-3p)
+
+### Why simple ?
+
+* Numbers of species compared to others.
+* Milk is an accessible media for culturing.
+* Wide overall knowledge : literature available
+
+### Why complex ?
+
+* Sometimes (everytime) cheese is _not only_ milk and micro-organisms
+* Environment influence is significant (others sources micro-organisms, possible interactions, abiotic parameters) (see Irlinger)
+
+## State-of-art tools for ecosystem exploration (2.5-3p)
 
 ### Methods (1p)
 
@@ -54,7 +59,8 @@ Outline : around a metagenomics analysis tool
 
 ### Post sequencing strategies (1.5-2p)
 
-* Hence different tools and their limits.
+* Presentation of different types of metagenomics data handling strategies.
+* Different tools and their limits in ecosystem exploration.
 
 ## Aims
 
@@ -90,14 +96,13 @@ A two-year work around a metagenomics analysis tool `GeDI` :
 
 ### Modeling approaches
 
-* Previous approaches
+* Previous approaches in the lab or during my internship
 * Mixture model principle (details in Materials chapter)
 
 ### Modeling exploration results
 
 * Limits identification and solutions hunt.
 * Possible usage.
-* What's next?
 
 ## Comparison
 
@@ -117,7 +122,6 @@ This part could be in prospects if time is running out.
 * to simulated datasets
 * to cheese metagenomics analysis : 6 samples
 
-**Message:** are mismatches information an addition to metagenomics analysis?
 
 
 # Conclusion and prospects (5p)
