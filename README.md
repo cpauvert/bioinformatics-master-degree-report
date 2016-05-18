@@ -1,25 +1,14 @@
 # Bioinformatics Master Degree Report
 
-## Outline brainstorming
+## Compilation usage
 
-### First Year :
 
-* How can metagenomics analysis be improved ? Especially when taking into account ecosystems constraints or absence of reference genome
-* Mixture model
-* Statistical model exploration
-* 
+Interesting note: don't forget to add
+```
+set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
+```
 
-### Second Year 
-
-* Compliance to bioinformatics standards
-* (Code optimization)
-* Results on cheese ecosystems
-
-## TODO
-
-* [ ] Outline draft
-* [x] Check if supervisor has a github account
-* [x] Number of pages
+to `~/.vimrc` to prevent from autocompleting pdf files in command line.
 
 ## Technical specifications
 
@@ -40,17 +29,3 @@ Results      |    10      |   0.34|    17.24  |    14      |     22.6   |     22
 Discussion   |    6       |   0.21|    10.34  |    -       |     -      |     -
 Conclusion   |    3       |   0.10|     5.17  |    3       |     4.8    |     4.8
 Total        |    29      |    -  |     50    |    32      |     50     |     50
-
-
-
-
-
-
-
-## Random Ideas section
-
-* Graphical abstract (like several journals)
-* Don't forget named bibliography references (Author and al.2014)
-* Verify how to write foreign abbreviations:
-	+ Keep french abbreviations with english details between parenthesis? 
-	+ Propose both abbreviations?
