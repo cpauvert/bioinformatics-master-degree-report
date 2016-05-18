@@ -1,0 +1,4 @@
+- [ ] Create workflow like diagram for report. Adapt CNIEL presentation
+- [ ] Prepare markdown tree of files (with child) for report.
+- [ ] Create a Makefile to compile everything nicely
+- [ ] Create a Makefile to compile one part only (for review and testing purposes)
