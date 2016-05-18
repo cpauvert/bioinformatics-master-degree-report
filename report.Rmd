@@ -1,0 +1,28 @@
+---
+title: "Bioinformatics Master Degree Report"
+author: Charlie PAUVERT
+classoption: a4paper
+fontsize: 12pt
+lang: english
+output:
+  pdf_document:
+    pandoc_args: [ "--latex-engine=/usr/bin/pdflatex", "--chapters" ] 
+    toc: yes
+    number_section: true
+header-includes:
+ - \usepackage{libertine}
+--- 
+
+
+```{r intro, child='introduction.Rmd'}
+```
+
+```{r mm, child='materials-and-methods.Rmd'}
+```
+
+```{r results, child='results.Rmd'}
+```
+
+```{r ccl, child='conclusions-and-prospects.Rmd'}
+```
+

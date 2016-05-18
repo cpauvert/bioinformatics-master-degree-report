@@ -1,0 +1,24 @@
+---
+title: "Conclusions and prospects"
+author: Charlie PAUVERT
+classoption: a4paper
+fontsize: 12pt
+lang: english
+output:
+  pdf_document:
+    pandoc_args: [ "--latex-engine=/usr/bin/pdflatex" ] 
+    toc: yes
+    number_section: true
+header-includes:
+ - \usepackage{libertine}
+--- 
+
+
+# Conclusion and prospects (5p)
+
+
+## Prospects
+
+* Tool will be used by industrials and academics.
+* Specific formations will be provided through the Migale platform.
+* Details on how I wanted to compare tools with ours in case of time constraints.

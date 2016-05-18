@@ -1,0 +1,59 @@
+---
+title: "Results"
+author: Charlie PAUVERT
+classoption: a4paper
+fontsize: 12pt
+lang: english
+output:
+  pdf_document:
+    pandoc_args: [ "--latex-engine=/usr/bin/pdflatex" ] 
+    toc: yes
+    number_section: true
+header-includes:
+ - \usepackage{libertine}
+--- 
+
+# Results (22p)
+
+Ecosystems particularities leads to :
+
+1. identify limits in existing **metagenomics tools**
+2. develop or adapt aforementioned tools or create a new one.
+
+
+A two-year work around a metagenomics analysis tool `GeDI` :
+
+## Improvements
+
+* exploration of taxonomic classification :
+	+ Mixture model proof-of-concept
+	+ Model limits and (partial) solutions
+* in terms of code (file size, speed, etc.) cf. Integration
+
+### Modeling approaches
+
+* Previous approaches in the lab or during my internship
+* Mixture model principle (details in Materials chapter)
+
+### Modeling exploration results
+
+* Limits identification and solutions hunt.
+* Possible usage.
+
+## Comparison
+
+* to existing tools (at the time)
+* to new tools (`Sigma`, `MicrobeGPS`)
+
+This part could be in prospects if time is running out.
+
+## Integration
+
+* with FoodMicrobiome Transfert
+* with Galaxy Platform
+* with others tools through the use of bioinformatics standard files.
+
+## Application
+
+* to simulated datasets
+* to cheese metagenomics analysis : 6 samples
