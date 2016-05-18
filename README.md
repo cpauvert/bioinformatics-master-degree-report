@@ -2,6 +2,19 @@
 
 ## Compilation usage
 
+For the complete report
+
+```
+make all
+```
+
+To compile only a chapter, say _introduction_:
+
+```
+make introduction.pdf
+```
+
+
 
 Interesting note: don't forget to add
 ```
