@@ -4,12 +4,39 @@ Outline : around a metagenomics analysis tool
 
 ## Food-Microbiome projects
 
+* Why study food?
+	+ We spend a fair amount of time eating, or thinking about it.
+	+ Food is an necessary component of our lives
+	+ Both needs for improvements and curiosity leads to study of food systems
+* Interests in fermented foods such as cheese ecosystem.
+
 ### Why? (1p)
 
-* Industrials partners and academics both wants insights into cheese ecosystems.
-* Common interests crystallized in two ANR projects:
+* Industrial partners and academics both wants insights into cheese ecosystems.
+* Common interests crystallized in two projects:
 	+ Food-Microbiome Project
 	+ Food-Microbiome Transfert Project
+
+#### Food-Microbiome Project
+
+* The project aims to understand deeply cheese ecosystem given next-generation sequencing technologies.
+* Metagenomics proof-of-concept for cheese ecosystem exploration.
+* Source ANR -_The French National Research Agency_-
+* Preliminary results
+
+#### Food-Microbiome Transfert Project
+
+##### Distribution of a metagenomics analysis tool
+
+* Knowledge acquired during the previous project will be transfer to industrial partners and scientific collaborators.
+* A comprehensive database and a website is developed to this end.
+* It will be possible to analyse metagenomics data with our tool directly from the interface.
+
+##### Experiments
+
+* Aim: Unravel technological abilities/potential of unknown strains.
+* Annotation improvements through wet lab experiments.
+
 
 ### Who? (0.75-1p)
 
@@ -21,9 +48,9 @@ Outline : around a metagenomics analysis tool
 #### Several actors and contributors to these projects
 
 * Academics: INRA mainly (Jouy, Grignon and Aurillac)
-* Industrials partners and CNIEL: define needs.
+* Industrials partners and CNIEL -_French Dairy Interbranch Organization_ -: define needs.
 
-* BAC Team: 
+* BAC Team:
 	+ PR: project leader.
 	+ ALA, CP, TG: development bioinformatics team.
 	+ BD: functional strains characterization. Wet lab.
@@ -56,6 +83,7 @@ Outline : around a metagenomics analysis tool
 
 * Focus on metagenomics.
 * Different sequencing approaches and their limits.
+* See Ercolini 2013 for next-generation sequencing and food microbial ecology
 
 ### Post sequencing strategies (1.5-2p)
 
@@ -66,7 +94,7 @@ Outline : around a metagenomics analysis tool
 
 * Summary of a two-year apprenticeship.
 * Exploration of strategy taking into account potential divergence between environmental and reference genomes.
- 
+
 
 # Materials and methods (7p)
 
