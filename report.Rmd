@@ -4,6 +4,9 @@ author: Charlie PAUVERT
 classoption: a4paper
 fontsize: 12pt
 lang: english
+bibliography: master-degree-report.bib
+csl: chicago-author-date.csl
+link-citations: true
 output:
   pdf_document:
     pandoc_args: [ "--latex-engine=/usr/bin/pdflatex", "--chapters" ] 
@@ -26,3 +29,4 @@ header-includes:
 ```{r ccl, child='conclusions-and-prospects.Rmd'}
 ```
 
+# References
