@@ -1,9 +1,12 @@
 # Parent source file for report
 REPORT=report.Rmd
 
+# Chapters files
+CHAPTERS=$(wildcard *.Rmd)
+
 all: $(REPORT).pdf
 
-$(REPORT).pdf: $(REPORT)
+$(REPORT).pdf: $(REPORT) $(CHAPTERS)
 	Rscript -e "rmarkdown::render( \"$<\",output_file=\"$@\" )"
 
 # Pattern rule to compile only chapters
