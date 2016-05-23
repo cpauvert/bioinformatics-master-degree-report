@@ -23,6 +23,16 @@ set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
 
 to `~/.vimrc` to prevent from autocompleting pdf files in command line.
 
+## Figures TikZ
+
+
+Figures can be drawn in TikZ using `knitr` engine with a modified template: `template-tikz2pdf.tex`
+Chunks needs to be configured with the following options:
+
+```
+engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.cap=""
+```
+
 ## Technical specifications
 
 ### Number of pages
