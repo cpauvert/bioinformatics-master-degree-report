@@ -3,7 +3,7 @@ title: "Bioinformatics Master Degree Report"
 author: Charlie PAUVERT
 classoption: a4paper
 fontsize: 12pt
-lang: english
+lang: en
 bibliography: master-degree-report.bib
 csl: chicago-author-date.csl
 link-citations: true
@@ -12,10 +12,12 @@ output:
     pandoc_args: [ "--latex-engine=/usr/bin/pdflatex", "--chapters" ] 
     toc: yes
     number_section: true
+    fig_caption: true
 header-includes:
  - \usepackage{libertine}
 --- 
 
+\listoffigures
 
 ```{r intro, child='introduction.Rmd'}
 ```

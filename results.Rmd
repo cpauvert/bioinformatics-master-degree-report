@@ -3,7 +3,7 @@ title: "Results"
 author: Charlie PAUVERT
 classoption: a4paper
 fontsize: 12pt
-lang: english
+lang: en
 output:
   pdf_document:
     pandoc_args: [ "--latex-engine=/usr/bin/pdflatex" ] 
