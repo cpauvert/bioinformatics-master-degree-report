@@ -4,5 +4,5 @@
 - [x] Create a Makefile to compile one part only (for review and testing purposes)
 - [x] Foreign abbreviations (see issues)
 - [ ] Graphical abstract (like several journals)
-- [ ] Don't forget named bibliography references (Author and al.2014)
-- [ ] Find a way to export zotero bibliography and git it!
+- [x] Don't forget named bibliography references (Author and al.2014)
+- [x] Find a way to export zotero bibliography and git it!
