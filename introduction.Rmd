@@ -20,27 +20,25 @@ Outline : around a metagenomics analysis tool
 
 ## Food-Microbiome projects
 
-* Why study food?
-	+ We spend a fair amount of time eating, or thinking about it.
-	+ Food is an necessary component of our lives
-	+ Both needs for improvements and curiosity leads to study of food systems
-* Interests in fermented foods such as cheese ecosystem.
+We spend a fair amount of time eating, or thinking about it. 
+Food is paradoxically both essential and trivial.
+Multiple factors drives food-related studies: from scientific curiosity to yield and quality improvements.
+Fermented foods - like cheese, sausage and beer - provides a level of diversity and complexity worth studying given their world-wide spread.
 
 ### Why? (1p)
 
-* Industrial partners and academics both wants insights into cheese ecosystems.
-* Common interests crystallized in two projects:
-	+ Food-Microbiome Project
-	+ Food-Microbiome Transfert Project
+Industrial partners and academics both wants insights into cheese ecosystems.
+Their common interests were crystallized into two projects:
 
-#### Food-Microbiome Project
+* Food-Microbiome project
+* Food-Microbiome Transfert project
 
-* The project aims to understand deeply cheese ecosystem given next-generation sequencing technologies.
-* Metagenomics proof-of-concept for cheese ecosystem exploration.
-* Source ANR -_The French National Research Agency_-
-* Preliminary results
+#### Food-Microbiome project
 
-#### Food-Microbiome Transfert Project
+The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential.
+It is coordinated by Pierre RENAULT (PhD) and funded by the ANR -_The French National Research Agency_-. It intend to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
+
+#### Food-Microbiome Transfert project
 
 ##### Distribution of a metagenomics analysis tool
 
