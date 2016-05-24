@@ -74,8 +74,9 @@ It is coordinated by Pierre RENAULT (PhD) and funded by the ANR -_The French Nat
 
 * Figure from CNIEL presentation to summarise how data flows and by who is it produced or handled.
 
+Legend : Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians as follow: CP for Charlie PAUVERT, ALA for Anne-Laure ABRAHAM (PhD, Research Engineer), TG for Thibaut GUIRIMAND (Engineer), MM for Mahendra MARIADASSOU (PhD, Research Associate), SS for Sophie SCHBATH (PhD, Research Director), VL for Valentin LOUX (Engineer), SD for Sandra DEROZIER (Engineer). Square nodes depicts microbiologists as follow: PR for Pierre RENAULT (PhD, Research Director), BD for Bedis DRIDI (Post-doc).
 
-```{r actors, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.cap=""}
+```{r actors, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.cap="Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians whereas square nodes depicts microbiologists. Underline names are my supervisors."}
 \begin{tikzpicture}[
 	every edge/.style = {draw=black,->, >=open triangle 60},
 	bio/.style = {regular polygon,regular polygon sides=4,text=black,align=center,inner sep=0em},
