@@ -4,6 +4,7 @@ author: Charlie PAUVERT
 classoption: a4paper
 fontsize: 12pt
 lang: en
+geometry: left=2cm,right=2cm,top=2cm,bottom=2.5cm
 bibliography: master-degree-report.bib
 csl: chicago-author-date.csl
 link-citations: true
@@ -13,8 +14,7 @@ output:
     toc: yes
     number_section: true
     fig_caption: true
-header-includes:
- - \usepackage{libertine}
+    template: template-pandoc.tex
 --- 
 
 \listoffigures
