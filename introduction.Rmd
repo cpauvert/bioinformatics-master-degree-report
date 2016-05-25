@@ -121,6 +121,7 @@ TG \&       \& SD\\
 
 ## Cheese ecosystems particularities (1p)
 
+###Micro-organisms and definition of species
 
 Micro-organisms unite bacteria, yeasts, molds and viruses.
 These micro-organisms are usually classified using taxonomic ranks as illustrated in \ref{fig:taxonomic}.
@@ -130,7 +131,7 @@ These micro-organisms are usually classified using taxonomic ranks as illustrate
 \matrix [matrix of nodes,ampersand replacement=\&,
 	row 2/.style={font=\itshape}] (r) {%
 Kingdom \& Phylum  \& Class  \& Order  \& Family  \& Genus  \& Species  \& (Sub-species) \& Strain\\
- Bacteria\& -  \& -  \& -  \& -  \& Lactococcus  \& lactis  \& subsp. cremoris \& A76\\
+ Bacteria\& Firmicutes  \& Bacilli  \& Lactobacillales  \& Streptococcaceae  \& Lactococcus  \& lactis  \& subsp. cremoris \& A76\\
 };
 \draw[black,->,>=open triangle 60] (r-1-1.north) -- node[midway,above] {Precision in micro-organism characterization} (r-1-9.north);
 \end{tikzpicture}
@@ -140,19 +141,30 @@ However whole-genome sequencing blurred these ranks and were thought to be augme
 DNA-DNA hybridization and its _in silico_ counterpart are proposed to delineate species limits [@richter_shifting_2009; @varghese_microbial_2015].
 For convenience I will use the standard classification when referring to micro-organisms.
 
-* Ecosystems described as a _good_ model : both simple and complex (see Dutton)
+### Cheese ecosystems
+
+Cheese-making starts with a matrix composed of milk more or less transformed.
+Proteins, fatty acids and water -- composing the milk -- combined with tailored conditions leads to an efficient microbial growth [@monnet_growth_2015].
 
 
-### Why simple ?
+These ecosystems are described as a _good_ model: both simple and complex [@wolfe_cheese_2014].
+
+
+###Why simple?
+
 
 * Numbers of species compared to others.
 * Milk is an accessible media for culturing.
 * Wide overall knowledge : literature available
 
-### Why complex ?
+NGS technologies shed light on a microbial diversity in what was thought to be well-described ecosystems [@quigley_high-throughput_2012].
+
+###Why complex ?
 
 * Sometimes (everytime) cheese is _not only_ milk and micro-organisms
 * Environment influence is significant (others sources micro-organisms, possible interactions, abiotic parameters) (see Irlinger)
+
+Despite rich media and supposed easy culture, low abundant micro-organisms in cheese ecosystems remains uncharacterized.
 
 ## State-of-art tools for ecosystem exploration (2.5-3p)
 
