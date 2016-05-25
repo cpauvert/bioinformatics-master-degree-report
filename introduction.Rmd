@@ -74,9 +74,9 @@ It is coordinated by Pierre RENAULT (PhD) and funded by the ANR -_The French Nat
 
 * Figure from CNIEL presentation to summarise how data flows and by who is it produced or handled.
 
-Legend : Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians as follow: CP for Charlie PAUVERT, ALA for Anne-Laure ABRAHAM (PhD, Research Engineer), TG for Thibaut GUIRIMAND (Engineer), MM for Mahendra MARIADASSOU (PhD, Research Associate), SS for Sophie SCHBATH (PhD, Research Director), VL for Valentin LOUX (Engineer), SD for Sandra DEROZIER (Engineer). Square nodes depicts microbiologists as follow: PR for Pierre RENAULT (PhD, Research Director), BD for Bedis DRIDI (Post-doc).
+Legend of Figure \ref{fig:actors}: Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians as follow: CP for Charlie PAUVERT, ALA for Anne-Laure ABRAHAM (PhD, Research Engineer), TG for Thibaut GUIRIMAND (Engineer), MM for Mahendra MARIADASSOU (PhD, Research Associate), SS for Sophie SCHBATH (PhD, Research Director), VL for Valentin LOUX (Engineer), SD for Sandra DEROZIER (Engineer). Square nodes depicts microbiologists as follow: PR for Pierre RENAULT (PhD, Research Director), BD for Bedis DRIDI (Post-doc).
 
-```{r actors, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.cap="Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians whereas square nodes depicts microbiologists. Underline names are my supervisors."}
+```{r actors, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.cap="Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians whereas square nodes depicts microbiologists. Underline names are my supervisors.",cache=TRUE}
 \begin{tikzpicture}[
 	every edge/.style = {draw=black,->, >=open triangle 60},
 	bio/.style = {regular polygon,regular polygon sides=4,text=black,align=center,inner sep=0em},
@@ -121,7 +121,25 @@ TG \&       \& SD\\
 
 ## Cheese ecosystems particularities (1p)
 
-* Define micro-organisms and taxonomy hierarchy.
+
+Micro-organisms unite bacteria, yeasts, molds and viruses.
+These micro-organisms are usually classified using taxonomic ranks as illustrated in \ref{fig:taxonomic}.
+
+```{r taxonomic, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.cap="Illustration of taxonomic ranks."}
+\begin{tikzpicture}
+\matrix [matrix of nodes,ampersand replacement=\&,
+	row 2/.style={font=\itshape}] (r) {%
+Kingdom \& Phylum  \& Class  \& Order  \& Family  \& Genus  \& Species  \& (Sub-species) \& Strain\\
+ Bacteria\& -  \& -  \& -  \& -  \& Lactococcus  \& lactis  \& subsp. cremoris \& A76\\
+};
+\draw[black,->,>=open triangle 60] (r-1-1.north) -- node[midway,above] {Precision in micro-organism characterization} (r-1-9.north);
+\end{tikzpicture}
+```
+
+However whole-genome sequencing blurred these ranks and were thought to be augmented by genomics information [@chun_integrating_2014].
+DNA-DNA hybridization and its _in silico_ counterpart are proposed to delineate species limits [@richter_shifting_2009; @varghese_microbial_2015].
+For convenience I will use the standard classification when referring to micro-organisms.
+
 * Ecosystems described as a _good_ model : both simple and complex (see Dutton)
 
 
