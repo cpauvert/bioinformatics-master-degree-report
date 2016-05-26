@@ -16,69 +16,68 @@ header-includes:
 # Introduction (7-15p)
 
 
-Outline : around a metagenomics analysis tool
-
 ## Food-Microbiome projects
 
 We spend a fair amount of time eating, or thinking about it. 
-Food is paradoxically both essential and trivial.
+Daily subjects are naturally studied and food -- as a complex product -- is investigated at several scales.
 Multiple factors drives food-related studies: from scientific curiosity to yield and quality improvements.
 Fermented foods - like cheese, sausage and beer - provides a level of diversity and complexity worth studying given their world-wide spread.
 
 ### Why? (1p)
 
 Industrial partners and academics both wants insights into cheese ecosystems.
-Their common interests were crystallized into two projects:
+Their common interests were crystallized into two projects: (1) Food-Microbiome project and (2) Food-Microbiome Transfert project
 
-* Food-Microbiome project
-* Food-Microbiome Transfert project
 
-#### Food-Microbiome project
+####Food-Microbiome project
 
 The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential.
-It is coordinated by Pierre RENAULT (PhD) and funded by the ANR -_The French National Research Agency_-. It intend to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
+It is coordinated by Pierre RENAULT (PhD,Research Director) and funded by the ANR -_The French National Research Agency_-. It intends to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
 
-#### Food-Microbiome Transfert project
+####Food-Microbiome Transfert project
 
-##### Distribution of a metagenomics analysis tool
+The second project is divided into two parts: (1) the distribution of a metagenomics analysis tool and (2) the characterization of food-related strains.
+<!-- The knowledge acquired during the previous project will be crystallized into a comprehensive metagenomics tool. -->
+Metagenomics data analysis will be facilitated through an online interface where public and user-provided genomes could be used.
+A comprehensive database and a website is developed to this end and target industrial partners and scientific collaborators.
 
-* Knowledge acquired during the previous project will be transfer to industrial partners and scientific collaborators.
-* A comprehensive database and a website is developed to this end.
-* It will be possible to analyse metagenomics data with our tool directly from the interface.
-
-##### Experiments
-
-* Aim: Unravel technological abilities/potential of unknown strains.
-* Annotation improvements through wet lab experiments.
+Wet-lab experiments are planned by a post-doctoral researcher (Bedis DRIDI, PhD) in order to unravel technological abilities of unknown strains and improve genomics annotations.
 
 
 ### Who? (0.75-1p)
+
+Farming provide most of our food, hence food-related studies are often led by INRA - _The French National Institute for Agricultural Research_.
+
+INRA is an EPST - _Scientific and Technological Public Structure_ - which yields scientific knowledge concerning food, agriculture and environment since 1946.
+It is organized into well-defined scientific divisions or _department_ -e.g., MICA for _Microbiology and the Food Chain_- which gather several research _units_ -e.g., MICALIS for _Food microbiology for health_-.
+INRA is spread across the country in _centers_ and scientists work locally in _teams_ that are part of units.
+
+#### Several actors and contributors to these projects
+
+Food-Microbiome projects are led by teams in a major INRA center: Jouy-en-Josas (FR).
+They are backed by teams in others centers such as Grignon (FR) and Aurillac (FR).
+
+Science implies collaborations and these projects include industrials partners gathered in CNIEL -_The French Dairy Interbranch Organization_.
+
+**Food and Commensal Bacteria Team** BAC Team is led by Pierre RENAULT (PhD, Research Director, abbrev: PR).
+Anne-Laure ABRAHAM (PhD, Research Engineer, abbrev: ALA), Thibaut GUIRIMAND (Engineer, abbrev: TG), and myself Charlie PAUVERT (abbrev: CP) constitute the development bioinformatics team. Bedis DRIDI (Post-doc, abbrev: BD) is implied in wet lab experiments.
+
+* MaIage unit :
+	+ VL, SD, (TG): infrastructure team, platform administrator, technical advices
+	+ MM, SB: statistical expertise.
+
 
 #### Personal involvement in both projects
 
 * Mainly development and tests in FM.
 * Knowledge/know-how transfer and integration in FMT.
 
-#### Several actors and contributors to these projects
+Legend of Figure \ref{fig:actors} CP for Charlie PAUVERT, ALA for  MM for Mahendra MARIADASSOU (PhD, Research Associate), SS for Sophie SCHBATH (PhD, Research Director), VL for Valentin LOUX (Engineer), SD for Sandra DEROZIER (Engineer). 
 
-* Academics: INRA mainly (Jouy, Grignon and Aurillac)
-* Industrials partners and CNIEL -_French Dairy Interbranch Organization_ -: define needs.
 
-* BAC Team:
-	+ PR: project leader.
-	+ ALA, CP, TG: development bioinformatics team.
-	+ BD: functional strains characterization. Wet lab.
-* MaIage unit :
-	+ VL, SD, (TG): infrastructure team, platform administrator, technical advices
-	+ MM, SB: statistical expertise.
-
-* Figure from CNIEL presentation to summarise how data flows and by who is it produced or handled.
-
-Legend of Figure \ref{fig:actors}: Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians as follow: CP for Charlie PAUVERT, ALA for Anne-Laure ABRAHAM (PhD, Research Engineer), TG for Thibaut GUIRIMAND (Engineer), MM for Mahendra MARIADASSOU (PhD, Research Associate), SS for Sophie SCHBATH (PhD, Research Director), VL for Valentin LOUX (Engineer), SD for Sandra DEROZIER (Engineer). Square nodes depicts microbiologists as follow: PR for Pierre RENAULT (PhD, Research Director), BD for Bedis DRIDI (Post-doc).
-
-```{r actors, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.cap="Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians whereas square nodes depicts microbiologists. Underline names are my supervisors.",cache=TRUE}
+```{r actors, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Actors and teams in Food-Microbiome projects.", fig.cap="Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians whereas square nodes depicts microbiologists. Underline names are my supervisors. Initials are detailed in the text.",cache=TRUE}
 \begin{tikzpicture}[
-	every edge/.style = {draw=black,->, >=open triangle 60},
+	every edge/.style = {draw=black,->, >=triangle 60},
 	bio/.style = {regular polygon,regular polygon sides=4,text=black,align=center,inner sep=0em},
 	FM/.style = {draw=Igreen,rectangle,text=black,align=center},
 	FMT/.style = {draw=Iorange,rectangle,text=black,align=center}]
