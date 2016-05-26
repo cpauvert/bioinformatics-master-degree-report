@@ -4,73 +4,63 @@
 \tikzstyle{lecture}=[rectangle, minimum width=3em,minimum height=1em]
 \tikzstyle{marqueur}=[rectangle, minimum width=3em,minimum height=1em, draw=black, thick]
 
-  \begin{scope}[x=15em, y=10em,scale=0.1, every node/.style={transform shape}, local bounding box=petri]
+\matrix [matrix of nodes, row sep = 2em,
+		ampersand replacement=\&,
+		column sep={15em}] (m) {%
+|[text width =2cm, text centered]|  {Microbial ecosystem} \&  \& |[rectangle, draw=Igreen, fill=Igreen!25]| {$\bullet$ Which micro-organisms is present? $\bullet$ What functions are associated?}\\
+ \&  |[rectangle, text width=3.5cm,draw=Igreen, label={\textbf{Métagénomique}}, text centered, minimum width=5em]| {Ecosystem genomics information capture and analysis}\& \\
+|[fill=Iblue!25]|  {\textbf{Shotgun sequencing}} \&  \& |[fill=Iorange!25,draw, text width=3.5cm, text centered]| {Amplicon sequencing (marker genes,...)}\\
+\node[rectangle split horizontal, rectangle split, rectangle split parts=3 , text width=3cm, text centered, draw, fill=Iblue!25] {\textbf{Existing species and strains identification}\nodepart{second} De-novo genome assemblies \nodepart{third}Metabolism prediction}; \&  {Millions of DNA reads} \& \node[rectangle split horizontal,rectangle split, rectangle split parts =2, text width=2.5cm, text centered, draw, fill=Iorange!25] {Existing genus and species identification\nodepart{two} Micro-organisms quantification};\\
+};
+
+  \begin{scope}[x=15em, y=10em,scale=0.1, every node/.style={transform shape}, local bounding box=petri, shift={($(m-3-2)$)}]
   \foreach \n /\col in {4/Igreen, 12 /Iblue, 4 /Iblue!65, 6 /Iorange,4/Iblue!65!black,2/Igreen!65!black}{%
 	  \foreach \x in {1,...,\n}{
 	      \node[bact, draw=\col, rotate =180*rand] (\x) at (rand, rand) {};
 	  }
   };
   \end{scope}  
-%
-\node[left=2.5cm of petri, text width =2cm, text centered] (eco)  {Microbial\par ecosystem}; 
-\node[below=of petri] (ext) {DNA Extraction}; 
-\node[fill=Iblue!25,text width=3.5cm,draw, text centered,below left=of ext,yshift=-2em]  (seqG) {\textbf{Shotgun} \par \textbf{sequencing}};
-\node[below right=of ext, fill=Iorange!25,draw, text width=3.5cm, text centered,yshift=-2em]  (seqC) {Amplicon sequencing \par (marker genes,...)};
 
-% positioning with at ( |- )  : orthogonal positioning
-\node[rectangle, draw=Igreen, fill=Igreen!25 , text width=3.5cm] (quest) at (petri-|seqC) {$\bullet$ Which micro-organisms \par ~~ is present?\par $\bullet$ What functions \par ~~ are associated?};
-\node[rectangle, below =of quest, text width=3.5cm,draw=Igreen, label={\textbf{Métagénomique}}, text centered, minimum width=5em] (mtg) {Ecosystem genomics information\par capture and analysis};
+%\node[below=of id.west,yshift=-0.5cm,xshift=1cm, anchor=north west,text width=3.8cm, text centered,dash pattern = on 2pt off 3pt on 4pt off 4pt, draw] (cmp){Reads composition comparison to known profiles};
+%\node[below=1em of cmp,text width=4cm, text centered,dash pattern = on 2pt off 3pt on 4pt off 4pt, draw](alg) {\textbf{Reads mapping to reference genomes}};
+%\node[below=of id16.west,yshift=-0.5cm,xshift=1cm, anchor=north west, text width=4cm,text centered,dash pattern = on 2pt off 3pt on 4pt off 4pt, draw](alg16) {Reads comparison to a marker genes bank };
+%\node[rotate=90, left=0.2cm of id, anchor=south,text=gray] (met) {Methods};
+%\node[rotate=90, below=of met.south west, anchor=south east,text=gray] (strat) {Strategies};
 
-\path (seqC) -- (seqG) node[midway ] (a) {$\bullet$};
-\node[below=of seqG] (nG) {};
-\node[below=of seqC] (nC) {};
-\path (nC) -- (nG) node[midway] {Millions of DNA reads};
-%\node (lect) at ($(nG)!0.5!(nC)$) {Lectures};
-
-\node[below=of nG, rectangle split horizontal, rectangle split, rectangle split parts=3 , text width=3cm, text centered, draw, fill=Iblue!25] (id) {\textbf{Existing species and strains identification}\nodepart{second} De-novo genome assemblies \nodepart{third}Metabolism prediction};
-\node[below=of nC, rectangle split horizontal,rectangle split, rectangle split parts =2, text width=2.5cm, text centered, draw, fill=Iorange!25] (id16) {Existing genus and species identification\nodepart{two} Micro-organisms quantification};
-
-
-\node[below=of id.west,yshift=-0.5cm,xshift=1cm, anchor=north west,text width=3.8cm, text centered,dash pattern = on 2pt off 3pt on 4pt off 4pt, draw] (cmp){Reads composition comparison to known profiles};
-\node[below=1em of cmp,text width=4cm, text centered,dash pattern = on 2pt off 3pt on 4pt off 4pt, draw](alg) {\textbf{Reads mapping to reference genomes}};
-\node[below=of id16.west,yshift=-0.5cm,xshift=1cm, anchor=north west, text width=4cm,text centered,dash pattern = on 2pt off 3pt on 4pt off 4pt, draw](alg16) {Reads comparison to a marker genes bank };
-\node[rotate=90, left=0.2cm of id, anchor=south,text=gray] (met) {Methods};
-\node[rotate=90, below=of met.south west, anchor=south east,text=gray] (strat) {Strategies};
-
-  \begin{scope}[x=15em, y=7em, scale=0.2, every node/.style={transform shape}, local bounding box=seq, shift={($(nG)$)}]
+  \begin{scope}[x=15em, y=7em, scale=0.2, every node/.style={transform shape}, local bounding box=seq, shift={($(m-4-1)$)}]
   \foreach \n /\col in {4/Igreen, 20 /Iblue, 10 /Iblue!65, 20 /Iorange,10/Iblue!65!black,8/Igreen!65!black}{%
 	  \foreach \x in {1,...,\n}{
 	      \node[lecture, fill=\col] (l\x) at (rand, rand) {};
 	  }
   };
   \end{scope} 
-  \begin{scope}[x=15em, y=7em, scale=0.2, every node/.style={transform shape}, local bounding box=cib, shift={($(nC)$)}]
+  \begin{scope}[x=15em, y=7em, scale=0.2, every node/.style={transform shape}, local bounding box=cib, shift={($(m-4-3)$)}]
   \foreach \n /\col in {4/Igreen, 20 /Iblue, 10 /Iblue!65, 20 /Iorange,10/Iblue!65!black,8/Igreen!65!black}{%
 	  \foreach \x in {1,...,\n}{
 	      \node[marqueur, draw=\col, fill=black] (m\x) at (rand, rand) {};
 	  }
   };
   \end{scope} 
-\node[circle, draw,fit= (petri)] (fitP) {};
-\draw (eco) --  node[above, midway](ech) {Sampling}(fitP);
-\draw[thick , ->, >=stealth] (fitP) -- (quest);
-\draw[thick , ->, >=stealth] (quest.east) -| ++(1em,0) |- (mtg.east);
-\draw[->, >=stealth] (fitP) -- (ext);
-\draw (ext) -- (a);
-\draw[->, >=stealth] (a) -- (seqG.east) ;
-\draw[->, >=stealth] (a) -- (seqC.west);
-
-\node[rectangle, draw=lightgray,dashed,fit= (quest) (mtg)] (fit) {};
-
-\draw[->, >=stealth] (seq) -- (id) ;
-\draw[->,>=stealth] (seq) -- ($(id.north east)+(-1.25cm,0)$) ;
-\draw[->,>=stealth] (seq) -- ($(id.north west)+(1.25cm,0)$) ;
-\draw[->,>=stealth] (cib) -- ($(id16.north)+(-1.25cm,0)$) ;
-\draw[->,>=stealth] (cib) -- ($(id16.north)+(1.25cm,0)$) ;
-\draw[->,>=stealth] (id.south west) ++(0.5cm,0) |- (cmp.west) ;
-\draw[->,>=stealth] (id.south west) ++(0.5cm,0) |- (alg.west) ;
-\draw[->,>=stealth] (id16.south west) ++(0.5cm,0) |- (alg16.west) ;
-\node[draw=lightgray, inner sep=3pt,fit={(cmp) (alg) (alg16)(strat)}] (fitStr) {};
-\node[draw=lightgray, inner sep=3pt,fit={(met) (id) (id16)}]  {};
-\node[left=4cm of fitStr.south east,anchor=south east,text width=5cm,text centered, draw=lightgray] {Micro-organisms identification \\ strategies examples};
+%\node[circle, draw,fit= (petri)] (fitP) {};
+%\draw (eco) --  node[above, midway](ech) {Sampling}(fitP);
+%\draw[thick , ->, >=stealth] (fitP) -- (quest);
+%\draw[thick , ->, >=stealth] (quest.east) -| ++(1em,0) |- (mtg.east);
+%\draw[->, >=stealth] (fitP) -- (ext);
+%\draw (ext) -- (a);
+%\draw[->, >=stealth] (a) -- (seqG.east) ;
+%\draw[->, >=stealth] (a) -- (seqC.west);
+%
+%\node[rectangle, draw=lightgray,dashed,fit= (quest) (mtg)] (fit) {};
+%
+%\draw[->, >=stealth] (seq) -- (id) ;
+%\draw[->,>=stealth] (seq) -- ($(id.north east)+(-1.25cm,0)$) ;
+%\draw[->,>=stealth] (seq) -- ($(id.north west)+(1.25cm,0)$) ;
+%\draw[->,>=stealth] (cib) -- ($(id16.north)+(-1.25cm,0)$) ;
+%\draw[->,>=stealth] (cib) -- ($(id16.north)+(1.25cm,0)$) ;
+%\draw[->,>=stealth] (id.south west) ++(0.5cm,0) |- (cmp.west) ;
+%\draw[->,>=stealth] (id.south west) ++(0.5cm,0) |- (alg.west) ;
+%\draw[->,>=stealth] (id16.south west) ++(0.5cm,0) |- (alg16.west) ;
+%\node[draw=lightgray, inner sep=3pt,fit={(cmp) (alg) (alg16)(strat)}] (fitStr) {};
+%\node[draw=lightgray, inner sep=3pt,fit={(met) (id) (id16)}]  {};
+%\node[left=4cm of fitStr.south east,anchor=south east,text width=5cm,text centered, draw=lightgray] {Micro-organisms identification \\ strategies examples};
 \end{tikzpicture}
