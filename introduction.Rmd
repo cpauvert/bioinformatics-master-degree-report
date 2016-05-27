@@ -97,20 +97,20 @@ TG \&       \& SD\\
 \node [draw,rectangle,dashed, fit={(m-1-1)(m-5-1)}, inner sep=4pt,label={[text width=8em,align=center]Unit{:} MICALIS\\Team{:} BAC}] (bac) {};
 \node [draw,rectangle,dashed, fit={(m-1-3)(m-2-3)}, inner sep=4pt,label={[text width=10em,align=center]Unit{:} MaIAGE\\Team{:} StatInfOmics}] (mod) {};
 \node [draw,rectangle,dashed, fit={(m-4-3)(m-5-3)}, inner sep=4pt,label={[text width=8em,align=center]Unit{:} MaIAGE\\Team{:} Migale}] (mig) {};
-%\draw[<->, >=open triangle 60] (m-1-1) to [bend right=90] (m-2-1);
-%\draw[<->, >=open triangle 60] (m-1-1) to [bend right=90] node [below,midway,sloped] {Supervisors} (m-3-1);
+%\draw[<->, >=triangle 60] (m-1-1) to [bend right=90] (m-2-1);
+%\draw[<->, >=triangle 60] (m-1-1) to [bend right=90] node [below,midway,sloped] {Supervisors} (m-3-1);
 % Labels
 \node [FM,fit={(m-1-2)(m-2-2)}, label={Food-Microbiome project}] (fm) {Shotgun metagenomics analysis tool};
 \node [FM,fit={(m-4-2)(m-5-2)}, label={below:FM Transfert project}] (fmt) {Metadata-extended genomics database};
 % FM-FMT relations
-\draw [draw=black,->, >=open triangle 60] (fm) to [bend left] node[right] {Results} (fmt);
-\draw [draw=black,->, >=open triangle 60] (fmt) to [bend left] node[left,near start] {Genomes} node [left,near end] {Annotations} (fm);
+\draw [draw=black,->, >=triangle 60] (fm) to [bend left] node[right] {Results} (fmt);
+\draw [draw=black,->, >=triangle 60] (fmt) to [bend left] node[left,near start] {Genomes} node [left,near end] {Annotations} (fm);
 \draw (mod) edge node[above] {Statistical \& modelling} node[below] {expertise} (mod-|fm.east);
 \draw (mig) edge node[above] {Platform administrators} node[below] {Technical advices} (mig-|fmt.east);
 \draw (m-1-1) edge node[above] {Improvements \& tests}(m-1-1-|fm.west);
 \draw (m-2-1) edge node[above] (id) {Initial developments} (m-2-1-|fm.west);
-\draw[draw=black,->, >=open triangle 60] (m-3-1) to [bend left=10]  (fm.205);
-\draw[draw=black,->, >=open triangle 60] (m-3-1) to [bend right=10] (fmt.150);
+\draw[draw=black,->, >=triangle 60] (m-3-1) to [bend left=10]  (fm.205);
+\draw[draw=black,->, >=triangle 60] (m-3-1) to [bend right=10] (fmt.150);
 \node at (m-3-1-|id) {Biological expertise};
 \draw (m-4-1) edge node[below] {Strains characterization} (m-4-1-|fmt.west);
 \draw (m-5-1) edge node[below] {Developments \& design} (m-5-1-|fmt.west);
@@ -125,14 +125,17 @@ TG \&       \& SD\\
 Micro-organisms unite bacteria, yeasts, molds and viruses.
 These micro-organisms are usually classified using taxonomic ranks as illustrated in \ref{fig:taxonomic}.
 
-```{r taxonomic, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.cap="Illustration of taxonomic ranks."}
-\begin{tikzpicture}
+```{r taxonomic, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.cap="Illustration of taxonomic ranks. Current limits of taxonomical identification in several metagenomics sequencing strategies are described by symbols: diamonds ($\\diamond$) depicts shotgun sequencing technology whereas circles ($\\circ$) depicts amplicon sequencing strategies."}
+\begin{tikzpicture}[
+	WGS/.style={pin={[Iblue]below:$\diamond$}},
+	MIX/.style={pin={below:$\diamond\;\circ$}},
+	MTB/.style={pin={[Iorange]below:$\circ$}}]
 \matrix [matrix of nodes,ampersand replacement=\&,
 	row 2/.style={font=\itshape}] (r) {%
 Kingdom \& Phylum  \& Class  \& Order  \& Family  \& Genus  \& Species  \& (Sub-species) \& Strain\\
- Bacteria\& Firmicutes  \& Bacilli  \& Lactobacillales  \& Streptococcaceae  \& Lactococcus  \& lactis  \& subsp. cremoris \& A76\\
+ Bacteria\& Firmicutes  \& Bacilli  \& Lactobacillales  \& Streptococcaceae  \& |[MTB]| Lactococcus  \& |[MIX]| lactis  \& |[WGS]| subsp. cremoris \& |[WGS]| A76\\
 };
-\draw[black,->,>=open triangle 60] (r-1-1.north) -- node[midway,above] {Precision in micro-organism characterization} (r-1-9.north);
+\draw[black,->,>=triangle 60] (r-1-1.north) -- node[midway,above] {Precision in micro-organism characterization} (r-1-9.north);
 \end{tikzpicture}
 ```
 
