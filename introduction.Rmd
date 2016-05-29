@@ -177,7 +177,7 @@ Despite rich media and supposed easy culture, low abundant micro-organisms in ch
 * See Ercolini 2013 for next-generation sequencing and food microbial ecology
 
 ```{r ecosys, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.cap="Overview of microbial communities exploration using metagenomics methods. Bold items describe technologies and methods used in our projects."}
-\input{schemaEcosys}
+\input{fig-ecosys}
 ```
 
 ### Post sequencing strategies (1.5-2p)

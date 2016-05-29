@@ -4,9 +4,12 @@ REPORT=report.Rmd
 # Chapters files
 CHAPTERS=$(wildcard *.Rmd)
 
+# Figures files
+FIGURES=$(wildcard fig-*.tex)
+
 all: $(REPORT).pdf
 
-$(REPORT).pdf: $(REPORT) $(CHAPTERS)
+$(REPORT).pdf: $(REPORT) $(CHAPTERS) $(FIGURES)
 	Rscript -e "rmarkdown::render( \"$<\",output_file=\"$@\" )"
 
 # Pattern rule to compile only chapters
