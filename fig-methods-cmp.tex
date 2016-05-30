@@ -1,0 +1,29 @@
+\begin{tikzpicture}[
+	avantage/.style={fill=Iblue!55,text=black, anchor=east, minimum size=7cm},
+	inconv/.style={fill=Ipurple!55,text=black, anchor=west, minimum width=7cm, minimum height=1.1cm},
+	n/.style={rectangle, rounded corners, fill=Igreen!55, text centered}]
+	\matrix [row sep=0.3cm, column sep=0cm]{
+	%
+		\node[thick, draw=Igreen, rounded corners, text width = 3.5cm, text centered] {Micro-organisms identification strategies}; &[0.2cm] 
+		\node[fill=Iblue!55, circle, text=black, minimum size=0.7cm,anchor=east] (plus) {+}; &
+		\node[fill=Ipurple!55, circle, text=black, minimum size=0.7cm,anchor=west, text centered] {-}; \\
+		\node[n] (asb) {\emph{De novo} assembly   } ;&
+\node[avantage, minimum height=.7cm] (A_asb) {Unknown organisms identification.};&
+\node[inconv, minimum height=.7cm] {Many high-quality reads needed.};\\
+%
+%\node[avantage,above =of A_asb, minimum width=2cm] (av) {Avantages};
+%\node[inconv, right= of av, minimum width=2cm] {Inconvénients};
+\node[n, text width= 3.5cm] {Composition  \par ($k$-mers, nucleotides)};&[1cm] 
+\node[avantage, minimum height=.7cm] (A_cmp) {Fast.};&
+\node[inconv, minimum height=.7cm] {Training dataset dependant.};\\
+\node[n, text width=3cm] {Targeted alignment \par (16S/ITS, genes) } ;&
+\node[avantage,rectangle split, rectangle split parts =2] (A_cib) {Fair prices.\nodepart{second} Several samples. };&
+\node[inconv] {Taxonomical assignation  up to genus/species.};\\
+%
+\node[n,text width=3cm] (atot) {Whole genome\\ alignment} ;&
+\node[avantage,rectangle split, rectangle split parts =2] (A_tot) {Taxonomical assignation  up to species/strains. \nodepart{two} Genes content and putative functions. };&
+\node[inconv] (cout) {Reference database dependant accuracy.};\\
+}; 
+\draw[thick] (A_asb.north east) -- (A_tot.south east) ;
+\node[dashed, draw=Iorange, fit=(atot)(A_tot)(cout)] (f1)  {};
+\end{tikzpicture}
