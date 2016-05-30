@@ -226,6 +226,9 @@ $else$
 $endif$
 
 \usepackage{libertine}
+% Use Latin Modern TypeWriter tt fonts when using libertine fonts
+% Rendering is improved
+\renewcommand{\ttdefault}{lmtt}
 \usepackage{tikz}
 \usetikzlibrary{matrix,positioning,shapes,arrows,shapes.misc,fit,calc}
 \usepackage[pagestyles]{titlesec}
@@ -244,7 +247,6 @@ $endif$
 \newpagestyle{chapter}[\small]{
     \setfoot[\thepage][][]{}{}{\thepage}
   }
-
 \begin{document}
 $if(title)$
 \maketitle
