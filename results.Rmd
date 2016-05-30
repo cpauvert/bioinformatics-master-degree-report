@@ -15,13 +15,12 @@ header-includes:
 
 # Results (22p)
 
-Ecosystems particularities leads to :
-
-1. identify limits in existing **metagenomics tools**
-2. develop or adapt aforementioned tools or create a new one.
+In the scope of Food-Microbiome projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem -- if possible to the *strain* level -- and (2) characterize low-abundant organisms.
 
 
-A two-year work around a metagenomics analysis tool `GeDI` :
+I this chapter, I will focus on my two-year work around a metagenomics analysis tool `GeDI` through four main axes.
+I will present (1) several approaches explored to improve the tool, followed by (2) a comparison with similar tools and (3) how this module was integrated to conclude with (4) results from its application on simulated and real datasets.
+
 
 ## Improvements
 
@@ -33,6 +32,11 @@ A two-year work around a metagenomics analysis tool `GeDI` :
 ### Modeling approaches
 
 * Previous approaches in the lab or during my internship
+
+```{r previous-approaches, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous modeling approaches summary embedded in GeDI.", fig.cap="Previous modeling approaches summary embedded in GeDI.",cache=TRUE}
+\input{figures/fig-previous-approaches}
+```
+
 * Mixture model principle (details in Materials chapter)
 
 ### Modeling exploration results

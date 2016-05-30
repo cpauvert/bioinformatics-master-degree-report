@@ -22,3 +22,7 @@ header-includes:
 * **Insist on EM algorithm** according to NV remarks?
 * New python librairies used in GeDI.
 * Private GitHub for report.
+
+```{r gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Principles of metagenomics analysis tool: GeDI.", fig.cap="Principles of metagenomics analysis tool: GeDI.",cache=TRUE }
+\input{figures/fig-gedi}
+```
