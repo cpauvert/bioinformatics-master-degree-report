@@ -1,0 +1,13 @@
+#!/bin/sh
+
+TDIR=`mktemp -d --tmpdir=/tmp`
+
+cp -t ${TDIR} template-tikz2pdf.tex
+cp -t ${TDIR} ${1}
+
+cd ${TDIR}
+sed -i "s/%% TIKZ_CODE %%/\\\input\{$1\}/" template-tikz2pdf.tex
+
+pdflatex template-tikz2pdf.tex
+mupdf template-tikz2pdf.pdf 
+#rm -r ${TDIR}

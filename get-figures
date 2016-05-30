@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Get figures and apply modifications to fit to new report.
+sed -n -e '/tikzpicture/,$ p' ${1} |sed '/document/d' |sed -e 's/inra_orange/Iorange/g' -e 's/inra_bleu/Iblue/g' -e 's/inra_vert/Igreen/g' -e 's/inra_violet/Ipurple/g' > fig-${1}
