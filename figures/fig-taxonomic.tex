@@ -1,0 +1,11 @@
+\begin{tikzpicture}[
+	WGS/.style={pin={[Iblue]below:$\diamond$}},
+	MIX/.style={pin={below:$\diamond\;\circ$}},
+	MTB/.style={pin={[Iorange]below:$\circ$}}]
+\matrix [matrix of nodes,ampersand replacement=\&,
+	row 2/.style={font=\itshape}] (r) {%
+Kingdom \& Phylum  \& Class  \& Order  \& Family  \& Genus  \& Species  \& (Sub-species) \& Strain\\
+ Bacteria\& Firmicutes  \& Bacilli  \& Lactobacillales  \& Streptococcaceae  \& |[MTB]| Lactococcus  \& |[MIX]| lactis  \& |[WGS]| subsp. cremoris \& |[WGS]| A76\\
+};
+\draw[black,->,>=stealth] (r-1-1.north) -- node[midway,above] {Precision in micro-organism characterization} (r-1-9.north);
+\end{tikzpicture}
