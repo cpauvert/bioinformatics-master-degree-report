@@ -5,7 +5,7 @@ REPORT=report.Rmd
 CHAPTERS=$(wildcard *.Rmd)
 
 # Figures files
-FIGURES=$(wildcard fig-*.tex)
+FIGURES=$(wildcard figures/fig-*.tex)
 
 all: $(REPORT).pdf
 
@@ -21,5 +21,9 @@ $(REPORT).pdf: $(REPORT) $(CHAPTERS) $(FIGURES)
 	Rscript -e "rmarkdown::render( \"$<\",output_file=\"$@\" )"
 
 # Interactive clean of pdf files
-clean: 
+cleanPDF:
 	git clean -i *.pdf
+
+# Exclude PDF and clean build directories (cache, and generated figures)
+cleanCache:
+	git clean -d -f -e *.pdf
