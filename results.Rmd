@@ -33,7 +33,7 @@ I will present (1) several approaches explored to improve the tool, followed by 
 
 * Previous approaches in the lab or during my internship
 
-```{r previous-approaches, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous modeling approaches summary embedded in GeDI.", fig.cap="Previous modeling approaches summary embedded in GeDI.",cache=TRUE}
+```{r previous-approaches, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous modeling approaches summary embedded in GeDI.", fig.cap="Previous modeling approaches summary embedded in GeDI. Theses differents approaches were tested at different period depicted as symbols: before my internship ($\\circ$), during my first year of master degree internship ($\\diamond$) and during my two-year apprenticeship ($\\star$).",cache=TRUE}
 \input{figures/fig-previous-approaches}
 ```
 
