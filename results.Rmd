@@ -15,34 +15,59 @@ header-includes:
 
 # Results (22p)
 
+> "Which micro-organisms exist in the studied ecosystem?"
+
+We are trying to answer this question through the proxy of reference genomes and metagenomics reads alignments.
+Hundreds of genomes extracted from dairy products are currently available in genomic databases [@almeida_construction_2014].
 In the scope of Food-Microbiome projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem -- if possible to the *strain* level -- and (2) characterize low-abundant organisms.
 
 
-I this chapter, I will focus on my two-year work around a metagenomics analysis tool `GeDI` through four main axes.
-I will present (1) several approaches explored to improve the tool, followed by (2) a comparison with similar tools and (3) how this module was integrated to conclude with (4) results from its application on simulated and real datasets.
+In this chapter, I will focus on my two-year work around a metagenomics analysis tool -- `GeDI` -- through four main axes.
+I will present (1) several approaches explored to improve the tool, followed by (2) a comparison with similar tools and (3) how this module was integrated with others, to conclude with (4) results from its application on simulated and real datasets.
 
 
-## Improvements
+## Scientific and computational improvements of GeDI
 
-* exploration of taxonomic classification :
-	+ Mixture model proof-of-concept
-	+ Model limits and (partial) solutions
-* in terms of code (file size, speed, etc.) cf. Integration
+Two kind of improvements are highlighted concerning this tool. 
+First, scientifical improvements through an exploration of micro-organisms taxonomical classification.
+Second, computational improvements that covers  software performance as well as proper documentation.
 
-### Modeling approaches
-
-* Previous approaches in the lab or during my internship
 
 ```{r previous-approaches, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous modeling approaches summary embedded in GeDI.", fig.cap="Previous modeling approaches summary embedded in GeDI. Theses differents approaches were tested at different period depicted as symbols: before my internship ($\\circ$), during my first year of master degree internship ($\\diamond$) and during my two-year apprenticeship ($\\star$).",cache=TRUE}
 \input{figures/fig-previous-approaches}
 ```
 
+We want an automatic criterion to infer presence or absence of a micro-organism from alignment data.
+To this end we focus on several modeling approaches -- summarised in Figure \ref{fig:previous-approaches} -- throughout my work in BAC team.
+
+
+* exploration of taxonomic classification :
+	+ Mixture model proof-of-concept
+	+ Model limits and (partial) solutions
+
+
+
+### Modeling approaches
+
+* Previous approaches in the lab or during my internship
 * Mixture model principle (details in Materials chapter)
 
 ### Modeling exploration results
 
 * Limits identification and solutions hunt.
 * Possible usage.
+
+### Software performance
+
+
+In addition to scientifical improvements covered above, I assess our tool performance and modify it in order to enhance them.
+While switching to standard bioinformatics files -- such as BAM or GFF -- we expected a decrease in file size and an increase in software speed.
+In figure, we can see that these expected features are now a reality.
+
+Tables or plot to compare features -- file size, running time -- between previous version `GeDI-Prod` versus `GeDI-Prod-vGFF`?
+
+We are also working to write a proper documentation, comment code lines and build toy datasets for the user to be guided when using our tool.
+
 
 ## Comparison
 
