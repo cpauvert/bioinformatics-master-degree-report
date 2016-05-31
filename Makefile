@@ -25,5 +25,5 @@ cleanPDF:
 	git clean -i *.pdf
 
 # Exclude PDF and clean build directories (cache, and generated figures)
-cleanCache:
-	git clean -d -f -e *.pdf
+clean:
+	git clean -d -f 
