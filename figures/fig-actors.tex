@@ -1,16 +1,16 @@
 \begin{tikzpicture}[
 	every edge/.style = {draw=black,->, >=stealth},
 	bio/.style = {regular polygon,regular polygon sides=4,text=black,align=center,inner sep=0em},
-	FM/.style = {draw=Igreen,rectangle,text=black,align=center},
+	data/.style = {draw=Igreen,tape,tape bend top=none,fill=white,text=black,align=center,double copy shadow={opacity=.5}},
+	FM/.style = {draw=Iblue,rectangle,text=black,align=center},
 	FMT/.style = {draw=Iorange,rectangle,text=black,align=center}]
 \matrix [matrix of nodes, row sep = 1em,nodes={align=center,circle,draw},
 		ampersand replacement=\&, nodes in empty cells,
-		column sep={15em},
+		column sep={18em},
 		column 1/.style ={text width = 2em},
 		column 2/.style ={nodes={rectangle,draw=none},text width = 8em,inner sep=1em},
 		column 3/.style ={text width = 2em} ] (m) {%
-%\textbf{CP} \&[10em]  \&[10em] MM\\
-\textbf{CP} \&  \& MM\\
+\textbf{CP} \&  \&[-7em] MM\\
 \underline{ALA}\&       \& SS\\[1em]
 |[bio]|\underline{PR} \&       \& |[draw=none,rectangle]|  \\[1em]
 |[bio]|BD \&       \& VL\\
@@ -22,18 +22,18 @@ TG \&       \& SD\\
 %\draw[<->, >=stealth] (m-1-1) to [bend right=90] (m-2-1);
 %\draw[<->, >=stealth] (m-1-1) to [bend right=90] node [below,midway,sloped] {Supervisors} (m-3-1);
 % Labels
-\node [FM,fit={(m-1-2)(m-2-2)}, label={Food-Microbiome project}] (fm) {Shotgun metagenomics analysis tool};
-\node [FM,fit={(m-4-2)(m-5-2)}, label={below:FM Transfert project}] (fmt) {Metadata-extended genomics database};
+\node [FM,fit={(m-1-2)(m-2-2)}, label={(1) Food-Microbiome project}] (fm) {Shotgun metagenomics analysis tool};
+\node [FMT,fit={(m-4-2)(m-5-2)}, label={below:(2) FM Transfert project}] (fmt) {Metadata-extended genomics database};
 % FM-FMT relations
-\draw [draw=black,->, >=stealth] (fm) to [bend left] node[right] {Results} (fmt);
-\draw [draw=black,->, >=stealth] (fmt) to [bend left] node[left,near start] {Genomes} node [left,near end] {Annotations} (fm);
+\draw [draw=black,->, >=stealth] (fm) to [bend left] node[data] {Results} (fmt);
+\draw [draw=black,->, >=stealth] (fmt) to [bend left] node[near start,data] {Genomes} node [near end,data] {Annotations} (fm);
 \draw (mod) edge node[above] {Statistical \& modelling} node[below] {expertise} (mod-|fm.east);
-\draw (mig) edge node[above] {Platform administrators} node[below] {Technical advices} (mig-|fmt.east);
-\draw (m-1-1) edge node[above] {Improvements \& tests}(m-1-1-|fm.west);
-\draw (m-2-1) edge node[above] (id) {Initial developments} (m-2-1-|fm.west);
+\draw (mig) edge node[above] {Developments for} node[below] {MIGALE platform} (mig-|fmt.east);
+\draw (m-1-1) edge node[above] {Metagenomics tool} node[below] {developments \& improvements} (m-1-1-|fm.west);
+\draw (m-2-1) edge node[above] (id) {Metagenomics analyses} node[below]{expertise} (m-2-1-|fm.west);
 \draw[draw=black,->, >=stealth] (m-3-1) to [bend left=10]  (fm.205);
 \draw[draw=black,->, >=stealth] (m-3-1) to [bend right=10] (fmt.150);
-\node at (m-3-1-|id) {Biological expertise};
-\draw (m-4-1) edge node[below] {Strains characterization} (m-4-1-|fmt.west);
-\draw (m-5-1) edge node[below] {Developments \& design} (m-5-1-|fmt.west);
+\node[rectangle split,rectangle split parts=2] at (m-3-1-|id) {Microbiology expertise\nodepart{second}Leader of FM projects};
+\draw (m-4-1) edge node[above] {Functional} node[below] {dairy strains characterization} (m-4-1-|fmt.west);
+\draw (m-5-1) edge node[above] {Database \& interface} node[below] {developments} (m-5-1-|fmt.west);
 \end{tikzpicture}

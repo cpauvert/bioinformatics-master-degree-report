@@ -25,59 +25,61 @@ Fermented foods - like cheese, sausage and beer - provides a level of diversity 
 
 ### Why? (1p)
 
-Industrial partners and academics both wants insights into cheese ecosystems.
+Industrial partners and academics are both interested by insights into cheese ecosystems using metagenomics.
 Their common interests were crystallized into two projects: (1) Food-Microbiome project and (2) Food-Microbiome Transfert project
 
 
 ####Food-Microbiome project
 
-The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential.
-It is coordinated by Pierre RENAULT (PhD,Research Director) and funded by the ANR -_The French National Research Agency_-. It intends to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
+The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential [@renault_anr_2009].
+It is coordinated by Pierre RENAULT (PhD,Research Director) and funded by the ANR -_The French National Research Agency_- since 2009. It intends to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
 
 ####Food-Microbiome Transfert project
 
-The second project is divided into two parts: (1) the distribution of a metagenomics analysis tool and (2) the characterization of food-related strains.
+The second project is funded by industrials partners from 2015 to 2018. It is divided into two parts: (1) provide a convenient metagenomics analysis tool and (2) characterize dairy strains genomics and functional features.
 <!-- The knowledge acquired during the previous project will be crystallized into a comprehensive metagenomics tool. -->
 Metagenomics data analysis will be facilitated through an online interface where public and user-provided genomes could be used.
-A comprehensive database and a website is developed to this end and target industrial partners and scientific collaborators.
+A comprehensive database and a website are being developed to this end and are targeting industrial partners and scientific collaborators.
 
-Wet-lab experiments are planned by a post-doctoral researcher (Bedis DRIDI, PhD) in order to unravel technological abilities of unknown strains and improve genomics annotations.
+Wet-lab experiments are planned in order to unravel technological abilities of unknown strains and improve genomics annotations.
 
 
 ### Who? (0.75-1p)
 
-Farming provide most of our food, hence food-related studies are often led by INRA - _The French National Institute for Agricultural Research_.
-
+Food-related studies are often led by INRA - _The French National Institute for Agricultural Research_.
 INRA is an EPST - _Scientific and Technological Public Structure_ - which yields scientific knowledge concerning food, agriculture and environment since 1946.
-It is organized into well-defined scientific divisions or _department_ -e.g., MICA for _Microbiology and the Food Chain_- which gather several research _units_ -e.g., MICALIS for _Food microbiology for health_-.
+It is organized into well-defined scientific divisions or _department_ - e.g., MICA for _Microbiology and the Food Chain_ - which gather several research _units_ - e.g., MICALIS for _Food microbiology for health_.
 INRA is spread across the country in _centers_ and scientists work locally in _teams_ that are part of units.
+
+
+```{r actors, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Actors and teams in Food-Microbiome projects.", fig.cap="Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians whereas square nodes depicts microbiologists. Underline names are my supervisors. Initials are detailed in the text (\\S\\ref{initials}).",cache=FALSE}
+\input{figures/fig-actors}
+```
+
 
 #### Several actors and contributors to these projects
 
-Food-Microbiome projects are led by teams in a major INRA center: Jouy-en-Josas (FR).
-They are backed by teams in others centers such as Grignon (FR) and Aurillac (FR), respectively led by F.IRLINGER and M-C. MONTEL.
+These Food-Microbiome projects gather dairy products experts - mainly microbiologists - from 3 INRA centers: Aurillac (F-15), Grignon (F-78) and Jouy-en-Josas (F-78).
+Industrial partners are bring together by the CNIEL -_The French Dairy Interbranch Organization_ - and belongs to these two projects.
+Academics participants and their corresponding expertise and affiliations are bring together in Figure \ref{fig:actors}.
+Name abbreviations used in this figure are reported with INRA teams description in the following paragraphs.
 
-Science implies collaborations and these projects includes industrials partners gathered in CNIEL -_The French Dairy Interbranch Organization_.
-
-**Food and Commensal Bacteria Team** BAC Team is led by Pierre RENAULT (PhD, Research Director, abbrev: PR).
+**Food and Commensal Bacteria Team** \label{initials} BAC Team is led by Pierre RENAULT (PhD, Research Director, abbrev: PR) and belongs to MICALIS research unit.
+Part of the team is working on Food-Microbiome projects and are listed below.
 Anne-Laure ABRAHAM (PhD, Research Engineer, abbrev: ALA), Thibaut GUIRIMAND (Engineer, abbrev: TG), and myself Charlie PAUVERT (abbrev: CP) constitute the development bioinformatics team. Bedis DRIDI (Post-doc, abbrev: BD) is implied in wet lab experiments.
 
-* MaIage unit :
-	+ VL, SD, (TG): infrastructure team, platform administrator, technical advices
-	+ MM, SB: statistical expertise.
+
+**Applied Mathematics and Computer Science, from Genomes to the Environment** MaIAGE research unit harbors several collaborators.
+In the StatInfOmics team - _Bioinformatics and Statistics for omics data_ - Mahendra MARIADASSOU (PhD, Research Associate, abbrev: MM) and Sophie SCHBATH (PhD, Research Director, abbrev: SS) kindly provided their statistical expertise for modelling issues.
+Valentin LOUX (Engineer, abbrev: VL) and Sandra DEROZIER (Engineer, abbrev: SD) from the MIGALE platform provided database development expertise.
 
 
 #### Personal involvement in both projects
 
-* Mainly development and tests in FM.
-* Knowledge/know-how transfer and integration in FMT.
+Pierre RENAULT and Anne-Laure ABRAHAM were my supervisors during my two-year apprenticeship in this team.
+During the first project - Food-Microbiome project - I was mainly involved in development, improvements and tests.
+I was more taking part of know-how transfer and integration during the second one.
 
-Legend of Figure \ref{fig:actors} CP for Charlie PAUVERT, ALA for  MM for Mahendra MARIADASSOU (PhD, Research Associate), SS for Sophie SCHBATH (PhD, Research Director), VL for Valentin LOUX (Engineer), SD for Sandra DEROZIER (Engineer). 
-
-
-```{r actors, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Actors and teams in Food-Microbiome projects.", fig.cap="Actors and teams in Food-Microbiome projects. Round nodes depicts bioinformaticians or statisticians whereas square nodes depicts microbiologists. Underline names are my supervisors. Initials are detailed in the text.",cache=TRUE}
-\input{figures/fig-actors}
-```
 
 
 ## Cheese ecosystems particularities (1p)
@@ -87,7 +89,7 @@ Legend of Figure \ref{fig:actors} CP for Charlie PAUVERT, ALA for  MM for Mahend
 Micro-organisms unite bacteria, yeasts, molds and viruses.
 These micro-organisms are usually classified using taxonomic ranks as illustrated in \ref{fig:taxonomic}.
 
-```{r taxonomic, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.cap="Illustration of taxonomic ranks. Current limits of taxonomical identification in several metagenomics sequencing strategies are described by symbols: diamonds ($\\diamond$) depicts shotgun sequencing technology whereas circles ($\\circ$) depicts amplicon sequencing strategies."}
+```{r taxonomic, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.scap="Illustration of taxonomic ranks.",fig.cap="Illustration of taxonomic ranks. Current limits of taxonomical identification in several metagenomics sequencing strategies are described by symbols: diamonds ($\\textcolor{Iblue}{\\diamond}$) depicts shotgun sequencing technology whereas circles ($\\textcolor{Iorange}{\\circ}$) depicts amplicon sequencing strategies."}
 \input{figures/fig-taxonomic}
 ```
 
@@ -128,7 +130,7 @@ Despite rich media and supposed easy culture, low abundant micro-organisms in ch
 * Different sequencing approaches and their limits.
 * See Ercolini 2013 for next-generation sequencing and food microbial ecology
 
-```{r ecosys, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.cap="Overview of microbial communities exploration using metagenomics methods. Bold items describe technologies and methods used in our projects."}
+```{r ecosys, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of microbial communities exploration using metagenomics methods.",fig.cap="Overview of microbial communities exploration using metagenomics methods. Bold items describe technologies and methods used in our projects."}
 \input{figures/fig-ecosys}
 ```
 
