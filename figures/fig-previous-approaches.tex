@@ -1,134 +1,40 @@
-%\begin{tikzpicture}[node distance =0.2cm]
-%\tikzstyle{from} = [rectangle, draw=Igreen, fill=Igreen!10,thick, text centered, align=center]
-%\tikzstyle{dash} = [rectangle, dashed,draw=Iorange, fill=Iorange!10,thick, text centered, align=center]
-%\tikzstyle{item} = [align=center]
-%\tikzstyle{desc} = [rectangle,dashed, draw, fill=Iorange ,xshift=7cm, text=white, align=center]
-%\tikzstyle{lien} = [thick,->,>=latex]
-%\tikzstyle{lien2} = [thick,->,>=latex, color=Iblue]
-%\tikzstyle{every node}=[font=\tiny]
-%\tikzstyle{verb}=[right, midway, font=\tiny]
-%\tikzstyle{verb desc}=[above, midway, font=\tiny]
-%\tikzstyle{sch} = [text width=3cm, draw]
-%
-%
-% \node[item, rectangle split, rectangle split parts=2] (reads) {Milliers\\ de lectures \nodepart{second} \includegraphics[scale=1, width=1cm]{lectures.png}};
-%
-% \node[item, right of =reads, rectangle split, rectangle split parts=2,xshift=3.2cm] (al) {Banque de\\ références \nodepart{second} \includegraphics[scale=1, width=1cm]{gen.png} };
-%
-%
-%
-%\draw[lien,<-> ] (reads) -- node[above, midway] (tst) {Alignement} (al);
-% \node[below=1cm of tst, from] (mapping) {Comment identifier les espèces présentes ?  };
-%
-%\draw[lien] (tst) -- (mapping);
-%%\node[below=of mapping] (cov) {Couverture} child{
-%%	child{node {Génome total}}
-%%	child{node {CDS} }
-%%	};
-%\node[below= of mapping] (cov) {Couverture};
-%\node[below=1cm of cov,anchor=north east,  sch] (gt) {Lander \& Waterman\\ Scores};
-%
-%\node[below=1cm of cov,anchor=north west,sch] (cds) {Lander \& Waterman adapté\\ Seuils empiriques};
-%
-%\draw[lien] (cov) --  node[left,midway]{Génome total} (gt);
-%\draw[lien] (cov)  -- node[right, midway]{CDS} (cds);
-%
-%\node[right=of cds, sch] (prf) {Profils rangs};
-%\node[right=of prf, sch] (prf) {Modèle de mélange};
-%
-%\node[left= of gt, sch] (int) {Intervalles entres les lectures};
-%\end{tikzpicture}
-%\hfill
-
-%\begin{tikzpicture}[node distance =0.2cm]
-%\tikzstyle{from} = [rectangle, draw=Igreen, fill=Igreen!10,thick, text centered, align=center]
-%\tikzstyle{dash} = [rectangle, dashed,draw=Iorange, fill=Iorange!10,thick, text centered, align=center]
-%\tikzstyle{item} = [align=center]
-%\tikzstyle{desc} = [rectangle,dashed, draw, fill=Iorange ,xshift=7cm, text=white, align=center]
-%\tikzstyle{lien} = [thick,->,>=latex]
-%\tikzstyle{lien2} = [thick,->,>=latex, color=Iblue]
-%\tikzstyle{every node}=[font=\tiny]
-%\tikzstyle{verb}=[right, midway, font=\tiny]
-%\tikzstyle{verb desc}=[above, midway, font=\tiny]
-%\tikzstyle{sch} = [text width=3cm, draw]
-%
-%
-% \node[item, rectangle split, rectangle split parts=2] (reads) {Milliers\\ de lectures \nodepart{second} \includegraphics[scale=1, width=1cm]{lectures.png}};
-%
-% \node[item, right of =reads, rectangle split, rectangle split parts=2,xshift=3.2cm] (al) {Banque de\\ références \nodepart{second} \includegraphics[scale=1, width=1cm]{gen.png} };
-%
-%
-%
-%\draw[lien,<-> ] (reads) -- node[above, midway] (tst) {Alignement} (al);
-% \node[below=1cm of tst, from] (mapping) {Comment identifier les espèces présentes ?  };
-%
-%\draw[lien] (tst) -- (mapping);
-%%\node[below=of mapping] (cov) {Couverture} child{
-%%	child{node {Génome total}}
-%%	child{node {CDS} }
-%%	};
-%\node[below= of mapping,trapezium, trapezium left angle=70, trapezium right angle=110, draw =Iorange, text width= 3cm, text centered] (cov) {Différentes approches\\ de modélisation évaluées};
-%\node[below left =1cm of cov,  sch](int) {Intervalles entres les lectures} ;
-%
-%\node[below right= 1cm of cov ,sch] (cds) {Lander \& Waterman adapté\\ Seuils empiriques};
-%\node[below= of int, sch] (gt) {Lander \& Waterman\\ Scores};
-%\draw[lien] (cov) -|  node[left,near end, text width=3cm, text centered]{Calcul de\\ la couverture\\ du \textbf{génome}}  (int);
-%\draw[lien] (cov)  -| node[right, near end, text width=3cm, text centered]{Calcul de\\ la couverture\\ par \textbf{CDS}} (cds);
-%
-%\node[below=of cds, sch] (prf) {Profils rangs};
-%\node[below=of prf, sch] (prf) {Modèle de mélange};
-%
-%
-%\end{tikzpicture}
-\begin{tikzpicture}[node distance =0.2cm]
-\tikzstyle{from} = [rectangle, draw=Igreen, fill=Igreen!10,thick, text centered, align=center]
-\tikzstyle{dash} = [rectangle, dashed,draw=Iorange, fill=Iorange!10,thick, text centered, align=center]
-\tikzstyle{item} = [align=center]
-\tikzstyle{desc} = [rectangle,dashed, draw, fill=Iorange ,xshift=7cm, text=white, align=center]
-\tikzstyle{lien} = [thick,->,>=latex]
-\tikzstyle{lien2} = [thick,->,>=latex, color=Iblue]
-%\tikzstyle{every node}=[font=\tiny]
-\tikzstyle{verb}=[right, midway, font=\tiny]
-\tikzstyle{verb desc}=[above, midway, font=\tiny]
-\tikzstyle{sch} = [text width=4cm, draw]
-
-
- \node[item] (reads) {Milliers de lectures };
-
- \node[item, right of =reads,xshift=3.2cm] (al) {Génomes de référence};
-
-
-
-\draw[lien,<-> ] (reads) -- node[above, midway] (tst) {Alignement} (al);
- \node[below=1cm of tst, from] (mapping) {Comment identifier les espèces présentes ?  };
-
-\draw[lien] (tst) -- (mapping);
-%\node[below=of mapping] (cov) {Couverture} child{
-%	child{node {Génome total}}
-%	child{node {CDS} }
-%	};
-\node[below= of mapping,trapezium, trapezium left angle=70, trapezium right angle=110, draw =Iorange, text width= 4cm, text centered] (cov) {Différentes approches\\ de modélisation testées};
-\node[below left =1cm of cov,  sch](int) {Intervalles entres les lectures\\ \textit{Loi géométrique}} ;
-\begin{scope}[node distance=0.4cm]
-\node[below right= 1cm of cov ,sch, draw=gray, fill=lightgray!30] (cds) {Lander \& Waterman \\ \textit{Seuils empiriques}};
-\node[below= of int, sch] (gt) {Lander \& Waterman\\ \textit{Scores et courbes ROC}};
-
-
-\draw[lien] (cov) -|  node[left,midway, text width=3cm, text centered, xshift=0.5cm]{Calcul de\\ la couverture\\ du \textbf{génome}}  (int);
-\draw[lien] (cov)  -| node[right, midway, text width=3cm, text centered, xshift=-0.5cm]{Calcul de\\ la couverture\\ par \textbf{CDS}} (cds);
-
-\node[below=of cds, sch] (prf) {Profils des couvertures triées\\ \textit{Régressions}};
-\node[below=of prf, sch] (mix) {Distributions des couvertures \\ \textit{Modèle de mélange}};
-\end{scope}
-% Frames
-\node[draw=Ipurple,fit=(gt) (prf) (mix) , rectangle, thick] (fM2)  {};
-\node[draw=Iblue,fit=(int.north west) (int.south east)](fM1) {};
-
-% Labels
-\node[right= of cds] {\textbf{Pré-M1}};
-\node[right= of fM1, text = Iblue] {\textbf{M1}};
-\node[right= of fM2, text = Ipurple] (labM2) {\textbf{M2.1}};
-
-\node[draw=lightgray, dashed, fit=(reads) (int) (labM2) (fM2), label=GeDI] {};
+\begin{tikzpicture}[
+	soft/.style = {draw=Igreen, fill=Igreen!25,text=black},
+	data/.style = {draw=Igreen,ellipse,text=black,align=center},
+	every label/.style = {font=\itshape,draw=none},
+	every pin/.style = {text width=1em,draw=none}]
+\matrix [matrix of nodes, row sep = 1em,nodes={align=center,draw},
+		column 1/.style = {text width=10em},
+		column 2/.style = {text width=8em},
+		column 3/.style = {text width=10em}] (m) {%
+	|[draw=none]|Millions of reads & &  |[draw=none]|Reference genomes\\[2em]
+					& |[rectangle, draw=Igreen, fill=Igreen!10,thick]| How to identify present species?&  \\
+& |[trapezium, trapezium left angle=70, trapezium right angle=110, draw =Iorange]| Several modelling approaches tested & \\
+			|[label={below:Geometric law},pin={left:$\diamond$}]|Reads intervals & & |[label={below:Empirical thresholds},pin={right:$\circ$}]|Lander \& Waterman \\
+	|[label={below:Scores and ROC curves}]|Lander \& Waterman & & |[label={below:Regressions}]|Sorted coverage values profiles \\
+				       & & |[label={below:Mixture model}]|Coverage distribution \\
+		};
+\matrix [row sep=.1em, nodes={rectangle, minimum width=4em, minimum height=.01em, fill},below=0em of m-1-3, ampersand replacement=\&] (genome) {%
+	\node [Iblue!85!black] {};\& \\
+	\node [Iblue!85] {};\& \\
+	\node [Iblue!65] {};\& \\
+	\node [Iorange!85!black] {};\& \\
+	\node [Ipurple] {};\& \\};
+\pgfmathsetseed{3}
+\tikzstyle{lecture}=[rectangle, minimum width=3em,minimum height=1em]
+\node (nL) at (m-1-1|-genome) {};
+\begin{scope}[x=15em, y=7em, scale=0.1, every node/.style={transform shape}, local bounding box=seq, shift={($(nL)$)}]
+  \foreach \n /\col in {4/Igreen, 20 /Iblue, 10 /Iblue!65, 20 /Iorange,10/Iblue!65!black,8/Igreen!65!black}{%
+	  \foreach \x in {1,...,\n}{
+	      \node[lecture, fill=\col] (l\x) at (rand, rand) {};
+	  }
+  };
+  \end{scope} 
+  \draw[<->,>=stealth] (seq) -- node[above] {Alignment} (genome);
+  \draw[->,>=stealth] (m-3-2) -| node[text width=8em,align=center,above] {Genome coverage \\ computation} (m-4-1);
+  \draw[->,>=stealth] (m-3-2) -| node[text width=8em,align=center,above] {CDS coverage \\ computation}  (m-4-3);
+  \draw[->,>=stealth] (m-2-2) -- (m-3-2);
+  % Label
+  \node[below=0em of m-6-3] (n) {};
+  \node[draw,fit={(m-5-1)(m-6-3)(n)},pin={right:$\star$},inner sep=10pt] {};
 \end{tikzpicture}
-
