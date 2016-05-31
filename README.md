@@ -23,6 +23,14 @@ set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
 
 to `~/.vimrc` to prevent from autocompleting pdf files in command line.
 
+## Spell-checking
+
+In order to correctly write in English.
+
+```
+aspell --lang=en_GB -c FILE
+```
+
 ## Figures TikZ
 
 
