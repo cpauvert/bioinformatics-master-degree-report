@@ -1,8 +1,9 @@
-- [ ] Create workflow like diagram for report. Adapt CNIEL presentation
+- [ ] Graphical abstract (like several journals)
+- [ ] Add legend to some (complex) TikZ pictures (see this [post](http://tex.stackexchange.com/a/54834))
+- [x] Create workflow like diagram for report. Adapt CNIEL presentation
 - [x] Prepare markdown tree of files (with child) for report.
 - [x] Create a Makefile to compile everything nicely
 - [x] Create a Makefile to compile one part only (for review and testing purposes)
 - [x] Foreign abbreviations (see issues)
-- [ ] Graphical abstract (like several journals)
 - [x] Don't forget named bibliography references (Author and al.2014)
 - [x] Find a way to export zotero bibliography and git it!
