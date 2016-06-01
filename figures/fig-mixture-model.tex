@@ -1,0 +1,78 @@
+\pgfmathsetseed{3}
+\tikzset{
+	reads/.pic = {
+  \begin{scope}[x=3cm, y=1cm, scale=0.2, every node/.style={transform shape}]
+	      \foreach \x in {1,...,20}{
+		  \node[rectangle, minimum width=3em,minimum height=1em,fill] (l\x) at (rand, rand) {};
+	      };
+\end{scope}
+}}
+\begin{tikzpicture}
+\tikzstyle{bact}=[rectangle, minimum width=8em,minimum height=6ex,rounded corners=0.4ex]
+\tikzstyle{Note}=[signal,signal to=east,draw=Igreen,font={\itshape \footnotesize}]
+  \begin{scope}[x=15em, y=10em,scale=0.1, every node/.style={transform shape}, local bounding box=petri]
+  \foreach \n /\col in {4/Igreen, 12 /Iblue, 4 /Iblue!65, 6 /Iorange,4/Iblue!65!black,2/Igreen!65!black}{%
+	  \foreach \x in {1,...,\n}{
+	      \node[bact, draw=\col, rotate =180*rand] (\x) at (rand, rand) {};
+	  }
+  };
+  \end{scope}  
+  \node[circle, draw,fit= (petri)] (fitP) {};
+\matrix [matrix of nodes, row sep = 2em,column sep=2em,nodes in empty cells,
+		ampersand replacement=\&, below=of fitP,
+	row 1/.style = {rectangle, minimum width=4em, minimum height=.01em},
+	column 1/.style ={fill=Iblue},
+	column 2/.style ={fill=Iorange},
+	column 3/.style ={fill=Igreen},
+	column 4/.style ={fill=Ipurple} ] (m) {%
+%row 1
+|[fill]| \& |[fill]| \& |[fill]| \& |[fill]| \\
+ \&  \&  \&  \\
+%\pic(s1) {reads};\& \pic (s2) {reads};\& \pic (s3) {reads};\& \pic (s4) {reads};\\
+};
+
+\node[rectangle, minimum width=4em, minimum height=.01em,fill=black,below=5em of m,pin={[text width=6em,text centered]left:One reference genome}] (ref) {};
+\node[below=6em of ref] (nplot) {};
+\begin{scope}[shift={($(nplot)$)}, scale=0.7, local bounding box=plo]
+\draw[thick, rounded corners] (-1.5,0) .. controls (-1.4,1.4) .. (-1.2,0.2) .. controls (-0.5,0.5) and (-0.3,0.1) ..  (0.5,0);
+    \draw[->,black, >=stealth] (-1.5,0) -- (1.5,0);
+    \draw[->,black, >=stealth] (-1.5,0) -- (-1.5,2);
+\end{scope}
+\foreach \i /\col in {1/Iblue,2/Iorange,3/Igreen,4/Ipurple}{
+	\begin{scope}[x=3cm, y=1cm, scale=0.2, every node/.style={transform shape}, local bounding box=s\i ,shift=(m-2-\i)]
+	      \foreach \x in {1,...,20}{
+		  \node[rectangle, minimum width=3em,minimum height=1em,fill=\col] (l\x) at (rand, rand) {};
+	      };
+	\end{scope}
+	\draw[->,>=stealth] (fitP) -- (m-1-\i) ;
+	\draw[->,>=stealth] (m-1-\i) -- (m-1-\i|-s\i.north) ;
+	\draw[->,>=stealth] (s\i) -- (ref) ;
+};
+\node[left=of plo,draw=lightgray,text width=10em,text centered] {Observed distribution \\ of CDS coverage};
+\matrix [label=above:Mixture model of distributions,draw, dashed,matrix of math nodes, row sep = 1em,column sep=1em,
+		ampersand replacement=\&, below=of plo,
+	column 1/.style ={text=Iblue},
+	column 2/.style ={text=Iorange},
+	column 3/.style ={text=Igreen},
+	column 4/.style ={text=Ipurple} ] (mix) {%
+\pi_0 \& \pi_1 \& \pi_2 \& \pi_3 \\
+\mathcal{N}^0 \& \mathcal{N}^0 \& \mathcal{N}^0 \& \ln \mathcal{N}^0 \\
+};
+\node[draw=lightgray,fit=(plo)] (fplo) {};
+\draw[->,>=stealth] (ref) -- (fplo) ;
+\node[left=1em of mix-1-1,Note] {Contributions};
+\node[left=1em of mix-2-1,Note] {Distributions};
+\node[above=2em of ref,fill=white,draw] {Aligned reads stem from multiple contributors};
+\draw[->,thick,>=stealth] (fplo) to [bend left=60] node[right,text width=8em,text centered] {Approximated by \\ Maximum Likelihood (EM)} (mix.east);
+\node[below=6em of mix] (nplobis) {};
+\begin{scope}[shift={($(nplobis)$)}, scale=0.7, local bounding box=plobis]
+\draw[Iorange, thick, rounded corners] (-1.5,0) .. controls (0,0.1) ..  (0.6,0);
+\draw[gray,thick, rounded corners] (-1.5,0) .. controls (-1.4,0.01) .. (-1.2,0.2) .. controls (-0.5,0.5) and (-0.3,0.1) ..  (0.5,0);
+\draw[Iblue,thick, rounded corners] (-1.5,0) .. controls (-1.4,1.4) .. (-1.2,0.2) .. controls (-0.5,0.5) and (-0.3,0.1) ..  (0.5,0);
+\draw[Ipurple,thick, rounded corners] (-1.5,0) .. controls (-1.4,1.4) .. (-1.2,0);
+    \draw[->,black, >=stealth] (-1.5,0) -- (1.5,0);
+    \draw[->,black, >=stealth] (-1.5,0) -- (-1.5,2);
+\end{scope}
+\node[draw=lightgray,fit=(plobis)] (fplobis) {};
+\draw[->,>=stealth] (mix) -- (fplobis) ;
+\end{tikzpicture}

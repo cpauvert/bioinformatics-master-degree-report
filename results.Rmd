@@ -37,20 +37,19 @@ Second, computational improvements that covers  software performance as well as 
 \input{figures/fig-previous-approaches}
 ```
 
-We want an automatic criterion to infer presence or absence of a micro-organism from alignment data.
+We want an automatic criterion to infer a micro-organism presence or absence from its alignment data.
 To this end we focus on several modeling approaches -- summarised in Figure \ref{fig:previous-approaches} -- throughout my work in BAC team.
-
-
-* exploration of taxonomic classification :
-	+ Mixture model proof-of-concept
-	+ Model limits and (partial) solutions
-
 
 
 ### Modeling approaches
 
 * Previous approaches in the lab or during my internship
 * Mixture model principle (details in Materials chapter)
+
+
+```{r mixture-model, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Contributors genomes issues and mixture model principles.", fig.cap="Contributors genomes issues and mixture model principles.",cache=TRUE}
+\input{figures/fig-mixture-model}
+```
 
 ### Modeling exploration results
 
