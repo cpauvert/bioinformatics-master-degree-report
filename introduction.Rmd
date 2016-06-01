@@ -122,6 +122,15 @@ NGS technologies shed light on a microbial diversity in what was thought to be w
 
 Despite rich media and supposed easy culture, low abundant micro-organisms in cheese ecosystems remains characterised.
 
+####Reference genomes are not always available
+
+Many dairy strains genomes recently enriched genomics database [@almeida_construction_2014].
+Despite these recent -- and less recent -- contributions not all reference genomes are available.
+
+```{r no-reference-genome, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.scap="Discrepancies between reference genomes available and strains genomes from ecosystems.",fig.cap="Discrepancies between reference genomes available and strains genomes from ecosystems. Several cases are illustrated: (1) when a representative reference genome exists and (2) when a catalog of sequenced strains is available."}
+\input{figures/fig-no-reference-genome}
+```
+
 ## State-of-art tools for ecosystem exploration (2.5-3p)
 
 ### Methods (1p)

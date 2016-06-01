@@ -1,0 +1,53 @@
+\begin{tikzpicture}[line width=3pt,grow'=east]
+\tikzstyle{level 2}=[sibling distance=1cm,solid]
+\tikzstyle{level 3}=[sibling distance=2mm]
+\tikzstyle{every edge}=[solid,line width=3pt]
+\node {} child{node (g1) {Genus}  edge from parent[dashed]
+ child[Igreen]{node[fill,circle] (n1) {} 
+ 	child[Igreen!65!black] 
+ 	child{coordinate (s0) }
+ 	}
+child[Iorange] {node[fill,circle] {}
+	child[Iorange!65!black]
+	child[Iorange!85!black]{coordinate (s1) }
+	child 
+	child[Iorange!85]
+	}
+child[Iblue]{node[fill,circle] (G1) {} 
+	  child[Iblue!65!black]
+	  child[Iblue!85!black] {coordinate (s2) }
+	  child 
+	  child[Iblue!85] {coordinate (s3) }
+	  child[Iblue!75] 
+	  child[Iblue!65] {coordinate (s4) }
+	  }
+};
+\node[above of=n1, yshift=-0.5cm](e1) {Species};
+\node[above of=e1,text width=3cm, text centered, draw,thin] (exist) {Existing\par micro-organisms};
+\node[right of=e1,xshift=0.5cm](souch) {Strains};
+\node[right of=exist,xshift=3cm, text width=3.2cm, text centered, draw=Ipurple,thick](ref) {Sequenced strains \par reference genomes};
+\node[right of=s1, rectangle, fill=Iorange!85!black, minimum height=0.5pt, minimum width=3cm, xshift=1.5cm] (r1) {}; 
+\node[right of=s2, rectangle, fill=Iblue!85!black, minimum height=.5pt, minimum width=3cm, xshift=1.5cm] {}; 
+\node[right of=s3, rectangle, fill=Iblue!85, minimum height=.5pt, minimum width=3cm, xshift=1.5cm]  {}; 
+\node[right of=s4, rectangle, fill=Iblue!65, minimum height=.5pt, minimum width=3cm, xshift=1.5cm] (r2)	{}; 
+\node[right of=ref,xshift=3cm, text width=3.5cm, text centered, draw,thin,dashed](ref) {Ecosystem strains \par genomes};
+\node[right of=r1, rectangle, fill=Iorange, minimum height=0.5pt, minimum width=3cm, xshift=3cm, yshift=-0.3cm] (ch1) {};
+\node[right of=r2, rectangle, fill=Iblue!65, minimum height=.5pt, minimum width=3cm, xshift=3cm] (ch2)	{}; 
+\node[above of=ch1, rectangle, fill=Igreen, minimum height=0.5pt, minimum width=3cm,yshift=0.1cm] (ch3) {}; 
+\draw[thin,Igreen ] (s0.east) -- node[above, midway] {?} (ch3.west);
+\draw[thin, Iorange!85!black] (s1.east) -- (r1.west); 
+\draw[thin,Iorange!85!black] (r1.east) -- (ch1.west);
+\draw[thin, Iblue!65] (s4.east) -- (r2.west);
+\draw[thin, Iblue!65] (r2.east) -- (ch2.west);
+\node[circle, fill=Iorange, text=white, right of =ch1, xshift=1cm] {1};
+\node[circle, fill=Iblue, text=white, right of =ch2, xshift=1cm] {2};
+
+\node[below =6em of g1,anchor=west, text width=0.9\textwidth, text centered,fill=Iorange!10,draw=Iorange,thin, text=black] (q1) {How to identify a species from a distant representative genome?};
+%Comment identifier une espèce avec un génome de référence distant ?
+\node[below=1em of q1, text width=0.9\textwidth,text centered,fill=Iblue!10, draw=Iblue, thin,text=black] (q2) {How to find the closest strains -- even the exact one -- among several?};
+%Comment trouver la souche la plus proche (voire identique) parmi plusieurs disponibles ?
+\node[circle, fill=Iorange, text=white] at ($(q1.west)$) {1};
+\node[circle, fill=Iblue, text=white] at ($(q2.west)$) {2};
+%\draw[->, thick, Iorange] (ch1.east) -- node[above,circle] {1} (q1.west);
+%\draw[->, thick, Iblue] (ch2) -- node[above,circle] {2} (q2.west);
+\end{tikzpicture}
