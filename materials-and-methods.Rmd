@@ -23,7 +23,7 @@ header-includes:
 The institute computer I am working on runs under Microsoft Windows 7 64bits.
 Its features -- Intel Xeon 2.66Ghz and 8Go RAM -- support a virtual machine set up.
 Through VirtualBox I can work under a suitable operating system for my needs: Linux Debian “wheezy“ 7.8 (stable).
-From times to times, I use personal laptop for writings during commutes or remote working.
+From times to times, I use my personal laptop for writings during commutes or remote working.
 
 **Clusters farms**
 Some greedy simulations or tasks requires supplementary computational resources.
@@ -32,11 +32,39 @@ The first one -- `migale` -- located in Jouy-en-Josas harbours 580 nodes and a l
 The second one -- `genotoul` -- in Toulouse. This cluster benefits from a larger storage space and has more than 5,000 nodes.
 
 
+##Professional practice
+
+###Technology and literature monitoring
+
+**Literature monitoring**
+I usually browse state-of-the art journals -- e.g., *Bioinformatics*, *Plos Computational Biology* -- outlines in order to quickly get a glance at new articles.
+Word of mouth and informal discussions are far from outdated and relevant to pin point interesting papers.
+This network is defined at several scales:
+(i) at office level with Anne-Laure et Pierre,
+(ii) with team members,
+(iii) through collaborations and others informals interactions within the institute -- e.g., young researchers association, bioinformaticians network -- and finally
+(iv) within master degrees colleagues. 
+
+
+We set up and promote a wiki -- within the institute -- dedicated to biologists and bioinformaticians from the MICALIS research unit.
+Articles and tips are shared through this platform with colleagues working on similar topics.
+A shared bibliography was set up especially with MetaGenoPolis [^1].
+
+My bibliography is managed with [Zotero (v4.0)](https://www.zotero.org/). This tool provide remote synchronisation between the several terminals I use -- lab computer and personal computer.
+Articles of interests are hence gathered both at the lab or at the university.
+
+To circumvent Bib\LaTeX-related issues -- such as non-unique citations keys or specials characters -- I have been using [Better Bib\LaTeX](https://github.com/retorquere/zotero-better-bibtex) Zotero extension which tackle previous issues and provide automatic bibliography exports easily.
+
+**Technology watch**
+Many resources exists to keep up with bioinformatics and biostatistics related activities.
+Mailing lists from SFBI -- _French Bioinformatics Society_ -- or AFEM -- _French Microbial Ecology Association_ -- or more specific to the institute are examples of resources.
+I usually browse SFBI "bioinformations", [bioinfo-fr.net website](bioinfo-fr.net), or [R-bloggers](http://www.r-bloggers.com/) for general information and [stackoverflow.com forum](stackoverflow.com) -- and its sub-components -- to answer technical issues.
+
 
 * How do I work?
 * What tools and data did I used?
 * **Insist on EM algorithm** according to NV remarks?
-* New python librairies used in GeDI.
+* New python libraries used in GeDI.
 * Private GitHub for report.
 * Beta test of Amplicon metagenomics analysis formation
 * Presentation in front of bioinformaticians from the institute.
@@ -44,3 +72,6 @@ The second one -- `genotoul` -- in Toulouse. This cluster benefits from a larger
 ```{r gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of our metagenomics analysis tool: GeDI", fig.cap="Overview of our metagenomics analysis tool: GeDI. It consists of three Python (v2.7.5) modules interconnected. Each module is framed here with dashed lines and encompass data and software.",cache=FALSE }
 \input{figures/fig-gedi}
 ```
+
+
+[^1]: Industrial and academics consortium tied with INRA working on human gut microbiota using metagenomics.
