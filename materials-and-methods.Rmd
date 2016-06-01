@@ -15,13 +15,31 @@ header-includes:
 
 
 
-# Materials and methods (7p)
+#Materials and methods (7p)
+
+##Computing facilities
+
+**Personal computers**
+The institute computer I am working on runs under Microsoft Windows 7 64bits.
+Its features -- Intel Xeon 2.66Ghz and 8Go RAM -- support a virtual machine set up.
+Through VirtualBox I can work under a suitable operating system for my needs: Linux Debian “wheezy“ 7.8 (stable).
+From times to times, I use personal laptop for writings during commutes or remote working.
+
+**Clusters farms**
+Some greedy simulations or tasks requires supplementary computational resources.
+I have been granted access to two INRA clusters farms to meet these needs.
+The first one -- `migale` -- located in Jouy-en-Josas harbours 580 nodes and a large choice of bioinformatics tools.
+The second one -- `genotoul` -- in Toulouse. This cluster benefits from a larger storage space and has more than 5,000 nodes.
+
+
 
 * How do I work?
 * What tools and data did I used?
 * **Insist on EM algorithm** according to NV remarks?
 * New python librairies used in GeDI.
 * Private GitHub for report.
+* Beta test of Amplicon metagenomics analysis formation
+* Presentation in front of bioinformaticians from the institute.
 
 ```{r gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of our metagenomics analysis tool: GeDI", fig.cap="Overview of our metagenomics analysis tool: GeDI. It consists of three Python (v2.7.5) modules interconnected. Each module is framed here with dashed lines and encompass data and software.",cache=FALSE }
 \input{figures/fig-gedi}
