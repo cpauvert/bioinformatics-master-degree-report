@@ -4,6 +4,7 @@
 - [ ] Add legend to some (complex) TikZ pictures (see this [post](http://tex.stackexchange.com/a/54834))
 - [ ] Glossaries?
 - [ ] Define **coverage** with a figure maybe as it is a central term in this report.
+- [ ] Bibliography with `natbib` or `biblatex` instead of `pandoc-citeproc`? in case it gets bigger. But watch out for changes in the way you cite: `[@ ]` vs. `\cite{}`.
 
 
 # Done 
