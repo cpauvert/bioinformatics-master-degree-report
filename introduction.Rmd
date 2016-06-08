@@ -20,7 +20,7 @@ header-includes:
 
 We spend a fair amount of time eating, or thinking about it. 
 Daily subjects are naturally studied and food -- as a complex product -- is investigated at several scales.
-Multiple factors drives food-related studies: from scientific curiosity to yield and quality improvements.
+Multiple factors drive food-related studies: from scientific curiosity to yield and quality improvements.
 Fermented foods - like cheese, sausage and beer - provides a level of diversity and complexity worth studying given their world-wide spread.
 
 ### Why? (1p)
@@ -89,7 +89,7 @@ I was more taking part of know-how transfer and integration during the second on
 Micro-organisms unite bacteria, yeasts, moulds and viruses.
 These micro-organisms are usually classified using taxonomic ranks as illustrated in \ref{fig:taxonomic}.
 
-```{r taxonomic, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.scap="Illustration of taxonomic ranks.",fig.cap="Illustration of taxonomic ranks. Current limits of taxonomical identification in several metagenomics sequencing strategies are described by symbols: diamonds ($\\textcolor{Iblue}{\\diamond}$) depicts shotgun sequencing technology whereas circles ($\\textcolor{Iorange}{\\circ}$) depicts amplicon sequencing strategies."}
+```{r taxonomic, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.scap="Illustration of taxonomic ranks.",fig.cap="Illustration of taxonomic ranks. Current limits of taxonomic identification in several metagenomics sequencing strategies are described by symbols: diamonds ($\\textcolor{Iblue}{\\diamond}$) depicts shotgun sequencing technology whereas circles ($\\textcolor{Iorange}{\\circ}$) depicts amplicon sequencing strategies."}
 \input{figures/fig-taxonomic}
 ```
 
@@ -99,39 +99,75 @@ For convenience I will use the standard classification when referring to micro-o
 
 ### Cheese ecosystems
 
-Cheese-making starts with a matrix composed of milk more or less transformed.
-Proteins, fatty acids and water -- composing the milk -- combined with tailored conditions leads to an efficient microbial growth [@monnet_growth_2015].
+####From milk to cheeses
 
+Cheese-making starts with a matrix composed of milk more or less transformed -- raw milk or pasteurised.
+Rennet -- an enzyme cocktails -- trigger the milk state transition from liquid to solid, the resulting product being called curd [@button_cheese_2012].
+The curd will then undergo many transformations and technological processes to be manufactured into a consumable cheese.
+
+The great diversity of cheeses comes from variations in these highlighted processes. Experts proposed a classification in order to unify terms [@almena-aliste_cheese_2014].
+Cheese diversity also stem from the wide range of micro-organisms involved.
+
+####Micro-organisms sources
+
+Micro-organisms inoculations are among these transformations.
+Proteins, fatty acids and water -- composing the milk -- combined with tailored conditions provide a suitable media for microbial growth [@monnet_growth_2015].
+Micro-organisms may come from two main sources: starter cultures and environment [@irlinger_cheese_2015].
+Starter cultures can be distinguished into two categories: manufactured and subcultures from previous cheese ecosystems -- referred here as natural.
+<!-- man-made for both. But the first has few species -->
+The first one consists of few selected strains -- usually with interesting technological features -- gathered in a mixture applied on the curd.
+The second is much more complex and results in the culture of cheese rind communities from the day before.
+Unravel microbial composition in the latter is of great interest but not trivial.
 
 These ecosystems are described as a _good_ model: both simple and complex [@wolfe_cheese_2014].
 
 
 ###Why simple?
 
+Cheese is usually referred as a less complex environment than soil or gut.
+They harbour a relative small number of distinct species compared to others ecosystems as well as a better rate of cultivable organisms [@bourdichon_food_2012].
+Less than 200 species are estimated in cheese (\emph{ibib}.) compared to more than a thousand in aforementioned ecosystems [@qin_human_2010].
+Cheese also benefits from many studies in literature[^pub], being an efficient milk storage technique for 7,000 years [@salque_earliest_2013].
 
-* Numbers of species compared to others.
-* Milk is an accessible media for culturing.
-* Wide overall knowledge : literature available
-
-NGS technologies shed light on a microbial diversity in what was thought to be well-described ecosystems [@quigley_high-throughput_2012].
+However recent methods -- e.g., high-throughput technologies -- shed light on a microbial diversity in what was thought to be well-described ecosystems [@quigley_high-throughput_2012]. Theses methods will be reviewed later in Section \ref{state}.
 
 ###Why complex ?
 
-* Sometimes (everytime) cheese is _not only_ milk and micro-organisms
-* Environment influence is significant (others sources micro-organisms, possible interactions, abiotic parameters) (see Irlinger)
+While a manufactured starter composition is trivial and documented, to decipher a natural starter culture is a challenge.
+Biotic and abiotic factors are involved in cheese-making and can greatly impact cheese quality and microbial composition [@irlinger_cheese_2015; @monnet_growth_2015].
+Cheese cannot be reduce to an association of milk and micro-organisms.
+The environment influence is significant -- e.g., others sources of micro-organisms and their interactions -- shape microbial composition of cheeses.
+So cheese ecosystem exploration is not so simple because this ecosystem is influenced by several factors.
+Moreover, despite rich media and supposed easy culture, little is known about low abundant micro-organisms in cheese ecosystems.
 
-Despite rich media and supposed easy culture, low abundant micro-organisms in cheese ecosystems remains characterised.
 
 ####Reference genomes are not always available
 
 Many dairy strains genomes recently enriched genomics database [@almeida_construction_2014].
 Despite these recent -- and less recent -- contributions not all reference genomes are available.
 
+Some species do not have any genome representation in databases.
+
+Apart from this limiting case, two others cases emerged: (1) when there is a representative genome in databases but the genome sampled in the ecosystem differ, and (2) when several genomes -- e.g., a catalog of strains -- and one of them exists in the ecosystem.
+The latter could be the case if aiming to retrieve a strain when exploring a cheese community after an artificial starter inoculation.
+These cases are illustrated in figure \ref{fig:no-reference-genome}.
+
 ```{r no-reference-genome, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.scap="Discrepancies between reference genomes available and strains genomes from ecosystems.",fig.cap="Discrepancies between reference genomes available and strains genomes from ecosystems. Several cases are illustrated: (1) when a representative reference genome exists and (2) when a catalog of sequenced strains is available."}
 \input{figures/fig-no-reference-genome}
 ```
 
+
+Cheese ecosystems harbour an important diversity of micro-organisms -- especially strains [@montel_traditional_2014].
+Diversity stem from the necessary functional redundancy in a community for the ecosystem to be reliable against environmental changes [@konopka_what_2009].
+For example, these microbial communities enable resistance to pathogens such as phages or others unwanted bacteria like _Salmonella_ [@ortolani_microbiological_2010; @callon_microbial_2014].
+
+Moreover, strains in cheese ecosystems can demonstrate specific metabolic pathways and organoleptic compounds synthesis. Their characterisation will provide leverage for food industry improvements.
+Hence, academics and industrial partners are exploring cheese ecosystems to unravel their relative complexity using a wide panel of tools and methods. 
+
+
+
 ## State-of-art tools for ecosystem exploration (2.5-3p)
+\label{state}
 
 ### Methods (1p)
 
@@ -156,3 +192,6 @@ Despite these recent -- and less recent -- contributions not all reference genom
 
 * Summary of a two-year apprenticeship.
 * Exploration of strategy taking into account potential divergence between environmental and reference genomes.
+
+
+[^pub]: A Pubmed search with "cheese" keyword yields 9,177 entries as of June, 2016.
