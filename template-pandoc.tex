@@ -263,29 +263,23 @@ $abstract$
 \end{abstract}
 $endif$
 
+\frontmatter
+\pagenumbering{gobble}
+
 $for(include-before)$
 $include-before$
 
 $endfor$
-\pagestyle{chapter}
-$if(toc)$
-{
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
-}
-$endif$
-$if(lot)$
-\listoftables
-$endif$
-$if(lof)$
 \listoffigures
-$endif$
-\pagestyle{main}
-\pagenumbering{arabic}
-\setcounter{page}{1}
+\listoftables
+
+\mainmatter
+\pagestyle{chapter}
 $body$
 
 $if(natbib)$

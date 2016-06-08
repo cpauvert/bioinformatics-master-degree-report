@@ -17,7 +17,6 @@ output:
     template: template-pandoc.tex
 --- 
 
-\listoffigures
 
 ```{r intro, child='introduction.Rmd'}
 ```
