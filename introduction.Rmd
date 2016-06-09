@@ -13,17 +13,17 @@ header-includes:
  - \usepackage{libertine}
 --- 
 
-# Introduction (7-15p)
+#Introduction (7-15p)
 
 
-## Food-Microbiome projects
+##Food-Microbiome projects
 
 We spend a fair amount of time eating, or thinking about it. 
 Daily subjects are naturally studied and food -- as a complex product -- is investigated at several scales.
 Multiple factors drive food-related studies: from scientific curiosity to yield and quality improvements.
 Fermented foods - like cheese, sausage and beer - provides a level of diversity and complexity worth studying given their world-wide spread.
 
-### Why? (1p)
+###Why? (1p)
 
 Industrial partners and academics are both interested by insights into cheese ecosystems using metagenomics.
 Their common interests were crystallised into two projects: (1) Food-Microbiome project and (2) Food-Microbiome Transfert project
@@ -44,7 +44,7 @@ A comprehensive database and a website are being developed to this end and are t
 Wet-lab experiments are planned in order to unravel technological abilities of unknown strains and improve genomics annotations.
 
 
-### Who? (0.75-1p)
+###Who? (0.75-1p)
 
 Food-related studies are often led by INRA - _The French National Institute for Agricultural Research_.
 INRA is an EPST - _Scientific and Technological Public Structure_ - which yields scientific knowledge concerning food, agriculture and environment since 1946.
@@ -57,24 +57,27 @@ INRA is spread across the country in _centres_ and scientists work locally in _t
 ```
 
 
-#### Several actors and contributors to these projects
+####Several actors and contributors to these projects
 
 These Food-Microbiome projects gather dairy products experts - mainly microbiologists - from 3 INRA centres: Aurillac (F-15), Grignon (F-78) and Jouy-en-Josas (F-78).
 Industrial partners are bring together by the CNIEL -_The French Dairy Inter-branch Organisation_ - and belongs to these two projects.
 Academics participants and their corresponding expertise and affiliations are bring together in Figure \ref{fig:actors}.
 Name abbreviations used in this figure are reported with INRA teams description in the following paragraphs.
 
-**Food and Commensal Bacteria Team** \label{initials} BAC Team is led by Pierre RENAULT (PhD, Research Director, abbrev: PR) and belongs to MICALIS research unit.
+#####Food and Commensal Bacteria Team
+\label{initials}
+BAC Team is led by Pierre RENAULT (PhD, Research Director, abbrev: PR) and belongs to MICALIS research unit.
 Part of the team is working on Food-Microbiome projects and are listed below.
 Anne-Laure ABRAHAM (PhD, Research Engineer, abbrev: ALA), Thibaut GUIRIMAND (Engineer, abbrev: TG), and myself Charlie PAUVERT (abbrev: CP) constitute the development bioinformatics team. Bedis DRIDI (Post-doc, abbrev: BD) is implied in wet lab experiments.
 
 
-**Applied Mathematics and Computer Science, from Genomes to the Environment** MaIAGE research unit harbours several collaborators.
+#####Applied Mathematics and Computer Science, from Genomes to the Environment
+MaIAGE research unit harbours several collaborators.
 In the StatInfOmics team - _Bioinformatics and Statistics for omics data_ - Mahendra MARIADASSOU (PhD, Research Associate, abbrev: MM) and Sophie SCHBATH (PhD, Research Director, abbrev: SS) kindly provided their statistical expertise for modelling issues.
 Valentin LOUX (Engineer, abbrev: VL) and Sandra DEROZIER (Engineer, abbrev: SD) from the MIGALE platform provided database development expertise.
 
 
-#### Personal involvement in both projects
+####Personal involvement in both projects
 
 Pierre RENAULT and Anne-Laure ABRAHAM were my supervisors during my two-year apprenticeship in this team.
 During the first project - Food-Microbiome project - I was mainly involved in development, improvements and tests.
@@ -82,7 +85,7 @@ I was more taking part of know-how transfer and integration during the second on
 
 
 
-## Cheese ecosystems particularities (1p)
+##Cheese ecosystems particularities (1p)
 
 ###Micro-organisms and definition of species
 
@@ -97,7 +100,7 @@ However whole-genome sequencing blurred these ranks and were thought to be augme
 DNA-DNA hybridisation and its _in silico_ counterpart are proposed to delineate species limits [@richter_shifting_2009; @varghese_microbial_2015].
 For convenience I will use the standard classification when referring to micro-organisms.
 
-### Cheese ecosystems
+###Cheese ecosystems
 
 ####From milk to cheeses
 
@@ -122,7 +125,7 @@ Unravel microbial composition in the latter is of great interest but not trivial
 These ecosystems are described as a _good_ model: both simple and complex [@wolfe_cheese_2014].
 
 
-###Why simple?
+####Why simple?
 
 Cheese is usually referred as a less complex environment than soil or gut.
 They harbour a relative small number of distinct species compared to others ecosystems as well as a better rate of cultivable organisms [@bourdichon_food_2012].
@@ -131,7 +134,7 @@ Cheese also benefits from many studies in literature[^pub], being an efficient m
 
 However recent methods -- e.g., high-throughput technologies -- shed light on a microbial diversity in what was thought to be well-described ecosystems [@quigley_high-throughput_2012]. Theses methods will be reviewed later in Section \ref{state}.
 
-###Why complex ?
+####Why complex ?
 
 While a manufactured starter composition is trivial and documented, to decipher a natural starter culture is a challenge.
 Biotic and abiotic factors are involved in cheese-making and can greatly impact cheese quality and microbial composition [@irlinger_cheese_2015; @monnet_growth_2015].
@@ -145,7 +148,6 @@ Moreover, despite rich media and supposed easy culture, little is known about lo
 
 Many dairy strains genomes recently enriched genomics database [@almeida_construction_2014].
 Despite these recent -- and less recent -- contributions not all reference genomes are available.
-
 Some species do not have any genome representation in databases.
 
 Apart from this limiting case, two others cases emerged: (1) when there is a representative genome in databases but the genome sampled in the ecosystem differ, and (2) when several genomes -- e.g., a catalog of strains -- and one of them exists in the ecosystem.
@@ -156,6 +158,7 @@ These cases are illustrated in figure \ref{fig:no-reference-genome}.
 \input{figures/fig-no-reference-genome}
 ```
 
+###Why study cheese ecosystems?
 
 Cheese ecosystems harbour an important diversity of micro-organisms -- especially strains [@montel_traditional_2014].
 Diversity stem from the necessary functional redundancy in a community for the ecosystem to be reliable against environmental changes [@konopka_what_2009].
@@ -171,13 +174,44 @@ Hence, academics and industrial partners are exploring cheese ecosystems to unra
 
 ### Methods (1p)
 
-* Focus on metagenomics.
-* Different sequencing approaches and their limits.
-* See Ercolini 2013 for next-generation sequencing and food microbial ecology
+####From culture to metagenomics
+
+The canonical approach to ecosystem exploration used to be culture of microbial-organisms.
+First, they were isolated from their ecosystem and then cultivated under proper conditions.
+Meeting these conditions and finding a convenient media could be a struggle -- or worse quite unfeasible -- depending on the strains and the ecosystem studied.
+Media is not an issue in cheese ecosystem studies, however low-abundant microbial-organisms or interactions-dependant micro-organisms would be out-of-scope.
+
+Culture-independant approaches were then developed. The capture and analysis of ecosystem genomics information -- or _metagenomics_ -- provide insights into genomes from micro-organisms bypassing cultivation related issues.
+High-throughput sequencing technologies fast development enables multiple methods and innovative strategies to blossom .
+These recent approaches provide a new perspective for ecosystem exploration and are overviewed in figure \ref{fig:ecosys}.
 
 ```{r ecosys, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of microbial communities exploration using metagenomics methods.",fig.cap="Overview of microbial communities exploration using metagenomics methods. Bold items describe technologies and methods used in our projects."}
 \input{figures/fig-ecosys}
 ```
+
+####Different questions and corresponding sequencing technologies
+
+An ecosystem sample in a metagenomics study can be sequenced through two major technologies -- amplicon or shotgun -- depending on questions asked. Both are reviewed in the following paragraphs.
+
+#####Amplicon sequencing
+
+Only one or few marker genes are sequenced in this approach. The preferred marker for prokaryotes is the ribosomal small sub-unit DNA -- dub 16S rDNA -- and the _internal transcribed spacer_ -- ITS -- for eukaryotes.
+Their sequences harbour several conversed regions next to more variable zones.
+Conserved regions from multiples organisms will be used to generate PCR primers. 
+These primers will then amplify variables regions that are specific to a species or genus.
+In case of explorative study, generic markers can be used to assess overall diversity [@ciccarelli_toward_2006].
+The choice of 16S regions to amplify -- or marker genes -- can also depends on _a priori_ knowledge concerning existing micro-organisms in the environment and can be tailored in consequence [@kumar_target_2011].
+
+
+#####Shotgun sequencing
+DNA extracted from samples is sheared into fragments. Fragment are randomly sequenced which yield millions of DNA reads [@sharpton_introduction_2014].
+These reads embody coding DNA sequences -- CDS -- which provide insights into potential functions harboured in the studied microbial community [@venter_environmental_2004].
+
+
+#####Application to cheese ecosystems
+Both sequencing technologies were used in cheese ecosystem exploration. Delbes et al. rely on amplicon sequencing combined with culture experiments for validation to provide a microbial overview of raw milk cheeses [-@delbes_monitoring_2007]. Ercolini reviewed the use of shotgun sequencing specifically in food microbiology in [-@ercolini_high-throughput_2013].
+
+
 
 ### Post sequencing strategies (1.5-2p)
 
