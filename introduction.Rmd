@@ -185,7 +185,7 @@ Culture-independant approaches were then developed. The capture and analysis of 
 High-throughput sequencing technologies fast development enables multiple methods and innovative strategies to blossom .
 These recent approaches provide a new perspective for ecosystem exploration and are overviewed in figure \ref{fig:ecosys}.
 
-```{r ecosys, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of microbial communities exploration using metagenomics methods.",fig.cap="Overview of microbial communities exploration using metagenomics methods. Bold items describe technologies and methods used in our projects."}
+```{r ecosys, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.pos="h",fig.align="center",fig.scap="Overview of microbial communities exploration using metagenomics methods.",fig.cap="Overview of microbial communities exploration using metagenomics methods. Microbial community DNA is extracted after sampling a microbial ecosystem (circle). This biological material can undergo two types of sequencing: (1) amplicon sequencing (right pane in orange) and (2) shotgun sequencing (left pane in blue). In short the first can provide microbial identification down to species or genus level and relative quantification whereas the latter grant access to potential functions and a more precise taxonomic identification. Aforementioned aims are reached after post-sequencing methods and corresponding bioinformatics strategies. Bold items describe technologies and methods used in our projects. "}
 \input{figures/fig-ecosys}
 ```
 
