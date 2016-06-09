@@ -73,5 +73,8 @@ I usually browse SFBI "bioinformations", [bioinfo-fr.net website](bioinfo-fr.net
 \input{figures/fig-gedi}
 ```
 
+```{r coverage,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Genome coverage after reads alignement.", fig.cap="Genome coverage after reads alignement. In our metagenomics analysis tool -- GeDI -- we discrimate (1) total coverage yield by the reads number for each genome base and (2) mismatches coverage concerning the same metric only for reads aligned with one to three mismatches compared to the reference.",cache=FALSE }
+\input{figures/fig-coverage}
+```
 
 [^1]: Industrial and academics consortium tied with INRA working on human gut microbiota using metagenomics.
