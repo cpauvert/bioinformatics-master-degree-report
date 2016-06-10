@@ -33,15 +33,44 @@ First, scientifical improvements through an exploration of micro-organisms taxon
 Second, computational improvements that covers  software performance as well as proper documentation.
 
 
-```{r previous-approaches, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous modeling approaches summary embedded in GeDI.", fig.cap="Previous modeling approaches summary embedded in GeDI. Theses differents approaches were tested at different period depicted as symbols: before my internship ($\\circ$), during my first year of master degree internship ($\\diamond$) and during my two-year apprenticeship ($\\star$).",cache=TRUE}
+```{r previous-approaches, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous modeling approaches summary embedded in GeDI.", fig.cap="Previous modeling approaches summary embedded in GeDI. These differents approaches were tested at different period depicted as symbols: before my internship ($\\circ$), during my first year of master degree internship ($\\diamond$) and during my two-year apprenticeship ($\\star$).",cache=TRUE}
 \input{figures/fig-previous-approaches}
 ```
 
 We want an automatic criterion to infer a micro-organism presence or absence from its alignment data.
-To this end we focus on several modeling approaches --summarised in Figure \ref{fig:previous-approaches}-- throughout my work in BAC team.
+To this end we have focused on several modeling approaches --summarised in Figure \ref{fig:previous-approaches}-- throughout my work in BAC team.
 
 
-### Modeling approaches
+###Modelling approaches
+
+Our method is based on metagenomics reads alignment onto a set of reference genomes.
+It is followed by an adequation analysis between observed and predicted genome coverage.
+The predicted coverage stem from a model assuming that the considered micro-organism genome exists in the ecosystem.
+
+However, ecosystem genomes usually differ from corresponding genomes in databases.
+Hence this constraint harden reads alignment analysis in metagenomics, and subsequent modelling efforts.
+I have worked to explore, test and precise several modelling approaches. Approaches principles are briefly reviewed below.
+
+####Previous modelling approaches: homogeneity
+Lander and Waterman stated that reads distribution is homogenous on a genome as long as: (1) sequencing is a random process and (2) reads stem from the considered genome [see -@lander_genomic_1988].
+This work is relevant in metagenomics for a sufficient reads number.
+In this case, testing the reads distribution homogeneity is a proxy for testing presence or absence of a genome.
+This hypothesis was tested by comparing observed and expected genome coverage --under the homogeneity hypothesis-- before and during my internship. 
+However, thresholds used to compare distributions were empirical and we could not explicitly validated this approach while it yields interesting results.
+
+####Previous modelling approaches: reads interval
+I then explored several leads  in order to improve automatic taxonomic identification.
+Simulated datasets enable reads distributions exploration and modelling.
+Intervals between every two consecutives reads aligned is supposed to follow a geometric law.
+However, this model was too strict and could only be applied if reads were aligned to the same genome reads stem from.
+For example, reads from a strain A aligned to the reference genome A would yield a reads interval distribution suitable to pass the test.
+However, it was not the case if these same reads were aligned to a close strain of genome A --say $98\%$ identity.
+
+
+####Previous modelling approaches: scores and ROC curves
+
+In order to circumvent previously identified limits, I have also worked on threshold determination.
+I relied on simulated datasets to ...
 
 * Previous approaches in the lab or during my internship
 * Mixture model principle (details in Materials chapter)
