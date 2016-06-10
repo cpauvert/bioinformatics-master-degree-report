@@ -19,9 +19,9 @@ header-includes:
 ##Food-Microbiome projects
 
 We spend a fair amount of time eating, or thinking about it. 
-Daily subjects are naturally studied and food -- as a complex product -- is investigated at several scales.
+Daily subjects are naturally studied and food --as a complex product-- is investigated at several scales.
 Multiple factors drive food-related studies: from scientific curiosity to yield and quality improvements.
-Fermented foods - like cheese, sausage and beer - provides a level of diversity and complexity worth studying given their world-wide spread.
+Fermented foods --like cheese, sausage and beer-- provides a level of diversity and complexity worth studying given their world-wide spread.
 
 ###Why? (1p)
 
@@ -32,7 +32,7 @@ Their common interests were crystallised into two projects: (1) Food-Microbiome 
 ####Food-Microbiome project
 
 The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential [@renault_anr_2009].
-It is coordinated by Pierre RENAULT (PhD,Research Director) and funded by the ANR -_The French National Research Agency_- since 2009. It intends to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
+It is coordinated by Pierre RENAULT (PhD,Research Director) and funded by the ANR --_The French National Research Agency_-- since 2009. It intends to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
 
 ####Food-Microbiome Transfert project
 
@@ -46,9 +46,9 @@ Wet-lab experiments are planned in order to unravel technological abilities of u
 
 ###Who? (0.75-1p)
 
-Food-related studies are often led by INRA - _The French National Institute for Agricultural Research_.
-INRA is an EPST - _Scientific and Technological Public Structure_ - which yields scientific knowledge concerning food, agriculture and environment since 1946.
-It is organised into well-defined scientific divisions or _department_ - e.g., MICA for _Microbiology and the Food Chain_ - which gather several research _units_ - e.g., MICALIS for _Food microbiology for health_.
+Food-related studies are often led by INRA --_The French National Institute for Agricultural Research_.
+INRA is an EPST --_Scientific and Technological Public Structure_-- which yields scientific knowledge concerning food, agriculture and environment since 1946.
+It is organised into well-defined scientific divisions or _department_ --e.g., MICA for _Microbiology and the Food Chain_-- which gather several research _units_ --e.g., MICALIS for _Food microbiology for health_.
 INRA is spread across the country in _centres_ and scientists work locally in _teams_ that are part of units.
 
 
@@ -59,8 +59,8 @@ INRA is spread across the country in _centres_ and scientists work locally in _t
 
 ####Several actors and contributors to these projects
 
-These Food-Microbiome projects gather dairy products experts - mainly microbiologists - from 3 INRA centres: Aurillac (F-15), Grignon (F-78) and Jouy-en-Josas (F-78).
-Industrial partners are bring together by the CNIEL -_The French Dairy Inter-branch Organisation_ - and belongs to these two projects.
+These Food-Microbiome projects gather dairy products experts --mainly microbiologists-- from 3 INRA centres: Aurillac (F-15), Grignon (F-78) and Jouy-en-Josas (F-78).
+Industrial partners are bring together by the CNIEL --_The French Dairy Inter-branch Organisation_-- and belongs to these two projects.
 Academics participants and their corresponding expertise and affiliations are bring together in Figure \ref{fig:actors}.
 Name abbreviations used in this figure are reported with INRA teams description in the following paragraphs.
 
@@ -73,14 +73,14 @@ Anne-Laure ABRAHAM (PhD, Research Engineer, abbrev: ALA), Thibaut GUIRIMAND (Eng
 
 #####Applied Mathematics and Computer Science, from Genomes to the Environment
 MaIAGE research unit harbours several collaborators.
-In the StatInfOmics team - _Bioinformatics and Statistics for omics data_ - Mahendra MARIADASSOU (PhD, Research Associate, abbrev: MM) and Sophie SCHBATH (PhD, Research Director, abbrev: SS) kindly provided their statistical expertise for modelling issues.
+In the StatInfOmics team --_Bioinformatics and Statistics for omics data_- Mahendra MARIADASSOU (PhD, Research Associate, abbrev: MM) and Sophie SCHBATH (PhD, Research Director, abbrev: SS) kindly provided their statistical expertise for modelling issues.
 Valentin LOUX (Engineer, abbrev: VL) and Sandra DEROZIER (Engineer, abbrev: SD) from the MIGALE platform provided database development expertise.
 
 
 ####Personal involvement in both projects
 
 Pierre RENAULT and Anne-Laure ABRAHAM were my supervisors during my two-year apprenticeship in this team.
-During the first project - Food-Microbiome project - I was mainly involved in development, improvements and tests.
+During the first project --Food-Microbiome project-- I was mainly involved in development, improvements and tests.
 I was more taking part of know-how transfer and integration during the second one.
 
 
@@ -104,8 +104,8 @@ For convenience I will use the standard classification when referring to micro-o
 
 ####From milk to cheeses
 
-Cheese-making starts with a matrix composed of milk more or less transformed -- raw milk or pasteurised.
-Rennet -- an enzyme cocktails -- trigger the milk state transition from liquid to solid, the resulting product being called curd [@button_cheese_2012].
+Cheese-making starts with a matrix composed of milk more or less transformed --raw milk or pasteurised.
+Rennet --an enzyme cocktails-- trigger the milk state transition from liquid to solid, the resulting product being called curd [@button_cheese_2012].
 The curd will then undergo many transformations and technological processes to be manufactured into a consumable cheese.
 
 The great diversity of cheeses comes from variations in these highlighted processes. Experts proposed a classification in order to unify terms [@almena-aliste_cheese_2014].
@@ -114,11 +114,11 @@ Cheese diversity also stem from the wide range of micro-organisms involved.
 ####Micro-organisms sources
 
 Micro-organisms inoculations are among these transformations.
-Proteins, fatty acids and water -- composing the milk -- combined with tailored conditions provide a suitable media for microbial growth [@monnet_growth_2015].
+Proteins, fatty acids and water --composing the milk-- combined with tailored conditions provide a suitable media for microbial growth [@monnet_growth_2015].
 Micro-organisms may come from two main sources: starter cultures and environment [@irlinger_cheese_2015].
-Starter cultures can be distinguished into two categories: manufactured and subcultures from previous cheese ecosystems -- referred here as natural.
+Starter cultures can be distinguished into two categories: manufactured and subcultures from previous cheese ecosystems --referred here as natural.
 <!-- man-made for both. But the first has few species -->
-The first one consists of few selected strains -- usually with interesting technological features -- gathered in a mixture applied on the curd.
+The first one consists of few selected strains --usually with interesting technological features-- gathered in a mixture applied on the curd.
 The second is much more complex and results in the culture of cheese rind communities from the day before.
 Unravel microbial composition in the latter is of great interest but not trivial.
 
@@ -132,14 +132,14 @@ They harbour a relative small number of distinct species compared to others ecos
 Less than 200 species are estimated in cheese (\emph{ibib}.) compared to more than a thousand in aforementioned ecosystems [@qin_human_2010].
 Cheese also benefits from many studies in literature[^pub], being an efficient milk storage technique for 7,000 years [@salque_earliest_2013].
 
-However recent methods -- e.g., high-throughput technologies -- shed light on a microbial diversity in what was thought to be well-described ecosystems [@quigley_high-throughput_2012]. Theses methods will be reviewed later in Section \ref{state}.
+However recent methods --e.g., high-throughput technologies-- shed light on a microbial diversity in what was thought to be well-described ecosystems [@quigley_high-throughput_2012]. Theses methods will be reviewed later in section \ref{state}.
 
 ####Why complex ?
 
 While a manufactured starter composition is trivial and documented, to decipher a natural starter culture is a challenge.
 Biotic and abiotic factors are involved in cheese-making and can greatly impact cheese quality and microbial composition [@irlinger_cheese_2015; @monnet_growth_2015].
 Cheese cannot be reduce to an association of milk and micro-organisms.
-The environment influence is significant -- e.g., others sources of micro-organisms and their interactions -- shape microbial composition of cheeses.
+The environment influence is significant --e.g., others sources of micro-organisms and their interactions-- shape microbial composition of cheeses.
 So cheese ecosystem exploration is not so simple because this ecosystem is influenced by several factors.
 Moreover, despite rich media and supposed easy culture, little is known about low abundant micro-organisms in cheese ecosystems.
 
@@ -147,10 +147,10 @@ Moreover, despite rich media and supposed easy culture, little is known about lo
 ####Reference genomes are not always available
 
 Many dairy strains genomes recently enriched genomics database [@almeida_construction_2014].
-Despite these recent -- and less recent -- contributions not all reference genomes are available.
+Despite these recent --and less recent-- contributions not all reference genomes are available.
 Some species do not have any genome representation in databases.
 
-Apart from this limiting case, two others cases emerged: (1) when there is a representative genome in databases but the genome sampled in the ecosystem differ, and (2) when several genomes -- e.g., a catalog of strains -- and one of them exists in the ecosystem.
+Apart from this limiting case, two others cases emerged: (1) when there is a representative genome in databases but the genome sampled in the ecosystem differ, and (2) when several genomes --e.g., a catalog of strains-- and one of them exists in the ecosystem.
 The latter could be the case if aiming to retrieve a strain when exploring a cheese community after an artificial starter inoculation.
 These cases are illustrated in figure \ref{fig:no-reference-genome}.
 
@@ -160,7 +160,7 @@ These cases are illustrated in figure \ref{fig:no-reference-genome}.
 
 ###Why study cheese ecosystems?
 
-Cheese ecosystems harbour an important diversity of micro-organisms -- especially strains [@montel_traditional_2014].
+Cheese ecosystems harbour an important diversity of micro-organisms --especially strains [@montel_traditional_2014].
 Diversity stem from the necessary functional redundancy in a community for the ecosystem to be reliable against environmental changes [@konopka_what_2009].
 For example, these microbial communities enable resistance to pathogens such as phages or others unwanted bacteria like _Salmonella_ [@ortolani_microbiological_2010; @callon_microbial_2014].
 
@@ -178,10 +178,10 @@ Hence, academics and industrial partners are exploring cheese ecosystems to unra
 
 The canonical approach to ecosystem exploration used to be culture of microbial-organisms.
 First, they were isolated from their ecosystem and then cultivated under proper conditions.
-Meeting these conditions and finding a convenient media could be a struggle -- or worse quite unfeasible -- depending on the strains and the ecosystem studied.
+Meeting these conditions and finding a convenient media could be a struggle --or worse quite unfeasible-- depending on the strains and the ecosystem studied.
 Media is not an issue in cheese ecosystem studies, however low-abundant microbial-organisms or interactions-dependant micro-organisms would be out-of-scope.
 
-Culture-independant approaches were then developed. The capture and analysis of ecosystem genomics information -- or _metagenomics_ -- provide insights into genomes from micro-organisms bypassing cultivation related issues.
+Culture-independant approaches were then developed. The capture and analysis of ecosystem genomics information --or _metagenomics_-- provide insights into genomes from micro-organisms bypassing cultivation related issues.
 High-throughput sequencing technologies fast development enables multiple methods and innovative strategies to blossom .
 These recent approaches provide a new perspective for ecosystem exploration and are overviewed in figure \ref{fig:ecosys}.
 
@@ -191,41 +191,63 @@ These recent approaches provide a new perspective for ecosystem exploration and 
 
 ####Different questions and corresponding sequencing technologies
 
-An ecosystem sample in a metagenomics study can be sequenced through two major technologies -- amplicon or shotgun -- depending on questions asked. Both are reviewed in the following paragraphs.
+An ecosystem sample in a metagenomics study can be sequenced through two major technologies --amplicon or shotgun-- depending on questions asked. Both are reviewed in the following paragraphs.
 
 #####Amplicon sequencing
 
-Only one or few marker genes are sequenced in this approach. The preferred marker for prokaryotes is the ribosomal small sub-unit DNA -- dub 16S rDNA -- and the _internal transcribed spacer_ -- ITS -- for eukaryotes.
+Only one or few marker genes are sequenced in this approach. The preferred marker for prokaryotes is the ribosomal small sub-unit DNA --termed 16S rDNA-- and the _internal transcribed spacer_ --ITS-- for eukaryotes.
 Their sequences harbour several conversed regions next to more variable zones.
 Conserved regions from multiples organisms will be used to generate PCR primers. 
 These primers will then amplify variables regions that are specific to a species or genus.
 In case of explorative study, generic markers can be used to assess overall diversity [@ciccarelli_toward_2006].
-The choice of 16S regions to amplify -- or marker genes -- can also depends on _a priori_ knowledge concerning existing micro-organisms in the environment and can be tailored in consequence [@kumar_target_2011].
+The choice of 16S regions to amplify --or marker genes-- can also depends on _a priori_ knowledge concerning existing micro-organisms in the environment and can be tailored in consequence [@kumar_target_2011].
 
 
 #####Shotgun sequencing
 DNA extracted from samples is sheared into fragments. Fragment are randomly sequenced which yield millions of DNA reads [@sharpton_introduction_2014].
-These reads embody coding DNA sequences -- CDS -- which provide insights into potential functions harboured in the studied microbial community [@venter_environmental_2004].
+These reads embody coding DNA sequences --CDS-- which provide insights into potential functions harboured in the studied microbial community [@venter_environmental_2004].
 
 
 #####Application to cheese ecosystems
-Both sequencing technologies were used in cheese ecosystem exploration. Delbes et al. rely on amplicon sequencing combined with culture experiments for validation to provide a microbial overview of raw milk cheeses [-@delbes_monitoring_2007]. Ercolini reviewed the use of shotgun sequencing specifically in food microbiology in [-@ercolini_high-throughput_2013].
+Both sequencing technologies were used in cheese ecosystem exploration. Delbes et al. rely on amplicon sequencing combined with culture experiments for validation to provide a microbial overview of raw milk cheeses [-@delbes_monitoring_2007]. Ercolini reviewed the use of shotgun sequencing specifically in food microbiology [see -@ercolini_high-throughput_2013].
 
 
 
-### Post sequencing strategies (1.5-2p)
+###Post-sequencing strategies (1.5-2p)
+
+High-throughput sequencing yields millions of DNA reads. This technology provides an ecosystem overview.
+
+However, the link between DNA read and organism is lost in the process of metagenomics sequencing --in contrast to the sequencing of one individual.
+Innovative strategies needs to be applied --or developed-- in order to circumvent this information loss and achieve ecosystem information retrieval using metagenomics --e.g., micro-organism identification.
+Some methods and strategies are summarised in figure \ref{fig:ecosys} and detailed below.
+
+
+
 
 * Presentation of different types of metagenomics data handling strategies.
 * Different tools and their limits in ecosystem exploration.
 
-```{r methods, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.cap="Comparison of post-sequencing strategies."}
+```{r methods, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.pos="h",fig.align="center",fig.cap="Comparison of post-sequencing strategies."}
 \input{figures/fig-methods-cmp}
 ```
 
 ## Aims
 
-* Summary of a two-year apprenticeship.
-* Exploration of strategy taking into account potential divergence between environmental and reference genomes.
+Microbial communities are (1) ubiquitous --e.g., soil, plants, fermented foods, etc.-- and (2) necessary for host health or manufacturing processes.
+Their study highly benefits from high-throughput technologies such as metagenomics sequencing.
+However, metagenomics data analysis comes with challenges.
+Specifically interested in cheese ecosystems in our lab.
+<!-- JOBIM abstract inspiration ? -->
+
+I have focused my research on a metagenomics analysis tool --GeDI-- during my bioinformatics apprenticeship.
+This two-year work can be crystallised into four axes --tackled or soon-to-be.
+I have explored several _improvements_ both in terms of scientific methods and computational features.
+As similar tools were published, I started working on a _comparison_ to our tool.
+I then worked on GeDI _integration_ with databases and others tools.
+Finally, I have drafted results yields by GeDI _applications_ to simulated and real datasets.
+
+
+
 
 
 [^pub]: A Pubmed search with "cheese" keyword yields 9,177 entries as of June, 2016.
