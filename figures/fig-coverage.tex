@@ -7,18 +7,18 @@
 		mm/.style= {text=Ipurple},
 		row 1/.style = {nodes={fill=Iblue}},
 ] (m) {%
-A\& T\& G\& C\& A\& A\& T\& G\& G\& A \\
-A\& T\& G\& |[mm]|T\& A\& A\& \&|[mm]| C\& G\& A \\
-A\& T\& G\& C\& A\& A\& \& \& \&  \\
-   \& \& \& C\& A\& A\& \& \& \&  \\
-\& \& G\&|[mm]| T\& A\& \& \& \& \&  \\
-2\& 2\& 3\& 4 \& 4 \& 3\& 0\& 1\& 1\& 1 \\
-0\& 0\& 1\& 2 \& 2 \& 1\& 0\& 1\& 1\& 1 \\
+	A\& T\& G\& C\& A\& A\& T\& G\& G\& A \& A\& C\\
+	A\& T\& G\& |[mm]|T\& A\& A\& \&|[mm]| C\& G\& A \& \& \\
+	A\& T\& G\& C\& A\& A\& \& \& \&  \& \& \\
+	\& \& \& C\& A\& A\& \& \& \&  \& \& \\
+	\& \& G\&|[mm]| T\& A\& \& \& \& \&  \& \& \\
+	2\& 2\& 3\& 4 \& 4 \& 3\& 0\& 1\& 1\& 1 \& 0\& 0\\
+	0\& 0\& 1\& 2 \& 2 \& 1\& 0\& 1\& 1\& 1 \& 0\& 0\\
 };
 \node[left=1em of m-1-1] {Reference Genome};
 \node[left=1em of m-3-1] (rd) {Metagenomics Reads};
-\node[left=1em of m-6-1,font=\bf] {Total Coverage};
-\node[left=1em of m-7-1,draw,dashed] {Mismatchs Coverage};
+\node[left=1em of m-6-1,font=\bf] {\# Reads (total)};
+\node[left=1em of m-7-1,draw,dashed] {\# Reads (mismatchs)};
 %\node[High, fit=(m-2-1)(m-3-3)] {};
 %\node[High, fit=(m-3-4)(m-4-6)] {};
 \node[Read, fit=(m-2-4)(m-2-6)] {};
@@ -29,8 +29,12 @@ A\& T\& G\& C\& A\& A\& \& \& \&  \\
 \pgfmathtruncatemacro{\h}{\j+2}
   \draw[Iblue!65!black,thick] (m-\i-\j.south) -- (m-\i-\h.south);%READS
 };
-%\draw (m-5-1.south west) -- (m-5-10.south east);%Delimitation
-\draw (m-6-1.north west) -- (m-6-10.north east);%Delimitation
+\draw (m-6-1.north west) -- (m-6-12.north east);%Delimitation
 \draw (m-2-1.west) -- node[midway] (a) {} (m-2-1.west|-m-5-1.west);
 \draw [-] (rd) -- (rd-|a);
+%Equation
+\node[right=of m-2-12] (e1) {$c_\text{Total}=\dfrac{\# \text{pos. } \neq 0}{l_G}= \dfrac{9}{12} =0.75$};
+\node[right=of m-5-12] {$c_\text{Mismatches}=\dfrac{\# \text{pos. with MM } \neq 0}{l_G}= \dfrac{7}{12} =0.583$};
+% Annotation
+\node[right=0.1em of m-1-12.north east] {$l_G=12nt$};
 \end{tikzpicture}
