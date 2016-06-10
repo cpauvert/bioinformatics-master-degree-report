@@ -19,10 +19,10 @@ header-includes:
 
 We are trying to answer this question through the proxy of reference genomes and metagenomics reads alignments.
 Hundreds of genomes extracted from dairy products are currently available in genomic databases [@almeida_construction_2014].
-In the scope of Food-Microbiome projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem -- if possible to the *strain* level -- and (2) characterize low-abundant organisms.
+In the scope of Food-Microbiome projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem --if possible to the *strain* level-- and (2) characterize low-abundant organisms.
 
 
-In this chapter, I will focus on my two-year work around a metagenomics analysis tool -- `GeDI` -- through four main axes.
+In this chapter, I will focus on my two-year work around a metagenomics analysis tool --`GeDI`-- through four main axes.
 I will present (1) several approaches explored to improve the tool, followed by (2) a comparison with similar tools and (3) how this module was integrated with others, to conclude with (4) results from its application on simulated and real datasets.
 
 
@@ -38,7 +38,7 @@ Second, computational improvements that covers  software performance as well as 
 ```
 
 We want an automatic criterion to infer a micro-organism presence or absence from its alignment data.
-To this end we focus on several modeling approaches -- summarised in Figure \ref{fig:previous-approaches} -- throughout my work in BAC team.
+To this end we focus on several modeling approaches --summarised in Figure \ref{fig:previous-approaches}-- throughout my work in BAC team.
 
 
 ### Modeling approaches
@@ -60,10 +60,10 @@ To this end we focus on several modeling approaches -- summarised in Figure \ref
 
 
 In addition to scientifical improvements covered above, I assess our tool performance and modify it in order to enhance them.
-While switching to standard bioinformatics files -- such as BAM or GFF -- we expected a decrease in file size and an increase in software speed.
+While switching to standard bioinformatics files --such as BAM or GFF-- we expected a decrease in file size and an increase in software speed.
 In figure, we can see that these expected features are now a reality.
 
-Tables or plot to compare features -- file size, running time -- between previous version `GeDI-Prod` versus `GeDI-Prod-vGFF`?
+Tables or plot to compare features --file size, running time-- between previous version `GeDI-Prod` versus `GeDI-Prod-vGFF`?
 
 We are also working to write a proper documentation, comment code lines and build toy datasets for the user to be guided when using our tool.
 
