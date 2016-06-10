@@ -73,7 +73,7 @@ I usually browse SFBI "bioinformations", [bioinfo-fr.net website](bioinfo-fr.net
 \input{figures/fig-gedi}
 ```
 
-```{r coverage,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Genome coveragecomputation after reads alignement.", fig.cap="Genome coverage computation after reads alignement. In our metagenomics analysis tool -- GeDI -- we discrimate (1) coverage ($c_\text{Total}$) yield by the number of reference genome positions where at least one read is mapped divided by genome length ($l_G) and (2) coverage ($c_\text{Mismatchs}$) concerning the same metric only for reads aligned with one to three mismatches compared to the reference.",cache=FALSE }
+```{r coverage,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Genome coveragecomputation after reads alignement.", fig.cap="Genome coverage computation after reads alignement. In our metagenomics analysis tool -- GeDI -- we discrimate (1) coverage ($c_{\\text{Total}}$) yield by the number of reference genome positions where at least one read is mapped divided by genome length ($l_G$) and (2) coverage ($c_{\\text{Mismatchs}}$) concerning the same metric only for reads aligned with one to three mismatches compared to the reference.",cache=FALSE }
 \input{figures/fig-coverage}
 ```
 
