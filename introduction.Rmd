@@ -26,13 +26,13 @@ Fermented foods --like cheese, sausage and beer-- provides a level of diversity 
 ###Why? (1p)
 
 Industrial partners and academics are both interested by insights into cheese ecosystems using metagenomics.
-Their common interests were crystallised into two projects: (1) Food-Microbiome project and (2) Food-Microbiome Transfert project
+Their common interests were crystallised into two consecutive projects: (1) Food-Microbiome project and (2) Food-Microbiome Transfert project
 
 
 ####Food-Microbiome project
 
 The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential [@renault_anr_2009].
-It is coordinated by Pierre RENAULT (PhD,Research Director) and funded by the ANR --_The French National Research Agency_-- since 2009. It intends to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
+It is coordinated by Pierre RENAULT (PhD,Research Director) and funded from 2009 to 2013 by the ANR --_The French National Research Agency_. It intends to provide a proof-of-concept and preliminary results concerning the use of metagenomics for cheese ecosystems exploration.
 
 ####Food-Microbiome Transfert project
 
@@ -60,8 +60,8 @@ INRA is spread across the country in _centres_ and scientists work locally in _t
 ####Several actors and contributors to these projects
 
 These Food-Microbiome projects gather dairy products experts --mainly microbiologists-- from 3 INRA centres: Aurillac (F-15), Grignon (F-78) and Jouy-en-Josas (F-78).
-Industrial partners are bring together by the CNIEL --_The French Dairy Inter-branch Organisation_-- and belongs to these two projects.
-Academics participants and their corresponding expertise and affiliations are bring together in Figure \ref{fig:actors}.
+Industrial partners are brought together by the CNIEL --_The French Dairy Inter-branch Organisation_-- and are involved in these two projects.
+Academics participants and their corresponding expertise and affiliations are presented together in Figure \ref{fig:actors}.
 Name abbreviations used in this figure are reported with INRA teams description in the following paragraphs.
 
 #####Food and Commensal Bacteria Team
@@ -105,23 +105,24 @@ For convenience I will use the standard classification when referring to micro-o
 ####From milk to cheeses
 
 Cheese-making starts with a matrix composed of milk more or less transformed --raw milk or pasteurised.
-Rennet --an enzyme cocktails-- trigger the milk state transition from liquid to solid, the resulting product being called curd [@button_cheese_2012].
+A cocktail of enzymes --rennet--trigger the milk state transition from liquid to solid, the resulting product being called curd [@button_cheese_2012].
 The curd will then undergo many transformations and technological processes to be manufactured into a consumable cheese.
 
 The great diversity of cheeses comes from variations in these highlighted processes. Experts proposed a classification in order to unify terms [@almena-aliste_cheese_2014].
 Cheese diversity also stem from the wide range of micro-organisms involved.
 
-####Micro-organisms sources
+####Micro-organisms sources shapes cheese ecosystems
 
 Micro-organisms inoculations are among these transformations.
 Proteins, fatty acids and water --composing the milk-- combined with tailored conditions provide a suitable media for microbial growth [@monnet_growth_2015].
 Micro-organisms may come from two main sources: starter cultures and environment [@irlinger_cheese_2015].
-Starter cultures can be distinguished into two categories: manufactured and subcultures from previous cheese ecosystems --referred here as natural.
+Starter cultures can be distinguished into two categories: manufactured and undefined.
 <!-- man-made for both. But the first has few species -->
 The first one consists of few selected strains --usually with interesting technological features-- gathered in a mixture applied on the curd.
-The second is much more complex and results in the culture of cheese rind communities from the day before.
-Unravel microbial composition in the latter is of great interest but not trivial.
+The second can be much more complex and results from subcultures of either old starters or previous cheese rind communities.
 
+While a manufactured starter composition can be trivial and documented, unravel microbial composition in undefined starters is a challenge.
+Biotic and abiotic factors are hence involved in cheese-making and can greatly impact cheese quality and microbial composition [@irlinger_cheese_2015; @monnet_growth_2015].
 These ecosystems are described as a _good_ model: both simple and complex [@wolfe_cheese_2014].
 
 
@@ -132,29 +133,30 @@ They harbour a relative small number of distinct species compared to others ecos
 Less than 200 species are estimated in cheese (\emph{ibib}.) compared to more than a thousand in aforementioned ecosystems [@qin_human_2010].
 Cheese also benefits from many studies in literature[^pub], being an efficient milk storage technique for 7,000 years [@salque_earliest_2013].
 
-However recent methods --e.g., high-throughput technologies-- shed light on a microbial diversity in what was thought to be well-described ecosystems [@quigley_high-throughput_2012]. Theses methods will be reviewed later in section \ref{state}.
+However recent methods --e.g., high-throughput technologies-- shed light on a microbial diversity in what was thought to be well-described ecosystems [@quigley_high-throughput_2012]. These methods will be reviewed later in section \ref{state}.
 
 ####Why complex ?
 
-While a manufactured starter composition is trivial and documented, to decipher a natural starter culture is a challenge.
-Biotic and abiotic factors are involved in cheese-making and can greatly impact cheese quality and microbial composition [@irlinger_cheese_2015; @monnet_growth_2015].
 Cheese cannot be reduce to an association of milk and micro-organisms.
 The environment influence is significant --e.g., others sources of micro-organisms and their interactions-- shape microbial composition of cheeses.
 So cheese ecosystem exploration is not so simple because this ecosystem is influenced by several factors.
-Moreover, despite rich media and supposed easy culture, little is known about low abundant micro-organisms in cheese ecosystems.
+Moreover, little is known about low abundant micro-organisms in cheese ecosystems, despite rich media and supposed easy culture.
+Finally, cheese ecosystems are an important reservoir of microbial strains given their interactions with the environment.
 
 
 ####Reference genomes are not always available
 
-Many dairy strains genomes recently enriched genomics database [@almeida_construction_2014].
+Many dairy strains genomes recently enriched genomics database in the scope of Food-Microbiome project [@almeida_construction_2014].
 Despite these recent --and less recent-- contributions not all reference genomes are available.
 Some species do not have any genome representation in databases.
 
-Apart from this limiting case, two others cases emerged: (1) when there is a representative genome in databases but the genome sampled in the ecosystem differ, and (2) when several genomes --e.g., a catalog of strains-- and one of them exists in the ecosystem.
-The latter could be the case if aiming to retrieve a strain when exploring a cheese community after an artificial starter inoculation.
+Apart from this limiting case, two others cases emerged. First, a representative genome exists in databases but the genome sampled in the ecosystem differ. 
+For example, a genome of the same species is available but not the same strain --both sharing $9O$ to $99\%$ identity. Second, several genomes --e.g., a catalog of strains-- are available and one of them exists in the ecosystem.
+<!-- The latter could be the case if aiming to retrieve a strain when exploring a cheese community after an artificial starter inoculation.-->
+For example, recognise a specific strain in a cheese community after an artificial starter inoculation. 
 These cases are illustrated in figure \ref{fig:no-reference-genome}.
 
-```{r no-reference-genome, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h",fig.scap="Discrepancies between reference genomes available and strains genomes from ecosystems.",fig.cap="Discrepancies between reference genomes available and strains genomes from ecosystems. Several cases are illustrated: (1) when a representative reference genome exists and (2) when a catalog of sequenced strains is available."}
+```{r no-reference-genome, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE,fig.align="center", fig.pos="h!",fig.scap="Discrepancies between reference genomes available and strains genomes from ecosystems.",fig.cap="Discrepancies between reference genomes available and strains genomes from ecosystems. Several cases are illustrated: (1) when a representative reference genome exists and (2) when a catalog of sequenced strains is available."}
 \input{figures/fig-no-reference-genome}
 ```
 
@@ -164,7 +166,7 @@ Cheese ecosystems harbour an important diversity of micro-organisms --especially
 Diversity stem from the necessary functional redundancy in a community for the ecosystem to be reliable against environmental changes [@konopka_what_2009].
 For example, these microbial communities enable resistance to pathogens such as phages or others unwanted bacteria like _Salmonella_ [@ortolani_microbiological_2010; @callon_microbial_2014].
 
-Moreover, strains in cheese ecosystems can demonstrate specific metabolic pathways and organoleptic compounds synthesis. Their characterisation will provide leverage for food industry improvements.
+Moreover, strains in cheese ecosystems can demonstrate specific metabolic pathways and organoleptic compounds synthesis. Their characterisation will provide leverage for food industry improvements and sustainable quality. 
 Hence, academics and industrial partners are exploring cheese ecosystems to unravel their relative complexity using a wide panel of tools and methods. 
 
 
@@ -195,7 +197,7 @@ An ecosystem sample in a metagenomics study can be sequenced through two major t
 
 #####Amplicon sequencing
 
-Only one or few marker genes are sequenced in this approach. The preferred marker for prokaryotes is the ribosomal small sub-unit DNA --termed 16S rDNA-- and the _internal transcribed spacer_ --ITS-- for eukaryotes.
+Only one or few marker genes are sequenced in this approach. The preferred marker --or barcodes-- for prokaryotes is the ribosomal small sub-unit DNA --termed 16S rDNA-- and its counterpart in eukaryotes 18S rDNA. Another common barcode for eukaryotes especially fungi is the _internal transcribed spacer_ --ITS.
 Their sequences harbour several conversed regions next to more variable zones.
 Conserved regions from multiples organisms will be used to generate PCR primers. 
 These primers will then amplify variables regions that are specific to a species or genus.

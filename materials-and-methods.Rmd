@@ -29,7 +29,7 @@ From times to times, I use my personal laptop for writings during commutes or re
 Some greedy simulations or tasks requires supplementary computational resources.
 I have been granted access to two INRA clusters farms to meet these needs.
 The first one --`migale`-- located in Jouy-en-Josas harbours 580 nodes and a large choice of bioinformatics tools.
-The second one --`genotoul`-- in Toulouse. This cluster benefits from a larger storage space and has more than 5,000 nodes.
+The second one --`genotoul`-- in Toulouse benefits from a larger storage space and has more than 5,000 nodes.
 
 
 ##Professional practice
