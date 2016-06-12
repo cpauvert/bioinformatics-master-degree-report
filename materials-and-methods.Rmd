@@ -65,8 +65,7 @@ I usually browse SFBI "bioinformations", [bioinfo-fr.net website](bioinfo-fr.net
 Science without regular communication with peers would not be.
 It is one way to learn new methods and share feedbacks.
 Adapting your speech to a public with different scientifc background is a good opportunity to synthetise your research topic. 
-To this end, I attend monthly bioinformatics meetings organized in the institute.
-In February 2016, I presented my work on the mixture model to this group despite negative results.
+To this end, I had attended monthly bioinformatics meetings organized in the institute.
 
 I was also involved in an INRA working group belonging to the PEPI network --_Experience and good practices sharing in Computer Science_.
 Bioinformaticians and statisticians gathered in this group are interested by amplicon metagenomics analysis --especially 16S rDNA.
@@ -76,12 +75,69 @@ These meetings provide a new perspective to my project and in the long term to m
 
 Conferences are a common way of keeping yourself up to date in a field as broad as bioinformatics.
 I attended three national and international conferences such as JOBIM --_Open Days in Biology, Computer Science and Mathematics_-- or ECCB --_European Conference on Computational Biology_ throughout my apprenticeship.
+I also attended a yearly workshop RCAM --_Recent Computational Advances in Metagenomics_-- where I could discuss with experts of the field.
 
-* How do I work?
-* What tools and data did I used?
+###Good practices and tracability
+
+##### vim
+
+##### git
+
+
+I created a private [GitHub](http://github.com/cpauvert) repository to manage versions of this thesis. It also provides online storage and availability from anywhere.
+
+#####GeDI development
+
+###Research communication
+
+In February 2016, I presented my work on the mixture model to the monthly bioinformatics meeting of the institute despite negative results.
+
+
+##Tools
+
+#####Short reads alignment on reference genome
+
+`bowtie` version 1 because cheese samples were sequenced with SOLiD technology.
+
+#####Synthetic metagenomics samples creation
+
+#####In between genomes identity percentage computation
+
+#####Bioinformatics toolbox
+
+`SAMtools` (version) were used in the last version of our tool.
+I relied on `BEDtools` (version) to provide fast and efficient alignment file and gene annotation intersection.
+These toolbox were either called from our tool with a Python library `pysam` (v0.14.1) or through the Python `os` module.
+
+#####Data mining and explorative analyses
+
+#####Metagenomics analysis tools
+
+###Mixture model of distributions {#modele}
+
+##### Contribution
+
+##### Distribution
+
+##### Modele
+
+##### Parameters estimation
+
+#####Expectation-Maximization algorithm
+
+##Data
+
+#####Micro-organisms genomes used
+
+#####Annotation files
+Standard files for gene annotation --GFF3-- were fetched from either from public databases like NCBI or from within the institute databases. 
+In the absence of such file type, I sometimes used a BioPerl script to convert GenBank files to a pair of FASTA file and GFF file.
+
+#####Mock Community
+
+
 * **Insist on EM algorithm** according to NV remarks?
 * New python libraries used in GeDI.
-* Private GitHub for report.
 
 ```{r gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of our metagenomics analysis tool: GeDI", fig.cap="Overview of our metagenomics analysis tool: GeDI. It consists of three Python (v2.7.5) modules interconnected. Each module is framed here with dashed lines and encompass data and software.",cache=FALSE }
 \input{figures/fig-gedi}
