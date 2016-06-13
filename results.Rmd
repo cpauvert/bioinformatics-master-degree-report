@@ -87,16 +87,11 @@ A CDS-centered approach has several advantages. First, these coding sequences ar
 Moreover, reference genomes sheared in multiple contigs could also be used.
 Minimal annotation of hypothetical CDS is automatically done nowadays.
 Hence even draft genomes could provide information on the studied metagenome.
-An overall idea of the approach developed is summarised in figure \ref{fig:mixture-model}.
-
-```{r mixture-model, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Contributors genomes issues and mixture model principles.", fig.cap="Contributors genomes issues and mixture model principles.",cache=TRUE}
-\input{figures/fig-mixture-model}
-```
 
 #####CDS coverage distributions
 
-Training dataset reads --generated as desribed in figure \ref{fig:strep}-- are processed by our tool GeDI --see former version \ref{fig:former-gedi}.
-CDS coverage are computed and presented in the figure below.
+Training dataset reads --generated as described in figure \ref{fig:strep}-- are processed by our tool GeDI --see former version \ref{fig:former-gedi}.
+CDS coverage are computed and presented in the figure \ref{fig:distrib}.
 
 
 ```{r data, echo=F, cache=TRUE, message=FALSE, warnings=FALSE}
@@ -143,11 +138,37 @@ require(gridExtra, quietly=T)
 grid.arrange(distZ, dist, ncol=2,widths=c(0.75,1))
 ```
 
-### Modeling exploration results
+CDS coverage density follow a gaussian distribution when reads originate from one genome and are aligned on the latter reference genome.
+Providing enough reads aligned, no CDS are left unmapped. Hence, they is no difference between blue curves on pane (A) and (B) in \ref{fig:distrib}.
+
+
+#####CDS coverage densities crystallise closeness information
+An overall idea of the approach developed is summarised in figure \ref{fig:mixture-model}.
+
+```{r mixture-model, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Contributors genomes issues and mixture model principles.", fig.cap="Contributors genomes issues and mixture model principles.",cache=TRUE}
+\input{figures/fig-mixture-model}
+```
+
+
+###Modeling exploration results
 
 <!-- see ~/stageM2/RVDMM/todo -->
 
-Maximum likelihood method 
+####Mixture model limits and solutions
+Maximum likelihood method with EM algorithm.
+
+#####Number of classes
+Four classes of distribution were relevant given the training dataset I designed.
+However, they might be some cases where this number is either (1) too high, hence many superficial parameters needs to be estimated or (2) too low, thus the observed distribution will not be describ properly.
+To this end, I downsized the model considering that four classes of closeness was the upper bound. I hence removed iteratively intermediat gaussian distribution building a simpler model of two and three distributions.
+The gaussian distribution is meant to capture the information embodied in reads aligned from a close --at best exact-- strain.
+The log-normal distribution intend to fit noise or distant genomes reads alignment.
+I decided to use the BIC --_Bayesian Information Criteria_-- to choose between these models.
+It provides strong penalties towards parameters numbers thus enabling parsimonious model selection.
+The relevance of a single log-normal distribution test was examined, especially for one specific case with simulated data.
+However, the presence of only one organism is highly unrealistic in metagenomics, hence a minimum of 2 distributions was settled.
+
+
 
 EM algorithm provides local optimum and hence is sensitive to start values.
 
