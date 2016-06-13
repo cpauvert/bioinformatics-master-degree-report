@@ -18,8 +18,8 @@ header-includes:
 > "Which micro-organisms exist in the studied ecosystem?"
 
 We are trying to answer this question through the proxy of reference genomes and metagenomics reads alignments.
-Hundreds of genomes extracted from dairy products are currently available in genomic databases [@almeida_construction_2014].
-In the scope of Food-Microbiome projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem --if possible to the *strain* level-- and (2) characterize low-abundant organisms.
+Hundreds of genomes extracted from dairy products are currently available in genomics databases [@almeida_construction_2014].
+In the scope of Food-Microbiome projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem --if possible to the *strain* level-- and (2) characterise low-abundant organisms.
 
 
 In this chapter, I will focus on my two-year work around a metagenomics analysis tool --`GeDI`-- through four main axes.
@@ -29,11 +29,11 @@ I will present (1) several approaches explored to improve the tool, followed by 
 ## Scientific and computational improvements of GeDI
 
 Two kind of improvements are highlighted concerning this tool. 
-First, scientifical improvements through an exploration of micro-organisms taxonomical classification.
+First, scientific improvements through an exploration of micro-organisms taxonomical classification.
 Second, computational improvements that covers  software performance as well as proper documentation.
 
 
-```{r previous-approaches, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous modeling approaches summary embedded in GeDI.", fig.cap="Previous modeling approaches summary embedded in GeDI. These differents approaches were tested at different period depicted as symbols: before my internship ($\\circ$), during my first year of master degree internship ($\\diamond$) and during my two-year apprenticeship ($\\star$).",cache=TRUE}
+```{r previous-approaches, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous modeling approaches summary embedded in GeDI.", fig.cap="Previous modeling approaches summary embedded in GeDI. These different approaches were tested at different period depicted as symbols: before my internship ($\\circ$), during my first year of master degree internship ($\\diamond$) and during my two-year apprenticeship ($\\star$).",cache=TRUE}
 \input{figures/fig-previous-approaches}
 ```
 
@@ -41,20 +41,20 @@ We want an automatic criterion to infer a micro-organism presence or absence fro
 To this end we have focused on several modeling approaches --summarised in Figure \ref{fig:previous-approaches}-- throughout my work in BAC team.
 
 
-###Modelling approaches
+###Modeling approaches
 
 Our method is based on metagenomics reads alignment onto a set of reference genomes.
-It is followed by an adequation analysis between observed and predicted genome coverage.
+It is followed by an goodness of fit analysis between observed and predicted genome coverage.
 The predicted coverage stem from a model assuming that the considered micro-organism genome exists in the ecosystem.
 
 However, ecosystem genomes usually differ from corresponding genomes in databases.
-Hence this constraint harden reads alignment analysis in metagenomics, and subsequent modelling efforts.
-I have worked to explore, test and precise several modelling approaches. Approaches principles are briefly reviewed below.
+Hence this constraint harden reads alignment analysis in metagenomics, and subsequent modeling efforts.
+I have worked to explore, test and precise several modeling approaches. Approaches principles are briefly reviewed below.
 
-####Previous modelling approaches
+####Previous modeling approaches
 
 #####Homogeneity
-Lander and Waterman stated that reads distribution is homogenous on a genome as long as: (1) sequencing is a random process and (2) reads stem from the considered genome [see -@lander_genomic_1988].
+Lander and Waterman stated that reads distribution is homogeneous on a genome as long as: (1) sequencing is a random process and (2) reads stem from the considered genome [see -@lander_genomic_1988].
 This work is relevant in metagenomics for a sufficient reads number.
 In this case, testing the reads distribution homogeneity is a proxy for testing presence or absence of a genome.
 This hypothesis was tested by comparing observed and expected genome coverage --under the homogeneity hypothesis-- before and during my internship. 
@@ -62,8 +62,8 @@ However, thresholds used to compare distributions were empirical and we could no
 
 #####Reads position intervals
 I then explored several leads  in order to improve automatic taxonomic identification.
-Simulated datasets enable reads distributions exploration and modelling.
-Intervals between every two consecutives reads aligned is supposed to follow a geometric law.
+Simulated datasets enable reads distributions exploration and modeling.
+Intervals between every two successive reads aligned is supposed to follow a geometric law.
 However, this model was too strict and could only be applied if reads were aligned to the same genome reads stem from.
 For example, reads from a strain A aligned to the reference genome A would yield a reads interval distribution suitable to pass the test.
 However, it was not the case if these same reads were aligned to a close strain of genome A --say $98\%$ identity.
@@ -81,9 +81,9 @@ However, it did not scales to metagenomics data where reads stem from multiples 
 Previous approaches were based on genome coverage. While bypassing potential annotation bias, these methods were impacted by both inter-species and intra-species genomics variation noises --e.g., pseudo-genes, mobile elements, etc.
 In 2015, I started going back to a previous approach in the team: focused on CDS --_Coding DNA Sequences_.
 
-####Explorative approach to micro-organism identification
+####Exploratory approach to micro-organism identification
 
-A CDS-centered approach has several advantages. First, these coding sequences are much more conserved. Then, CDS can be strain-specific and yield organism functions --inferred for instance by protein sequences prediction.
+A CDS-centred approach has several advantages. First, these coding sequences are much more conserved. Then, CDS can be strain-specific and yield organism functions --inferred for instance by protein sequences prediction.
 Moreover, reference genomes sheared in multiple contigs could also be used.
 Minimal annotation of hypothetical CDS is automatically done nowadays.
 Hence even draft genomes could provide information on the studied metagenome.
@@ -138,8 +138,8 @@ require(gridExtra, quietly=T)
 grid.arrange(distZ, dist, ncol=2,widths=c(0.75,1))
 ```
 
-CDS coverage density follow a gaussian distribution when reads originate from one genome and are aligned on the latter reference genome.
-Providing enough reads aligned, no CDS are left unmapped. Hence, they is no difference between blue curves on pane (A) and (B) in \ref{fig:distrib}.
+CDS coverage density follow a Gaussian distribution when reads originate from one genome and are aligned on the latter reference genome.
+Providing enough reads aligned, no CDS are left unaligned. Hence, they is no difference between blue curves on pane (A) and (B) in \ref{fig:distrib}.
 
 
 #####CDS coverage densities crystallise closeness information
@@ -155,29 +155,56 @@ An overall idea of the approach developed is summarised in figure \ref{fig:mixtu
 <!-- see ~/stageM2/RVDMM/todo -->
 
 ####Mixture model limits and solutions
-Maximum likelihood method with EM algorithm.
+Maximum likelihood method with EM algorithm [@dempster_maximum_1977].
 
 #####Number of classes
 Four classes of distribution were relevant given the training dataset I designed.
-However, they might be some cases where this number is either (1) too high, hence many superficial parameters needs to be estimated or (2) too low, thus the observed distribution will not be describ properly.
-To this end, I downsized the model considering that four classes of closeness was the upper bound. I hence removed iteratively intermediat gaussian distribution building a simpler model of two and three distributions.
-The gaussian distribution is meant to capture the information embodied in reads aligned from a close --at best exact-- strain.
+However, they might be some cases where this number is either (1) too high, hence many superficial parameters needs to be estimated or (2) too low, thus the observed distribution will not be described properly.
+To this end, I down-sized the model considering that four classes of closeness was the upper bound. I hence removed iteratively intermediate Gaussian distributions building a simpler model of two and three distributions.
+The Gaussian distribution is meant to capture the information embodied in reads aligned from a close --at best exact-- strain.
 The log-normal distribution intend to fit noise or distant genomes reads alignment.
 I decided to use the BIC --_Bayesian Information Criteria_-- to choose between these models.
 It provides strong penalties towards parameters numbers thus enabling parsimonious model selection.
 The relevance of a single log-normal distribution test was examined, especially for one specific case with simulated data.
 However, the presence of only one organism is highly unrealistic in metagenomics, hence a minimum of 2 distributions was settled.
 
+#####Aligned reads number and start values
+The EM algorithm provides local optimum and hence is sensitive to start values.
+In addition, the mixture model was first designed for a fixed number of reads.
+I decided to treat the algorithmic and methodologic limit --respectively the first and second mentioned above-- at the same time.
+Therefore, I explored the influence of aligned reads number on the mixture model distributions.
+The idea was to show the expected resolution loss between the closeness classes when the aligned reads number decreased.
+In the meantime, it provides first grasps on model behaviour towards low-abundant micro-organisms --which are obviously yielding few reads.
 
+```{r rho,fig.pos='h!',fig.align='center',fig.cap="Aligned reads number influence on one parameter: $\\rho$ or aligned CDS ratio. Each dot represents an alignment metric on a genome--the ratio of CDS with at least one read aligned-- function of the effective number of reads aligned. Data stem from the _Streptococcus dataset. Reference genomes are classified on their closeness to the reference strain we choose throughout this study --see figure \\ref{fig:strep}. Non-linear regressions for each class are printed on plain lines. Each parameters --with respect to Michaelis-Menten formula-- yields significant estimation.",fig.scap="Aligned reads number influence on one parameter: $\\rho$ or aligned CDS ratio.",echo=FALSE,  cache=TRUE, warnings=FALSE,fig.height=3,fig.width=5}
+tabRho<-read.csv("rhoData.csv")
+ggplot(tabRho,aes(x=NbReadsObserved, y=1-Prop,color=as.factor(Prox))) +
+geom_point() + scale_color_manual(values=c("#2aa2e0","#f47d20", "#8bac21", "#ed1a5c"),labels=c("0: 1 reference","1: 3 close strains","2: 3 sub-species","3: 3 close species"))+
+geom_smooth(aes(group=as.factor(Prox)), method= "nls", formula="y~(Vm*x/(K+x))",method.args=list(
+	start = c(Vm=0.7,K=800),
+	lower=c(Vm=0.1,K=0.5), upper=c(Vm=1,K=20000),
+	algorithm = "port"),
+se=F,fullrange=TRUE)+theme_bw() + labs( title="Aligned CDS ratio evolution\nwith reads numbers",y=expression(paste("% aligned CDS: 1-", rho,sep="")), x="Number of reads aligned on CDS", color="Source genome class")
+```
+Reads number is an input parameter when crafting simulated datasets. However, it is different from the effective aligned reads number on the reference.
+Actually only the latter is known with real datasets, so our predictions needs to rely on this effective number rather than the input parameter.
+This information is provided on the x-axis of figure \ref{fig:rho}, where its variation is highlighted with the ratio of aligned CDS in the reference genome.
+Despite stating the obvious, we see that the more close the genome is to the reference, the more reads effectively aligned.
+Aligned CDS ratio shows a plateau for each class as long as reads number increase.
+This reflects the fraction of genome shared by the reference genome and the genome from which reads where sequenced.
 
-EM algorithm provides local optimum and hence is sensitive to start values.
+The aforementioned tendency could be captured with non linear regression. The fit for each class was based on Michaelis-Menten formula and each parameters --such as $V_m$ or $K$ yields significant estimations.
+For the other parameters of the mixture model, I observed a linear tendency between aligned reads number and the mean $\mu$ or the variance $\sigma^2$ --yet with different coefficient.
 
+The strategy set up to circumvent start values issues will encompass both prior knowledge --in the form of regression models-- and a wider space parameter exploration --in the form of random sampling.
+Hence, the following initialisation: (1) contributions $\pi_c$ are drawn from a uniform random law, (2) ratios $\rho_c$ are initialised with respect to the number of reads aligned based on non linear regression models above, and finally (3) distribution parameters --such as Gaussian and log-normal-- are initially set up both by predicting from linear regressions and by sampling in four times the prediction interval.
+This approach yields several mixture models ranked with respect to the BIC criterion, hence selecting the most likely.
 
 #####A more relevant mock community 
 I had planned to test this model on a mock dataset designed by Dugat-Bony et al [see -@dugat-bony_overview_2015]. 
 This microbial community dataset is relevant to our projects because it is associated with cheese ecosystems and it has been sequenced with SOLiD technology.
 Time constraints prevented this dataset to be tested as well as aforementioned negative results on the Mock Community. 
-In spite of an almost perfect adequation of this dataset to the scope of our project, I did not used the mixture model approach on it.
+In spite of an almost perfect match of this dataset to the scope of our project, I did not used the mixture model approach on it.
 
 * Limits identification and solutions hunt.
 * Possible usage.
@@ -185,7 +212,7 @@ In spite of an almost perfect adequation of this dataset to the scope of our pro
 ### Software performance
 
 
-In addition to scientifical improvements covered above, I assess our tool performance and modify it in order to enhance them.
+In addition to scientific improvements covered above, I assess our tool performance and modify it in order to enhance them.
 While switching to standard bioinformatics files --such as BAM or GFF-- we expected a decrease in file size and an increase in software speed.
 In figure, we can see that these expected features are now a reality.
 
@@ -203,7 +230,7 @@ This part could be in prospects if time is running out.
 
 ## Integration
 
-* with FoodMicrobiome Transfert
+* with Food-Microbiome Transfert
 * with Galaxy Platform
 * with others tools through the use of bioinformatics standard files.
 
