@@ -51,14 +51,16 @@ However, ecosystem genomes usually differ from corresponding genomes in database
 Hence this constraint harden reads alignment analysis in metagenomics, and subsequent modelling efforts.
 I have worked to explore, test and precise several modelling approaches. Approaches principles are briefly reviewed below.
 
-####Previous modelling approaches: homogeneity
+####Previous modelling approaches
+
+#####Homogeneity
 Lander and Waterman stated that reads distribution is homogenous on a genome as long as: (1) sequencing is a random process and (2) reads stem from the considered genome [see -@lander_genomic_1988].
 This work is relevant in metagenomics for a sufficient reads number.
 In this case, testing the reads distribution homogeneity is a proxy for testing presence or absence of a genome.
 This hypothesis was tested by comparing observed and expected genome coverage --under the homogeneity hypothesis-- before and during my internship. 
 However, thresholds used to compare distributions were empirical and we could not explicitly validated this approach while it yields interesting results.
 
-####Previous modelling approaches: reads interval
+#####Reads position intervals
 I then explored several leads  in order to improve automatic taxonomic identification.
 Simulated datasets enable reads distributions exploration and modelling.
 Intervals between every two consecutives reads aligned is supposed to follow a geometric law.
@@ -67,20 +69,94 @@ For example, reads from a strain A aligned to the reference genome A would yield
 However, it was not the case if these same reads were aligned to a close strain of genome A --say $98\%$ identity.
 
 
-####Previous modelling approaches: scores and ROC curves
-
+#####Scores and ROC curves
 In order to circumvent previously identified limits, I have also worked on threshold determination.
-I relied on simulated datasets to ...
+I relied on simulated datasets to infer decision rules regarding a micro-organism presence or absence from alignment data.
+For instance reads from one strain were aligned to more or less distant genomes.
+Simple datasets --like the latter-- yield interesting results from this approach.
+However, it did not scales to metagenomics data where reads stem from multiples contributors.
 
-* Previous approaches in the lab or during my internship
-* Mixture model principle (details in Materials chapter)
+---
 
+Previous approaches were based on genome coverage. While bypassing potential annotation bias, these methods were impacted by both inter-species and intra-species genomics variation noises --e.g., pseudo-genes, mobile elements, etc.
+In 2015, I started going back to a previous approach in the team: focused on CDS --_Coding DNA Sequences_.
+
+####Explorative approach to micro-organism identification
+
+A CDS-centered approach has several advantages. First, these coding sequences are much more conserved. Then, CDS can be strain-specific and yield organism functions --inferred for instance by protein sequences prediction.
+Moreover, reference genomes sheared in multiple contigs could also be used.
+Minimal annotation of hypothetical CDS is automatically done nowadays.
+Hence even draft genomes could provide information on the studied metagenome.
+An overall idea of the approach developed is summarised in figure \ref{fig:mixture-model}.
 
 ```{r mixture-model, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Contributors genomes issues and mixture model principles.", fig.cap="Contributors genomes issues and mixture model principles.",cache=TRUE}
 \input{figures/fig-mixture-model}
 ```
 
+#####CDS coverage distributions
+
+Training dataset reads --generated as desribed in figure \ref{fig:strep}-- are processed by our tool GeDI --see former version \ref{fig:former-gedi}.
+CDS coverage are computed and presented in the figure below.
+
+
+```{r data, echo=F, cache=TRUE, message=FALSE, warnings=FALSE}
+data_summary<-read.table("aggregation_summary.TN.corr.filt.txt",  h=T,sep="\t", quote="")
+# Récupération des variables d'intérêt
+norm_data<-data_summary[,c(2,4,5,8,9,11,19:25)]
+# Normalisation par la taille des CDS
+norm_data$NbReads_0.3mismatchs<-(norm_data$NbReads_0.3mismatchs/(norm_data$FragmentEnd - norm_data$FragmentStart))
+norm_data$Normalisation<-TRUE 
+
+# Label classement des génomes selon la proximité
+norm_data$Prox<-vector(mode = "numeric", length = length(norm_data$SourceGenome))
+
+norm_data$Prox[norm_data$SourceGenome %in% c("Streptococcus_salivarius_JIM8777")] <- 0
+norm_data$Prox[norm_data$SourceGenome %in% c("Streptococcus_salivarius_CCHSS3", 
+                                             "Streptococcus_salivarius_NCTC8618",
+                                             "Streptococcus_salivarius_K12-ord-b")] <- 1
+norm_data$Prox[norm_data$SourceGenome %in% c("Streptococcus_thermophilus_JIM_8232", 
+                                             "Streptococcus_salivarius_PS4",
+                                             "Streptococcus_vestibularis_ATCC_49124")] <- 2
+
+norm_data$Prox[norm_data$SourceGenome %in% c("Streptococcus_agalactiae_NEM316",
+                                        "Streptococcus_infantarius_subsp__infantarius_ATCC_BAA102")]<-3
+
+norm_data$Prox[norm_data$SourceGenome %in% c("Streptococcus_mutans_UA159")]<-3
+
+## Proportions de CDS non couverts en fonction de l'origine des reads
+require(plyr, quietly=TRUE)
+proportions <- ddply(norm_data, .(Prox), summarize, Prop = mean(NbReads_0.3mismatchs == 0))
+proportions0 <- format(proportions[ , 2]*100, digits = 4)
+
+## Data frame pour profils de couvertures triées
+data_cov<-ddply(ddply(norm_data, .(SourceGenome,Prox) , summarize, NbReadsSort = sort(NbReads_0.3mismatchs)),
+		~SourceGenome, mutate, Rank=order(NbReadsSort)/length(NbReadsSort))
+#
+require(ggplot2,quietly=T)
+distZ<-ggplot(norm_data,aes(x=NbReads_0.3mismatchs , fill=as.factor(Prox))) + geom_density() + scale_fill_manual(values=c("#2aa2e0","#f47d20", "#8bac21", "#ed1a5c"))+ labs(title="(A) With unaligned CDS", x="Reads number per base in a CDS", y="Density",fill="Closeness class")  +  facet_grid(Prox~.)+theme_minimal()+ theme(strip.text.y=element_text(color="black", face="bold"),strip.background = element_rect(fill="#A9A9A9"),legend.position="bottom") 
+dist<-ggplot(norm_data[which(norm_data$NbReads_0.3mismatchs != 0),],aes(x=NbReads_0.3mismatchs , fill=as.factor(Prox))) + geom_density() + scale_fill_manual(values=c("#2aa2e0","#f47d20", "#8bac21", "#ed1a5c"))+ labs(title="(B) Without unaligned CDS", x="Reads number per base in a CDS (1>= read)", y="Density",fill="Closeness class")  + geom_text(data=proportions,x = 0.12,y=50, aes(label=paste("rho[",Prox,"]", sep="")),parse = T)+ geom_text(data=proportions,x = 0.15,y=50, aes(label=paste("= ",round(Prop*100)," %", sep="")))+  facet_grid(Prox~.)+theme_minimal()+ theme(strip.text.y=element_text(color="black", face="bold"),strip.background = element_rect(fill="#A9A9A9"),legend.position="none") 
+```
+
+
+```{r distrib, echo=F, fig.align="center", fig.scap="Training dataset CDS coverage densities depending on closeness classes.", fig.cap="Training dataset CDS coverage densities depending on closeness classes. Reads counts are normalised by each CDS length of the reference \\textit{Streptococcus salivarius} JIM8777. (A) Densities of these values are presented on the left pane. (B) CDS without any reads aligned are excluded from densities estimation on the right pane. Densities are showed by closeness class. Hence, the first one only includes one genome --the reference strain--, others classes encompass three genomes each. Unaligned CDS ratios are showed by closeness class despite being excluded from densities. This ratio is noted $\\rho_c$ for a class $c$ where $c\\in [0;3]$ and is a parameter in the mixture model.", cache=TRUE}
+require(gridExtra, quietly=T)
+grid.arrange(distZ, dist, ncol=2,widths=c(0.75,1))
+```
+
 ### Modeling exploration results
+
+<!-- see ~/stageM2/RVDMM/todo -->
+
+Maximum likelihood method 
+
+EM algorithm provides local optimum and hence is sensitive to start values.
+
+
+#####A more relevant mock community 
+I had planned to test this model on a mock dataset designed by Dugat-Bony et al [see -@dugat-bony_overview_2015]. 
+This microbial community dataset is relevant to our projects because it is associated with cheese ecosystems and it has been sequenced with SOLiD technology.
+Time constraints prevented this dataset to be tested as well as aforementioned negative results on the Mock Community. 
+In spite of an almost perfect adequation of this dataset to the scope of our project, I did not used the mixture model approach on it.
 
 * Limits identification and solutions hunt.
 * Possible usage.

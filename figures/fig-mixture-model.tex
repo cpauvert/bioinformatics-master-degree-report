@@ -1,25 +1,29 @@
 \pgfmathsetseed{3}
 \tikzset{
-	reads/.pic = {
-  \begin{scope}[x=3cm, y=1cm, scale=0.2, every node/.style={transform shape}]
-	      \foreach \x in {1,...,20}{
-		  \node[rectangle, minimum width=3em,minimum height=1em,fill] (l\x) at (rand, rand) {};
-	      };
-\end{scope}
-}}
+	read/.pic = {
+		\fill (0,0) rectangle +(1.5ex,0.5ex);
+	}
+}
 \begin{tikzpicture}
 \tikzstyle{bact}=[rectangle, minimum width=8em,minimum height=6ex,rounded corners=0.4ex]
 \tikzstyle{Note}=[signal,signal to=east,draw=Igreen,font={\itshape \footnotesize}]
   \begin{scope}[x=15em, y=10em,scale=0.1, every node/.style={transform shape}, local bounding box=petri]
-  \foreach \n /\col in {4/Igreen, 12 /Iblue, 4 /Iblue!65, 6 /Iorange,4/Iblue!65!black,2/Igreen!65!black}{%
+  \foreach \n /\col in {4/Igreen, 12 /Iblue, 4 /Iblue!65, 6 /Iorange,4/Iblue!65!black,2/Ipurple}{%
 	  \foreach \x in {1,...,\n}{
 	      \node[bact, draw=\col, rotate =180*rand] (\x) at (rand, rand) {};
 	  }
   };
+  \node[bact, draw=Iblue, rotate=180*rand] (bac) at (rand, rand) {};
+  \node[bact, draw=Igreen, rotate=180*rand] (bac2) at (rand, rand) {};
+  \node[bact, draw=Igreen, rotate=180*rand] (bac3) at (rand, rand) {};
   \end{scope}  
-  \node[circle, draw,fit= (petri)] (fitP) {};
+  \node[circle, draw,fit= (petri), label={left:Microbial ecosystem}] (fitP) {};
+  \node[right=of fitP] (mic) {Micro-organisms};
+  \draw[gray] (bac) -- (mic);
+  \draw[gray] (bac2) -- (mic);
+  \draw[gray] (bac3) -- (mic);
 \matrix [matrix of nodes, row sep = 2em,column sep=2em,nodes in empty cells,
-		ampersand replacement=\&, below=of fitP,
+		ampersand replacement=\&, below=5em of fitP,
 	row 1/.style = {rectangle, minimum width=4em, minimum height=.01em},
 	column 1/.style ={fill=Iblue},
 	column 2/.style ={fill=Iorange},
@@ -32,6 +36,30 @@
 };
 
 \node[rectangle, minimum width=4em, minimum height=.01em,fill=black,below=5em of m,pin={[text width=6em,text centered]left:One reference genome}] (ref) {};
+%\pic foreach \x in {0,1,3}  at (\x,0) {read};
+%\node[below=5em of m] (ref) {};
+
+%\begin{scope}[x=4em, y=1em,scale=0.1,line width=3pt,shift={(ref)},local bounding box=refmap]
+%\tikzstyle{gen}=[rectangle, minimum height=1em, minimum width=18em]
+%\node[gen, fill=Iblue!65, draw=Ipurple, very thick]  (r0){}; 
+%\tikzstyle{lecture}=[rectangle,Iblue!65, fill, minimum width=7em]
+%\foreach \x in {-7.5,...,8}
+%  {\node[lecture] at (\x,1) {};
+%  \node[lecture] at (\x+0.5,1.4) {};}
+%\foreach \x in {-5,...,4}
+%  \node[lecture] at (\x+0.5,1.8) {};
+%\foreach \x in {0,...,3}
+%  \node[lecture] at (\x,2.2) {};
+%
+%\foreach \x in {8,...,9}
+%{\draw (\x,1) node[lecture] {};
+%\draw (\x,1.4) node[lecture] {};
+%\draw (\x,1.8) node[lecture] {};
+%}
+%\end{scope}
+
+
+
 \node[below=10em of m-2-4] (nplot) {};
 \begin{scope}[shift={($(nplot)$)}, scale=0.7, local bounding box=plo]
 \draw[thick, rounded corners] (-1.5,0) .. controls (-1.4,1.4) .. (-1.2,0.2) .. controls (-0.5,0.5) and (-0.3,0.1) ..  (0.5,0);
@@ -39,7 +67,7 @@
     \draw[->,black, >=stealth] (-1.5,0) -- (-1.5,1.5);
 \end{scope}
 \foreach \i /\col in {1/Iblue,2/Iorange,3/Igreen,4/Ipurple}{
-	\begin{scope}[x=3cm, y=1cm, scale=0.2, every node/.style={transform shape}, local bounding box=s\i ,shift=(m-2-\i)]
+	\begin{scope}[x=3cm, y=1cm, scale=0.2, every node/.style={transform shape}, local bounding box={s\i} ,shift=(m-2-\i)]
 	      \foreach \x in {1,...,20}{
 		  \node[rectangle, minimum width=3em,minimum height=1em,fill=\col] (l\x) at (rand, rand) {};
 	      };
@@ -48,6 +76,8 @@
 	\draw[->,>=stealth] (m-1-\i) -- (m-1-\i|-s\i.north) ;
 	\draw[->,>=stealth] (s\i) -- (ref) ;
 };
+\node[draw=lightgray, fit={(m-1-1)(m-1-4)}, pin={[text width=8em,text centered]right:Micro-organisms \\genomes}] {};
+\node[draw=lightgray, fit={(m-2-1)(m-2-4)}, inner ysep=8pt,inner xsep=20pt,pin={[text width=8em,text centered]right:Micro-organisms \\reads}] {};
 \node[left=of plo,draw=lightgray,text width=10em,text centered] (leg) {Observed distribution \\ of CDS coverage};
 \matrix [label=above:Mixture model of distributions,draw, dashed,matrix of math nodes, row sep = 1em,column sep=1em,
 		ampersand replacement=\&, below=of leg,
@@ -63,6 +93,7 @@
 \node[left=1em of mix-1-1,Note] {Contributions};
 \node[left=1em of mix-2-1,Note] {Distributions};
 \node[above=2em of ref,fill=white,draw] {Aligned reads stem from multiple contributors};
+\draw[draw=none] (fitP) -- node[midway,fill=white,draw] {Metagenomics sequencing breaks reads -- organism link} (m.north);
 \node[below=12em of nplot] (nplobis) {};
 \begin{scope}[shift={($(nplobis)$)}, scale=0.7, local bounding box=plobis]
 \draw[Iorange, thick, rounded corners] (-1.5,0) .. controls (0,0.1) ..  (0.6,0);
