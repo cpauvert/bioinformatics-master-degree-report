@@ -64,8 +64,7 @@ Industrial partners are brought together by the CNIEL --_The French Dairy Inter-
 Academics participants and their corresponding expertise and affiliations are presented together in Figure \ref{fig:actors}.
 Name abbreviations used in this figure are reported with INRA teams description in the following paragraphs.
 
-#####Food and Commensal Bacteria Team
-\label{initials}
+#####Food and Commensal Bacteria Teami {#initials}
 BAC Team is led by Pierre RENAULT (PhD, Research Director, abbrev: PR) and belongs to MICALIS research unit.
 Part of the team is working on Food-Microbiome projects and are listed below.
 Anne-Laure ABRAHAM (PhD, Research Engineer, abbrev: ALA), Thibaut GUIRIMAND (Engineer, abbrev: TG), and myself Charlie PAUVERT (abbrev: CP) constitute the development bioinformatics team. Bedis DRIDI (Post-doc, abbrev: BD) is implied in wet lab experiments.
@@ -96,8 +95,9 @@ These micro-organisms are usually classified using taxonomic ranks as illustrate
 \input{figures/fig-taxonomic}
 ```
 
-However whole-genome sequencing blurred these ranks and were thought to be augmented by genomics information [@chun_integrating_2014].
+However whole-genome sequencing blurred these ranks --for instance, some taxonomic ranks were reevaluated after sequencing the corresponding organism-- and these taxonomic ranks were thought to be augmented by genomics information [@chun_integrating_2014].
 DNA-DNA hybridisation and its _in silico_ counterpart are proposed to delineate species limits [@richter_shifting_2009; @varghese_microbial_2015].
+For example, it is commonly stated that strains from a common species have between $95$ to $96\%$ genome identity.
 For convenience I will use the standard classification when referring to micro-organisms.
 
 ###Cheese ecosystems
@@ -171,8 +171,7 @@ Hence, academics and industrial partners are exploring cheese ecosystems to unra
 
 
 
-## State-of-art tools for ecosystem exploration (2.5-3p)
-\label{state}
+## State-of-art tools for ecosystem exploration (2.5-3p) {#state}
 
 ### Methods (1p)
 
