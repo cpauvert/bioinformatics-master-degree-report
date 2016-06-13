@@ -22,7 +22,7 @@
   \draw[gray] (bac) -- (mic);
   \draw[gray] (bac2) -- (mic);
   \draw[gray] (bac3) -- (mic);
-\matrix [matrix of nodes, row sep = 2em,column sep=2em,nodes in empty cells,
+\matrix [matrix of nodes, row sep = 3em,column sep=2em,nodes in empty cells,
 		ampersand replacement=\&, below=5em of fitP,
 	row 1/.style = {rectangle, minimum width=4em, minimum height=.01em},
 	column 1/.style ={fill=Iblue},
@@ -35,10 +35,18 @@
 %\pic(s1) {reads};\& \pic (s2) {reads};\& \pic (s3) {reads};\& \pic (s4) {reads};\\
 };
 
-\node[rectangle, minimum width=4em, minimum height=.01em,fill=black,below=5em of m,pin={[text width=6em,text centered]left:One reference genome}] (ref) {};
+%\node[rectangle, minimum width=4em, minimum height=.01em,fill=black,below=5em of m,pin={[text width=6em,text centered]left:One reference genome}] (ref) {};
 %\pic foreach \x in {0,1,3}  at (\x,0) {read};
-%\node[below=5em of m] (ref) {};
-
+\node[below=4em of m] (ref) {};
+\tikzstyle{lecture}=[rectangle,Iblue!65, fill, minimum width=7em]
+	\begin{scope}[x=4cm, y=1cm, scale=0.2, every node/.style={transform shape},local bounding box=reads, shift=(ref)]
+	\foreach \n /\col in {20 /Iblue, 5 /Iblue!65, 10 /Iorange,8/Ipurple}{%
+	      \foreach \x in {1,...,20}{
+		  \node[rectangle, minimum width=3em,minimum height=1em,fill=\col] (l\x) at (rand, rand) {};
+	      };
+      };
+	\end{scope}
+\node[rectangle, minimum width=4em, minimum height=.01em,fill=black,below= 0em of reads,pin={[text width=6em,text centered]left:One reference genome}] (ref) {};
 %\begin{scope}[x=4em, y=1em,scale=0.1,line width=3pt,shift={(ref)},local bounding box=refmap]
 %\tikzstyle{gen}=[rectangle, minimum height=1em, minimum width=18em]
 %\node[gen, fill=Iblue!65, draw=Ipurple, very thick]  (r0){}; 
@@ -73,8 +81,8 @@
 	      };
 	\end{scope}
 	\draw[->,>=stealth] (fitP) -- (m-1-\i) ;
-	\draw[->,>=stealth] (m-1-\i) -- (m-1-\i|-s\i.north) ;
-	\draw[->,>=stealth] (s\i) -- (ref) ;
+	\draw[->,>=stealth] (m-1-\i) -- node[midway, cross out, draw=red] {} (m-1-\i|-s\i.north) ;
+	\draw[->,>=stealth] (s\i) -- (reads) ;
 };
 \node[draw=lightgray, fit={(m-1-1)(m-1-4)}, pin={[text width=8em,text centered]right:Micro-organisms \\genomes}] {};
 \node[draw=lightgray, fit={(m-2-1)(m-2-4)}, inner ysep=8pt,inner xsep=20pt,pin={[text width=8em,text centered]right:Micro-organisms \\reads}] {};

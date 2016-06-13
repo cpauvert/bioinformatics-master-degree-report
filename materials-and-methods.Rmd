@@ -111,7 +111,19 @@ These toolbox were either called from our tool with a Python library `pysam` (v0
 
 #####Data mining and explorative analyses
 
-#####Metagenomics analysis tools
+####Metagenomics analysis tools
+
+#####GeDI last year
+
+```{r former-gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous data flow: GeDI", fig.cap="Previous data flow: GeDI",cache=FALSE }
+\input{figures/fig-former-gedi}
+```
+
+#####GeDI standard files
+
+```{r gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of our metagenomics analysis tool: GeDI", fig.cap="Overview of our metagenomics analysis tool: GeDI. It consists of three Python (v2.7.5) modules interconnected. Each module is framed here with dashed lines and encompass data and software.",cache=FALSE }
+\input{figures/fig-gedi}
+```
 
 ###Mixture model of distributions {#modele}
 
@@ -147,7 +159,7 @@ These reads are then aligned separetely on _one_ reference genome: the strain _S
   _Streptococcus infantarius_ ATCC BAA-102        62.82         Close species          3
   _Streptococcus mutans_ UA159                    59.86         Distant species        3
 
-Table: _Streptococcus_ dataset composition and distance to the reference strain (_Streptococcus salivarius_ JIM8777). Proximity classes are based on ANI _Average Nucleotide Identity_ computed with Gegenees [@agren_gegenees:_2012].{#strep}
+Table: _Streptococcus_ dataset composition and distance to the reference strain (_Streptococcus salivarius_ JIM8777). Proximity classes are based on ANI _Average Nucleotide Identity_ computed with Gegenees [@agren_gegenees:_2012].
 
 ```{r strep,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Training dataset overview", fig.cap="Training dataset overview.",cache=TRUE }
 \input{figures/fig-strep}
@@ -164,9 +176,6 @@ In the absence of such file type, I sometimes used a BioPerl script to convert G
 * **Insist on EM algorithm** according to NV remarks?
 * New python libraries used in GeDI.
 
-```{r gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of our metagenomics analysis tool: GeDI", fig.cap="Overview of our metagenomics analysis tool: GeDI. It consists of three Python (v2.7.5) modules interconnected. Each module is framed here with dashed lines and encompass data and software.",cache=FALSE }
-\input{figures/fig-gedi}
-```
 
 ```{r coverage,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Genome coveragecomputation after reads alignement.", fig.cap="Genome coverage computation after reads alignement. In our metagenomics analysis tool --GeDI-- we discrimate (1) coverage ($c_{\\text{Total}}$) yield by the number of reference genome positions where at least one read is mapped divided by genome length ($l_G$) and (2) coverage ($c_{\\text{Mismatchs}}$) concerning the same metric only for reads aligned with one to three mismatches compared to the reference.",cache=FALSE }
 \input{figures/fig-coverage}

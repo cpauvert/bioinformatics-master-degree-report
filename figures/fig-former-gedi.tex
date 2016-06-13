@@ -1,0 +1,159 @@
+\begin{tikzpicture}[font=\scriptsize]
+\tikzstyle{lecture}=[rectangle, minimum width=3em,minimum height=1em]
+
+\node (lect) {Millions of DNA reads};
+\node[below=of lect] (nL) {};
+  \begin{scope}[x=15em, y=7em, scale=0.2, every node/.style={transform shape}, local bounding box=seq, shift={($(nL)$)}]
+  \foreach \n /\col in {4/Igreen, 20 /Iblue, 10 /Iblue!65, 20 /Iorange,10/Iblue!65!black,8/Igreen!65!black}{%
+	  \foreach \x in {1,...,\n}{
+	      \node[lecture, fill=\col] (l\x) at (rand, rand) {};
+	  }
+  };
+  \end{scope} 
+
+\node[right=of lect] (ref) {Reference genomes};
+
+\matrix [row sep=.1em, nodes={rectangle, minimum width=4em, minimum height=.01em, fill}, below=0.7em of ref] (m) {%
+	\node [Iblue!85!black] {};& \\
+	\node [Iblue!85] {};& \\
+	\node [Iblue!65] {};& \\
+	\node [Iorange!85!black] {};& \\
+	\node [Ipurple] {};& \\};
+\node [below left =8em of seq](nmapping) {}; 
+
+\begin{scope}[scale=0.4, every node/.style={transform shape}, shift={($(nmapping)$)}, local bounding box=map]
+%\draw [Iblue!65]  (0,0) -- (1,0.5); 
+\tikzstyle{gen}=[rectangle, minimum height=1cm, minimum width=18cm, xshift=.8cm]
+\node[gen, fill=Iblue!65, very thick]  (r0){}; 
+
+\tikzstyle{lecture}=[rectangle,Iblue!65, fill, minimum width=0.7cm]
+\foreach \x in {-7.5,...,5}
+  {\node[lecture] at (\x,1) {};
+  \node[lecture] at (\x+0.5,1.4) {};}
+\foreach \x in {-5,...,4}
+  \node[lecture] at (\x+0.5,1.8) {};
+\foreach \x in {0,...,3}
+  \node[lecture, Iblue!65!black] at (\x,2.2) {};
+
+\foreach \x in {8,...,9}
+%\node[lecture] {} at (\x,1); 
+{\draw (\x,1) node[lecture] {};
+\draw (\x,1.4) node[lecture] {};
+\draw (\x,1.8) node[lecture] {};
+}
+
+\draw (8,2.2) node[lecture,Igreen] {};
+\draw (9,2.2) node[lecture,Igreen] {};
+\fill[red] (-6,0.8) rectangle (-6.2,1.22);
+\foreach \x in {8.7,9,9.3}
+	\fill[red] (\x,2) rectangle (\x+0.15,2.4);
+
+%\draw (7.5,1) node[lecture,Igreen] {};
+%\fill[red] (7.1,0.8) rectangle (7.25,1.2);
+
+\draw (-7.5,1) node[lecture,Iorange] {};
+\fill[red] (-7.8,0.8) rectangle (-7.95,1.2);
+\draw (-7,1.4) node[lecture,Iorange] {};
+\fill[red] (-7.1,1.2) rectangle (-7.25,1.6);
+\end{scope}
+\node[above=0.5em of map] (al) {Short reads alignment 35bp + 0-3 mismaths};
+\node [right =25em of nmapping] (ncds) {}; 
+
+\begin{scope}[scale=0.4, every node/.style={transform shape}, shift={($(ncds)$)}, local bounding box=mapcds]
+	\tikzstyle{cds}=[rectangle, minimum height=1cm, fill=Iblue!65, font=\small]
+%\node[gen, fill=Iblue!65, very thin] (C0) {}; 
+%\draw[black, very thick] (-10,0) -- (10,0);
+\draw[Iblue!65, ultra thick] (-8.5,0) -- (9.75,0);
+\node[cds, minimum width=1.4cm] (c0) at (-8,0) {\textbf{CDS}};
+\node[cds, minimum width=1.4cm] (c1) at (-6,0) {\textbf{CDS}};
+\node[cds, minimum width=0.4cm](c11)  at (-4.2,0) {};
+\node[cds, minimum width=0.4cm](c12)  at (-5,0) {};
+\node[cds, minimum width=1cm](c2)  at (-2,0) {\textbf{CDS}};
+\node[cds, minimum width=2cm](c3)  at (0,0) {\textbf{CDS}};
+\node[cds, minimum width=4cm](c4)  at (4,0) {\textbf{CDS}};
+\node[cds, minimum width=2cm](c5)  at (8.5,0) {\textbf{CDS}};
+\tikzstyle{lecture}=[rectangle,Iblue!65, fill, minimum width=0.7cm]
+\foreach \x in {-7.5,...,5}
+  {\node[lecture] at (\x,1) {};
+  \node[lecture] at (\x+0.5,1.4) {};}
+\foreach \x in {-5,...,4}
+  \node[lecture] at (\x+0.5,1.8) {};
+\foreach \x in {0,...,3}
+  \node[lecture, Iblue!65!black] at (\x,2.2) {};
+
+\foreach \x in {8,...,9}
+%\node[lecture] {} at (\x,1); 
+{\draw (\x,1) node[lecture] {};
+\draw (\x,1.4) node[lecture] {};
+\draw (\x,1.8) node[lecture] {};
+}
+
+\draw (8,2.2) node[lecture,Igreen] {};
+\draw (9,2.2) node[lecture,Igreen] {};
+\fill[red] (-6,0.8) rectangle (-6.2,1.22);
+\foreach \x in {8.7,9,9.3}
+	\fill[red] (\x,2) rectangle (\x+0.15,2.4);
+
+%\draw (7.5,1) node[lecture,Igreen] {};
+%\fill[red] (7.1,0.8) rectangle (7.25,1.2);
+
+\draw (-7.5,1) node[lecture,Iorange] {};
+\fill[red] (-7.8,0.8) rectangle (-7.95,1.2);
+\draw (-7,1.4) node[lecture,Iorange] {};
+\fill[red] (-7.1,1.2) rectangle (-7.25,1.6);
+
+\foreach \Node in {0,1,...,5,11,12} {%
+	\draw [thick, densely dashed, lightgray] ($(c\Node.south east)-(0,0.5cm)$) -- ++(0,4cm);
+	\draw [thick, densely dashed, lightgray] ($(c\Node.south west)-(0,0.5cm)$) -- ++(0,4cm);
+}
+\end{scope}
+\node[above=0.1em of mapcds] {Annotations integration: \textbf{CDS}};
+
+\tikzstyle{MM}=[text=red, rotate=-45, font=\LARGE]
+\matrix[below= 1.5em of map,xshift=-4em, column sep=0.2em,row sep=0] (mat) {%
+	&
+	\draw[line width=3pt] (0,0) -- (0.3,0.3); &[-0.5em]
+	\draw[line width=3pt] (0,0) -- (0.3,0.3);
+	\node[MM] at (0.25,0.25) {\textbf{-}};  &[-1em] 
+	\draw[line width=3pt] (0,0) -- (0.3,0.3);
+	\node[MM] at (0.15,0.15) {\textbf{-}};    
+	\node[MM] at (0.35,0.35) {\textbf{-}};  & [-1em]
+	\draw[line width=3pt] (0,0) -- (0.3,0.3);
+	\node[MM] at (0.15,0.15) {\textbf{-}};    
+	\node[MM] at (0.25,0.25) {\textbf{-}};  
+	\node[MM] at (0.35,0.35) {\textbf{-}};  \\    
+	\node{CDS 1}; & \node{$\bullet$}; & \node{$\bullet$};& \node{$\bullet$}; & \node{$\bullet$};\\
+	\node{CDS 2};&    & & & \\
+	\node{CDS 3}; & & & & \\
+};
+\node[below=5.2em of map, xshift=-2.3em, text width =6em, text centered ] {\textbf{CDS Coverage}};
+
+\node [right= 1em of mat,text width= 2cm, text centered] (filt) {Filter \\mobile elements \\ and short CDS};
+\node [right= 1em of filt,text width= 2cm, text centered] (norm) {Normalise coverage by CDS length};
+\node [right= 1em of norm, text width=2.5cm, text centered, draw] (dist) {\textbf{CDS coverage \\density}};
+
+\node [right= 1em of dist, draw=Igreen, dashed, fill=Igreen!15, text width=4cm, text centered](expected) {Compare to \textbf{expected density}\\ to infer micro-organism\\ \textit{presence/absence} };
+%\node [below= 1em of mat.south east,xshift=-2em, draw=Igreen, dashed, fill=Igreen!15, text width=5cm, text centered](expected) {Compare to \textbf{expected density} to infer micro-organism \textit{presence/absence} };
+%\node [right= of expected,
+%	rectangle split,
+%	rectangle split horizontal,
+%	rectangle split parts = 2,
+%	draw=Igreen,thick,
+%text width=4.5cm, text centered] (ccl)  {Comment conclure si le génome de la souche exacte n'est pas séquencé ? \nodepart{two}   \underline{$\rightarrow$ Estimation des distributions} \underline{sur des génomes proches nécessaire}} ;
+%
+	\begin{scope}[->, >=stealth, thick]
+	\draw (seq) -- (seq-|m.west);
+	\draw (m.east) -| ++(1em,0) |- ++(0,-2.5em) -| (al.north);
+	\draw (mat) -- (mat-|filt.west);
+	\draw (map) -- (mapcds);
+	\draw (mapcds.east) -| ++(1em,0) |- ++(0,-2.2em) -| (mat.north);
+	%\draw[->, >=stealth] (filt) -- (filt-|norm.west);
+	\draw (filt) -- (norm);
+	\draw (norm) -- (dist);
+	\draw (dist) -- (expected);
+	%\draw (dist.east) -| ++(1em,0) |- ++(0,-3em) -| (expected.north);
+%	\draw (expected) -- (ccl);
+\end{scope}
+
+
+\end{tikzpicture}
