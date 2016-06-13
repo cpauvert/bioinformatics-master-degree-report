@@ -146,20 +146,20 @@ I simulated a shotgun sequencing for each _Streptococcus_ strains listed in the 
 These reads are then aligned separetely on _one_ reference genome: the strain _Streptococcus salivarius_ JIM8777 using the former version of GeDI--see \ref{fig:gedi}
 
 
-  **Strains**                                 **ANI** (%)      **Distance**      **Proximity**
+  **Strains**                                 **ANI** (%)     **Distance**       **Proximity**
   ------------------------------------------ ---------------- ----------------- ---------------
-  _Streptococcus salivarius_ JIM8777              100.0         Exact strain           0
-  _Streptococcus salivarius_ NCTC 8618            89.63         Close strain           1
-  _Streptococcus salivarius_ CCHSS3               88.57         Close strain           1
-  _Streptococcus salivarius_ K12                  86.01         Close strain           1
-  _Streptococcus vestibularis_ ATCC 49124         80.01         Sub-species            2
-  _Streptococcus thermophilus_ JIM 8232           74.68         Sub-species            2
-  _Streptococcus salivarius_ PS4                  73.74         Sub-species            2
-  _Streptococcus agalactiae_ NEM316               67.14         Close species          3
-  _Streptococcus infantarius_ ATCC BAA-102        62.82         Close species          3
-  _Streptococcus mutans_ UA159                    59.86         Distant species        3
+  _Streptococcus salivarius_ JIM8777              100.0       Exact strain             0
+  _Streptococcus salivarius_ NCTC 8618            89.63       Close strain             1
+  _Streptococcus salivarius_ CCHSS3               88.57       Close strain             1
+  _Streptococcus salivarius_ K12                  86.01       Close strain             1
+  _Streptococcus vestibularis_ ATCC 49124         80.01       Sub-species              2
+  _Streptococcus thermophilus_ JIM 8232           74.68       Sub-species              2
+  _Streptococcus salivarius_ PS4                  73.74       Sub-species              2
+  _Streptococcus agalactiae_ NEM316               67.14       Close species            3
+  _Streptococcus infantarius_ ATCC BAA-102        62.82       Close species            3
+  _Streptococcus mutans_ UA159                    59.86       Distant species          3
 
-Table: _Streptococcus_ dataset composition and distance to the reference strain (_Streptococcus salivarius_ JIM8777). Proximity classes are based on ANI _Average Nucleotide Identity_ computed with Gegenees [@agren_gegenees:_2012].
+Table: _Streptococcus_ dataset composition and distance to the reference strain (_Streptococcus salivarius_ JIM8777). Closeness classes are based on ANI _Average Nucleotide Identity_ computed with Gegenees [@agren_gegenees:_2012].
 
 ```{r strep,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Training dataset overview", fig.cap="Training dataset overview.",cache=TRUE }
 \input{figures/fig-strep}
