@@ -64,7 +64,7 @@ Industrial partners are brought together by the CNIEL --_The French Dairy Inter-
 Academics participants and their corresponding expertise and affiliations are presented together in Figure \ref{fig:actors}.
 Name abbreviations used in this figure are reported with INRA teams description in the following paragraphs.
 
-#####Food and Commensal Bacteria Teami {#initials}
+#####Food and Commensal Bacteria Team {#initials}
 BAC Team is led by Pierre RENAULT (PhD, Research Director, abbrev: PR) and belongs to MICALIS research unit.
 Part of the team is working on Food-Microbiome projects and are listed below.
 Anne-Laure ABRAHAM (PhD, Research Engineer, abbrev: ALA), Thibaut GUIRIMAND (Engineer, abbrev: TG), and myself Charlie PAUVERT (abbrev: CP) constitute the development bioinformatics team. Bedis DRIDI (Post-doc, abbrev: BD) is implied in wet lab experiments.
@@ -182,9 +182,9 @@ First, they were isolated from their ecosystem and then cultivated under proper 
 Meeting these conditions and finding a convenient media could be a struggle --or worse quite unfeasible-- depending on the strains and the ecosystem studied.
 Media is not an issue in cheese ecosystem studies, however low-abundant microbial-organisms or interactions-dependant micro-organisms would be out-of-scope.
 
-Culture-independant approaches were then developed. The capture and analysis of ecosystem genomics information --or _metagenomics_-- provides insights into genomes from micro-organisms bypassing cultivation related issues.
+Culture-independent approaches were then developed. The capture and analysis of ecosystem genomics information --or _metagenomics_-- provides insights into genomes from micro-organisms bypassing cultivation related issues.
 High-throughput sequencing technologies fast development enables multiple methods and innovative strategies to blossom.
-These recent approaches provide a new perspective for ecosystem exploration and are overviewed in figure \ref{fig:ecosys}.
+These recent approaches provide a new perspective for ecosystem exploration and are outlined in figure \ref{fig:ecosys}.
 
 ```{r ecosys, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.pos="h!",fig.align="center",fig.scap="Overview of microbial communities exploration using metagenomics methods.",fig.cap="Overview of microbial communities exploration using metagenomics methods. Microbial community DNA is extracted after sampling a microbial ecosystem (circle). This biological material can undergo two types of sequencing: (1) amplicon sequencing (right pane in orange) and (2) shotgun sequencing (left pane in blue). In short the first can provide microbial identification down to species or genus level and relative quantification whereas the latter grant access to potential functions and a more precise taxonomic identification. Aforementioned aims are reached after post-sequencing methods and corresponding bioinformatics strategies. Bold items describe technologies and methods used in our projects. "}
 \input{figures/fig-ecosys}
@@ -200,8 +200,8 @@ Only one or few marker genes are sequenced in this approach. The preferred marke
 Their sequences harbour several conversed regions next to more variable zones.
 Conserved regions from multiples organisms will be used to generate PCR primers. 
 These primers will then amplify variables regions that are specific to a species or genus.
-In case of explorative study, generic markers can be used to assess overall diversity [@ciccarelli_toward_2006].
-The choice of 16S regions to amplify --or marker genes-- can also depends on _a priori_ knowledge concerning existing micro-organisms in the environment and can be tailored in consequence [@kumar_target_2011].
+Generic markers can be used to assess overall diversity in exploratory studies [@ciccarelli_toward_2006].
+The choice of 16S regions to amplify --or marker genes-- can also depends on prior knowledge concerning existing micro-organisms in the environment and can be tailored in consequence [@kumar_target_2011].
 
 
 #####Shotgun sequencing
@@ -228,14 +228,14 @@ The information embodied in these reads enables several applications: (1) micro-
 
 #####Micro-organisms identification
 Several metagenomics reads analysis strategies are available to this end (see bottom frame \ref{fig:ecosys}).
-The first strategy is _de novo_ genome assembly where reads are merged provided their similar ends in order to yield longer continous fragments [@namiki_metavelvet:_2012].
+The first strategy is _de novo_ genome assembly where reads are merged provided their similar ends in order to yield longer continuous fragments [@namiki_metavelvet:_2012].
 Accessing reads composition --in tetranucleotides or $k$-mers-- is another strategy to bin reads.
 It relies on previous reads composition profiles associated with known organisms [@wood_kraken:_2014; @mchardy_accurate_2007].
 Otherwise, reads can be aligned --or mapped-- to public and user-made references [@ahn_sigma:_2015;@lindner_metagenomic_2015].
 <!-- mismatches -->
 Typically 16S rDNA reads will be compared to a bank --e.g., SILVA-- whereas reads from shotgun sequencing will be aligned to one or several reference genomes. This approach yields perfect matches as well as inexact matches.
 
-Genome assembly is mentionned here due to potential identification of new species. However, specific conditions regarding input data for assembly makes this strategy quite distinct from others listed here.
+Genome assembly is mentioned here due to potential identification of new species. However, specific conditions regarding input data for assembly makes this strategy quite distinct from others listed here.
 
 Strain level identification is a challenge in metagenomics. Few approaches were available at the beginning of my apprenticeship.
 However several research teams showed a growing interest towards this challenge.
@@ -259,7 +259,7 @@ However, metagenomics data analysis comes with methodological and computational 
 Among them, strain level identification remains for a time ideal in metagenomics. 
 Recently this challenge shifts from hypothetical to achievable thanks to the scientific and industrial community efforts.
 However, at the time unraveling cheese ecosystems was a challenge. 
-In the scope of Food-Microbiome projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem --if possible to the strain level-- and (2) characterize low-abundant micro-organisms.
+In the scope of Food-Microbiome projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem --if possible to the strain level-- and (2) characterise low-abundant micro-organisms.
 
 I have focused my research on a in-house metagenomics analysis tool --named GeDI-- during my bioinformatics apprenticeship.
 This two-year work can be crystallised into four axes --tackled or soon-to-be.
