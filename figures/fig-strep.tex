@@ -1,0 +1,88 @@
+\begin{tikzpicture}[line width=3pt,grow'=east, font=\scriptsize]
+\tikzstyle{level 1}=[sibling distance=1.8cm,line width=2pt]
+\tikzstyle{level 2}=[sibling distance=1.2cm,solid, level distance=0.5cm]
+\tikzstyle{level 3}=[sibling distance=3mm, level distance=0.75cm,line width=3pt]
+\tikzstyle{every edge}=[solid]
+\node (g1) {\textit{Streptococcus}}  
+child[Igreen]{
+ child[Igreen]{node[fill,circle] (n1) {} 
+ 	child[Igreen!65!black] {coordinate (s0) }
+ 	child[Igreen!85!black] {coordinate (s1) }
+ 	child{coordinate (s2) } 
+	}
+      }
+      child[Iorange]{
+  child[Iorange] {node[fill,circle] {}
+	  child[Iorange!65!black]{coordinate (s3) }
+	  child[Iorange!85!black]{coordinate (s4) }
+	  child {coordinate (s5) }
+	  }
+  child[Iblue]{node[fill,circle]{} 
+	    child[Iblue!85!black] {coordinate (s6) }
+	    child[Iblue!85] {coordinate (s7) }
+	    child[Iblue!75] {coordinate (s8) }
+	    child[Iblue!65] {coordinate (s9) }
+	    }
+  };
+\tikzstyle{gen}=[rectangle, minimum height=0.2pt, minimum width=1.8cm, xshift=.8cm]
+\node[gen,right of=s0, fill=Igreen!65!black]  (r0){}; 
+\node[gen,right of=s1, fill=Igreen!85!black] (r1) {}; 
+\node[gen,right of=s2, fill=Igreen]  (r2){}; 
+\node[gen,right of=s3, fill=Iorange!65!black] (r3)	{}; 
+\node[gen,right of=s4, fill=Iorange!85!black] (r4){}; 
+\node[gen,right of=s5, fill=Iorange] (r5){}; 
+\node[gen,right of=s6 ,fill=Iblue!85!black] (r6){};
+\node[gen,right of=s7 ,fill=Iblue!85] (r7){};
+\node[gen,right of=s8 ,fill=Iblue!75] (r8){};
+\node[gen,right of=s9 ,fill=Iblue!65, draw=Ipurple, thin] (r9){};
+
+
+\node[xshift=.4cm,right of=r0]  (p0){}; 
+\node[xshift=.4cm,right of=r1] (p1) {}; 
+\node[xshift=.4cm,right of=r2]  (p2){}; 
+\node[xshift=.4cm,right of=r3] (p3) {}; 
+\node[xshift=.4cm,right of=r4] (p4){}; 
+\node[xshift=.4cm,right of=r5] (p5){}; 
+\node[xshift=.4cm,right of=r6] (p6){};
+\node[xshift=.4cm,right of=r7] (p7){};
+\node[xshift=.4cm,right of=r8] (p8){};
+\node[xshift=.4cm,right of=r9] (p9){};
+
+\node[xshift=1cm,right of=p0]  (q0){}; 
+\node[xshift=1cm,right of=p1] (q1) {}; 
+\node[xshift=1cm,right of=p2]  (q2){}; 
+\node[xshift=1cm,right of=p3] (q3)	{}; 
+\node[xshift=1cm,right of=p4] (q4){}; 
+\node[xshift=1cm,right of=p5] (q5){}; 
+\node[xshift=1cm,right of=p6] (q6){};
+\node[xshift=1cm,right of=p7] (q7){};
+\node[xshift=1cm,right of=p8] (q8){};
+\node[xshift=1cm,right of=p9] (q9){};
+
+
+\node[above of=r0,text width=2cm, text centered,draw=gray,  thin] (leg) {Reference genomes};
+\node[right of=leg, xshift=1.5cm,thin, text width=1.8cm,draw=gray,text centered] (lect) {Simulated reads};
+\node[right of=lect,text width=2.5cm, text centered,draw=gray,  thin,xshift=1.7cm]{Alignment on \textbf{one} reference};
+
+\draw[densely dashed, ultra thick, Igreen!65!black] (p0) --  (q0);
+\draw[densely dashed, ultra thick, Igreen!85!black] (p1) -- (q1);
+\draw[densely dashed, ultra thick, Igreen] (p2) -- (q2);
+\draw[densely dashed, ultra thick, Iorange!65!black] (p3) -- (q3);
+\draw[densely dashed, ultra thick, Iorange!85!black] (p4) -- (q4);
+\draw[densely dashed, ultra thick, Iorange] (p5) -- (q5);
+\draw[densely dashed, ultra thick, Iblue!85!black] (p6) -- (q6);
+\draw[densely dashed, ultra thick, Iblue!85] (p7) -- (q7);
+\draw[densely dashed, ultra thick, Iblue!75] (p8) -- (q8);
+\draw[densely dashed, ultra thick, Iblue!65] (p9) -- (q9);
+
+
+
+\node[gen,right of=q9 ,fill=Iblue!65, draw=Ipurple, thin] (ref){};
+
+\foreach \Node in {0,...,9}{%
+	\draw[thin, ->,>=latex] (q\Node) to [bend left=45] (ref);
+};
+
+\node[right of= q4,trapezium, trapezium left angle=70, trapezium right angle=110, draw=Ipurple, thin, xshift=3cm, fill=Ipurple!15, text width=2.1cm, text centered] (prf) {Coverage distributions};
+\draw[thick, ->, >=triangle 45] (ref) -| (prf);
+\end{tikzpicture}
