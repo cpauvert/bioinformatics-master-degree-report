@@ -38,7 +38,7 @@ Second, computational improvements that covers  software performance as well as 
 ```
 
 We want an automatic criterion to infer a micro-organism presence or absence from its alignment data.
-To this end we have focused on several modeling approaches --summarised in Figure \ref{fig:previous-approaches}-- throughout my work in BAC team.
+To this end, we have focused on several modeling approaches --summarised in Figure \ref{fig:previous-approaches}-- throughout my work in BAC team.
 
 
 ###Modeling approaches
@@ -49,6 +49,8 @@ The predicted coverage stem from a model assuming that the considered micro-orga
 
 However, ecosystem genomes usually differ from corresponding genomes in databases.
 Hence this constraint harden reads alignment analysis in metagenomics, and subsequent modeling efforts.
+We need to be able (1) to identify a strain if its reference genome is available and (2) find the closest species when it is not the case.
+We struggled to define a model that provide both accuracy and flexibility.
 I have worked to explore, test and precise several modeling approaches. Approaches principles are briefly reviewed below.
 
 ####Previous modeling approaches
@@ -58,12 +60,13 @@ Lander and Waterman stated that reads distribution is homogeneous on a genome as
 This work is relevant in metagenomics for a sufficient reads number.
 In this case, testing the reads distribution homogeneity is a proxy for testing presence or absence of a genome.
 This hypothesis was tested by comparing observed and expected genome coverage --under the homogeneity hypothesis-- before and during my internship. 
-However, thresholds used to compare distributions were empirical and we could not explicitly validated this approach while it yields interesting results.
+However, thresholds used to compare distributions were empirical and  we could not explicitly validated this approach. Nevertheless, it yields interesting results as long as repeated regions were not too numerous and the reference genome was close to strains in the dataset.
 
 #####Reads position intervals
 I then explored several leads  in order to improve automatic taxonomic identification.
 Simulated datasets enable reads distributions exploration and modeling.
 Intervals between every two successive reads aligned is supposed to follow a geometric law.
+This approach was meant to target genome with a low coverage, that is low abundant micro-organisms.
 However, this model was too strict and could only be applied if reads were aligned to the same genome reads stem from.
 For example, reads from a strain A aligned to the reference genome A would yield a reads interval distribution suitable to pass the test.
 However, it was not the case if these same reads were aligned to a close strain of genome A --say $98\%$ identity.
@@ -88,10 +91,9 @@ Moreover, reference genomes sheared in multiple contigs could also be used.
 Minimal annotation of hypothetical CDS is automatically done nowadays.
 Hence even draft genomes could provide information on the studied metagenome.
 
-#####CDS coverage distributions
+#####CDS coverage densities
 
-Training dataset reads --generated as described in figure \ref{fig:strep}-- are processed by our tool GeDI --see former version \ref{fig:former-gedi}.
-CDS coverage are computed and presented in the figure \ref{fig:distrib}.
+Reads from the training dataset --generated as described in figure \ref{fig:strep}-- are processed by our tool GeDI --see former version \ref{fig:former-gedi}. CDS coverage are computed and presented in the figure \ref{fig:distrib}.
 
 
 ```{r data, echo=F, cache=TRUE, message=FALSE, warnings=FALSE}
@@ -128,21 +130,33 @@ data_cov<-ddply(ddply(norm_data, .(SourceGenome,Prox) , summarize, NbReadsSort =
 		~SourceGenome, mutate, Rank=order(NbReadsSort)/length(NbReadsSort))
 #
 require(ggplot2,quietly=T)
-distZ<-ggplot(norm_data,aes(x=NbReads_0.3mismatchs , fill=as.factor(Prox))) + geom_density() + scale_fill_manual(values=c("#2aa2e0","#f47d20", "#8bac21", "#ed1a5c"))+ labs(title="(A) With unaligned CDS", x="Reads number per base in a CDS", y="Density",fill="Closeness class")  +  facet_grid(Prox~.)+theme_minimal()+ theme(strip.text.y=element_text(color="black", face="bold"),strip.background = element_rect(fill="#A9A9A9"),legend.position="bottom") 
-dist<-ggplot(norm_data[which(norm_data$NbReads_0.3mismatchs != 0),],aes(x=NbReads_0.3mismatchs , fill=as.factor(Prox))) + geom_density() + scale_fill_manual(values=c("#2aa2e0","#f47d20", "#8bac21", "#ed1a5c"))+ labs(title="(B) Without unaligned CDS", x="Reads number per base in a CDS (1>= read)", y="Density",fill="Closeness class")  + geom_text(data=proportions,x = 0.12,y=50, aes(label=paste("rho[",Prox,"]", sep="")),parse = T)+ geom_text(data=proportions,x = 0.15,y=50, aes(label=paste("= ",round(Prop*100)," %", sep="")))+  facet_grid(Prox~.)+theme_minimal()+ theme(strip.text.y=element_text(color="black", face="bold"),strip.background = element_rect(fill="#A9A9A9"),legend.position="none") 
+distZ<-ggplot(norm_data,aes(x=NbReads_0.3mismatchs , fill=as.factor(Prox))) + geom_density() + scale_fill_manual(values=c("#2aa2e0","#f47d20", "#8bac21", "#ed1a5c"),labels=c("0: 1 reference","1: 3 close strains","2: 3 sub-species","3: 3 close species"), guide= guide_legend(direction="vertical"))+ labs(title="(A) With unaligned CDS", x="Reads number per base in a CDS", y="Density",fill="Closeness class")  +  facet_grid(Prox~.)+theme_minimal()+ theme(strip.text.y=element_text(color="black", face="bold"),strip.background = element_rect(fill="#A9A9A9"),legend.position="bottom") 
+dist<-ggplot(norm_data[which(norm_data$NbReads_0.3mismatchs != 0),],aes(x=NbReads_0.3mismatchs , fill=as.factor(Prox))) + geom_density() + scale_fill_manual(values=c("#2aa2e0","#f47d20", "#8bac21", "#ed1a5c"))+ labs(title="(B) Without unaligned CDS", x="Reads number per base \n in a CDS (>= 1 read)", y="Density",fill="Closeness class")  + geom_text(data=proportions,x = 0.12,y=50, aes(label=paste("rho[",Prox,"]", sep="")),parse = T)+ geom_text(data=proportions,x = 0.15,y=50, aes(label=paste("= ",round(Prop*100)," %", sep="")))+  facet_grid(Prox~.)+theme_minimal()+ theme(strip.text.y=element_text(color="black", face="bold"),strip.background = element_rect(fill="#A9A9A9"),legend.position="none") 
 ```
 
 
-```{r distrib, echo=F, fig.align="center", fig.scap="Training dataset CDS coverage densities depending on closeness classes.", fig.cap="Training dataset CDS coverage densities depending on closeness classes. Reads counts are normalised by each CDS length of the reference \\textit{Streptococcus salivarius} JIM8777. (A) Densities of these values are presented on the left pane. (B) CDS without any reads aligned are excluded from densities estimation on the right pane. Densities are showed by closeness class. Hence, the first one only includes one genome --the reference strain--, others classes encompass three genomes each. Unaligned CDS ratios are showed by closeness class despite being excluded from densities. This ratio is noted $\\rho_c$ for a class $c$ where $c\\in [0;3]$ and is a parameter in the mixture model.", cache=TRUE}
+```{r distrib, echo=F, fig.align="center", fig.scap="Training dataset CDS coverage densities depending on closeness classes.", fig.cap="Training dataset CDS coverage densities depending on closeness classes. Reads counts are normalised by each CDS length of the reference \\textit{Streptococcus salivarius} JIM8777. (A) Densities of these values are presented on the left pane. (B) CDS without any reads aligned are excluded from densities estimation on the right pane. Densities are showed by closeness class. Hence, the first one only includes one genome --the reference strain--, others classes encompass three genomes each. Unaligned CDS ratios are showed by closeness class despite being excluded from densities. This ratio is noted $\\rho_c$ for a class $c$ where $c\\in [0;3]$ and is a parameter in the mixture model.", cache=FALSE}
 require(gridExtra, quietly=T)
 grid.arrange(distZ, dist, ncol=2,widths=c(0.75,1))
 ```
 
-CDS coverage density follow a Gaussian distribution when reads originate from one genome and are aligned on the latter reference genome.
-Providing enough reads aligned, no CDS are left unaligned. Hence, they is no difference between blue curves on pane (A) and (B) in \ref{fig:distrib}.
+In the left pane of the figure \ref{fig:distrib}, the first density --in blue-- represents how CDS coverage values are distributed when the same genome --the exact strain-- is used both for simulating reads and aligning them on this reference genome.
+The latter CDS coverage density follows a Gaussian distribution with a mean $\mu$ and variance $\sigma^2$. Therefore, a majority of CDS are covered around the mean --here around 0.04 reads per base in a CDS.
+On both sides of this bell curve stands CDS that are either much more covered than the mean coverage or very less covered. Their low density indicate that they are few CDS well covered and few CDS highly covered.
+No CDS are left uncovered when enough reads are aligned on the exact reference.
+Hence, there is no difference between the blue curves on pane (A) and (B) in figure \ref{fig:distrib}.
+
+The second curve represents CDS coverage yields by aligning the previous dataset on a close strain.
+This curve is slightly shifted to the left, indicating a lesser mean coverage.
+But most notably, some CDS of the reference genome are not covered at all by reads from a close strain --it is indicated by the bump on the left side of the plot.
+Interestingly, once null coverage are removed --see the right pane of the figure \ref{fig:distrib}-- the latter density looks like the exact strain coverage density.
+The less close the genome, the more CDS uncovered, shifting densities to the left. Thus, density of closeness class 4 looks more like an exponential rather than a Gaussian.
+
 
 
 #####CDS coverage densities crystallise closeness information
+
+
 An overall idea of the approach developed is summarised in figure \ref{fig:mixture-model}.
 
 ```{r mixture-model, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Contributors genomes issues and mixture model principles.", fig.cap="Contributors genomes issues and mixture model principles.",cache=TRUE}
@@ -176,7 +190,7 @@ Therefore, I explored the influence of aligned reads number on the mixture model
 The idea was to show the expected resolution loss between the closeness classes when the aligned reads number decreased.
 In the meantime, it provides first grasps on model behaviour towards low-abundant micro-organisms --which are obviously yielding few reads.
 
-```{r rho,fig.pos='h!',fig.align='center',fig.cap="Aligned reads number influence on one parameter: $\\rho$ or aligned CDS ratio. Each dot represents an alignment metric on a genome--the ratio of CDS with at least one read aligned-- function of the effective number of reads aligned. Data stem from the _Streptococcus dataset. Reference genomes are classified on their closeness to the reference strain we choose throughout this study --see figure \\ref{fig:strep}. Non-linear regressions for each class are printed on plain lines. Each parameters --with respect to Michaelis-Menten formula-- yields significant estimation.",fig.scap="Aligned reads number influence on one parameter: $\\rho$ or aligned CDS ratio.",echo=FALSE,  cache=TRUE, warnings=FALSE,fig.height=3,fig.width=5}
+```{r rho,fig.pos='h!',fig.align='center',fig.cap="Aligned reads number influence on one parameter: $\\rho$ or aligned CDS ratio. Each dot represents an alignment metric on a genome--the ratio of CDS with at least one read aligned-- function of the effective number of reads aligned. Data stem from the \\textit{Streptococcus} dataset. Reference genomes are classified on their closeness to the reference strain we choose throughout this study --see figure \\ref{fig:strep}. Non-linear regressions for each class are printed on plain lines. Each parameters --with respect to Michaelis-Menten formula-- yields significant estimation.",fig.scap="Aligned reads number influence on one parameter: $\\rho$ or aligned CDS ratio.",echo=FALSE,  cache=TRUE, warnings=FALSE,fig.height=3,fig.width=5}
 tabRho<-read.csv("rhoData.csv")
 ggplot(tabRho,aes(x=NbReadsObserved, y=1-Prop,color=as.factor(Prox))) +
 geom_point() + scale_color_manual(values=c("#2aa2e0","#f47d20", "#8bac21", "#ed1a5c"),labels=c("0: 1 reference","1: 3 close strains","2: 3 sub-species","3: 3 close species"))+
@@ -191,14 +205,16 @@ Actually only the latter is known with real datasets, so our predictions needs t
 This information is provided on the x-axis of figure \ref{fig:rho}, where its variation is highlighted with the ratio of aligned CDS in the reference genome.
 Despite stating the obvious, we see that the more close the genome is to the reference, the more reads effectively aligned.
 Aligned CDS ratio shows a plateau for each class as long as reads number increase.
-This reflects the fraction of genome shared by the reference genome and the genome from which reads where sequenced.
+This reflects the fraction of CDS shared by the reference genome and the genome from which reads where sequenced.
 
 The aforementioned tendency could be captured with non linear regression. The fit for each class was based on Michaelis-Menten formula and each parameters --such as $V_m$ or $K$ yields significant estimations.
-For the other parameters of the mixture model, I observed a linear tendency between aligned reads number and the mean $\mu$ or the variance $\sigma^2$ --yet with different coefficient.
+For the parameters of mixture model pure distributions --gaussians and log-normal--, I observed a linear tendency between aligned reads number and the mean $\mu$ or the variance $\sigma^2$ --yet with different coefficient.
 
 The strategy set up to circumvent start values issues will encompass both prior knowledge --in the form of regression models-- and a wider space parameter exploration --in the form of random sampling.
 Hence, the following initialisation: (1) contributions $\pi_c$ are drawn from a uniform random law, (2) ratios $\rho_c$ are initialised with respect to the number of reads aligned based on non linear regression models above, and finally (3) distribution parameters --such as Gaussian and log-normal-- are initially set up both by predicting from linear regressions and by sampling in four times the prediction interval.
 This approach yields several mixture models ranked with respect to the BIC criterion, hence selecting the most likely.
+
+
 
 #####A more relevant mock community 
 I had planned to test this model on a mock dataset designed by Dugat-Bony et al [see -@dugat-bony_overview_2015]. 
