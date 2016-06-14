@@ -92,8 +92,11 @@ Minimal annotation of hypothetical CDS is automatically done nowadays.
 Hence even draft genomes could provide information on the studied metagenome.
 
 #####CDS coverage densities
-
-Reads from the training dataset --generated as described in figure \ref{fig:strep}-- are processed by our tool GeDI --see former version \ref{fig:former-gedi}. CDS coverage are computed and presented in the figure \ref{fig:distrib}.
+We define a strain as a _reference_ here: _Streptococcus salivarius_ JIM8777.
+Shotgun metagenomics reads are simulated from this reference genome and nine others genomes more or more distant to the reference.
+These additional genomes can be break down into 3 closeness classes: close strains, sub-species and close species --described in figure \ref{fig:strep}.
+The ten reads dataset are then _independently_ processed by our tool GeDI --see former version \ref{fig:former-gedi}.
+Reads aligned in CDS that are not filtered are used to compute CDS coverage. These coverage are then normalised by CDS length and presented in the figure \ref{fig:distrib}.
 
 
 ```{r data, echo=F, cache=TRUE, message=FALSE, warnings=FALSE}
@@ -149,15 +152,31 @@ Hence, there is no difference between the blue curves on pane (A) and (B) in fig
 The second curve represents CDS coverage yields by aligning the previous dataset on a close strain.
 This curve is slightly shifted to the left, indicating a lesser mean coverage.
 But most notably, some CDS of the reference genome are not covered at all by reads from a close strain --it is indicated by the bump on the left side of the plot.
-Interestingly, once null coverage are removed --see the right pane of the figure \ref{fig:distrib}-- the latter density looks like the exact strain coverage density.
+Interestingly, once null coverages are removed --see the right pane of the figure \ref{fig:distrib}-- the latter density looks like the exact strain coverage density.
 The less close the genome, the more CDS uncovered, shifting densities to the left. Thus, density of closeness class 4 looks more like an exponential rather than a Gaussian.
 
 
-
 #####CDS coverage densities crystallise closeness information
+CDS coverage densities seems to be a good proxy for the closeness between a reference genome and reads aligned.
+They appear (1) to be specific enough to express distinct enough to 
 
 
+
+#####A mixture model to unravel contributors genomes
+Among available reference genomes, We want to be able to distinguish (1) exact strains that yields the metagenomics reads --if available, (2) close strains or species, and (3) absent genomes.
+
+Metagenomics sequencing is a proxy to infer the presence of micro-organisms.
+Unfortunately the link between DNA reads and corresponding micro-organism is lost contrary to a single genome sequencing.
+Reads aligned on a reference genome may originate from multiple contributors.
+I had worked on a mixture model of distributions in order to bypass this information loss.
 An overall idea of the approach developed is summarised in figure \ref{fig:mixture-model}.
+From the CDS coverage density yields after reads alignment, the mixture model of distribution is meant to split this observed signal into contributions of defined distributions.
+In our case the distributions used are based on the four densities in figure \ref{fig:distrib}. 
+
+This approach comes down to multiple parameters estimation.
+Providing proper parameters estimation, we plan to infer the presence or absence of a micro-organism based on estimated contributions.
+Especially the contribution $\pi_0$ of the distribution modeling the closeness $0$ is likely to illustrate whether the reference genome is close to the strain in the ecosystem.
+
 
 ```{r mixture-model, engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Contributors genomes issues and mixture model principles.", fig.cap="Contributors genomes issues and mixture model principles.",cache=TRUE}
 \input{figures/fig-mixture-model}
@@ -166,10 +185,13 @@ An overall idea of the approach developed is summarised in figure \ref{fig:mixtu
 
 ###Modeling exploration results
 
-<!-- see ~/stageM2/RVDMM/todo -->
+For parameter estimation, I rely on the canonical maximum likelihood method with the Expectation-Maximization algorithm [@dempster_maximum_1977].
+I then applied this mixture model to simulated datasets and at the same time worked to counterbalance some model and method limitations.
+Results of these joint explorations are described below.
 
 ####Mixture model limits and solutions
-Maximum likelihood method with EM algorithm [@dempster_maximum_1977].
+
+
 
 #####Number of classes
 Four classes of distribution were relevant given the training dataset I designed.
@@ -183,7 +205,7 @@ The relevance of a single log-normal distribution test was examined, especially 
 However, the presence of only one organism is highly unrealistic in metagenomics, hence a minimum of 2 distributions was settled.
 
 #####Aligned reads number and start values
-The EM algorithm provides local optimum and hence is sensitive to start values.
+The EM algorithm --used for parameters estimation-- provides local optimum and hence is known to be sensitive to start values.
 In addition, the mixture model was first designed for a fixed number of reads.
 I decided to treat the algorithmic and methodologic limit --respectively the first and second mentioned above-- at the same time.
 Therefore, I explored the influence of aligned reads number on the mixture model distributions.
@@ -214,27 +236,36 @@ The strategy set up to circumvent start values issues will encompass both prior 
 Hence, the following initialisation: (1) contributions $\pi_c$ are drawn from a uniform random law, (2) ratios $\rho_c$ are initialised with respect to the number of reads aligned based on non linear regression models above, and finally (3) distribution parameters --such as Gaussian and log-normal-- are initially set up both by predicting from linear regressions and by sampling in four times the prediction interval.
 This approach yields several mixture models ranked with respect to the BIC criterion, hence selecting the most likely.
 
+---
+
+Several models are tested and the space of parameters is well explored. I had also written several R scripts to explore alternative models generated.
+A report is automatically created giving an overview of model estimation. However, parameters estimations seems far from the primary aims of identifying micro-organisms.
 
 
-#####A more relevant mock community 
+#####Decision rules concerning the mixture model output
+In order to bridge the gap from contribution estimations to a boolean vector of presence / absence of micro-organisms, 
+
+####Mixture model results
+
+#####Convincing preliminary results on simulated datasets
+
+I designed a dataset termed _composition dataset_ different from the training dataset with _Streptococcus_ but with a similar approach.
+After reads alignement on each genome, parameters are estimated for all differents models presented above and a model is selected thanks to the BIC criterion.
+
+```{r composition,fig.pos='h!',fig.align='center',cache=TRUE,warnings=FALSE,echo=FALSE}
+allG<-readRDS("lactoTabEM.RDS")
+ggplot(allG[which( allG$Component == 0 & allG$JDD_Index %in% c("1","2","3")),], aes(color=interaction(JDD_Presence,Presence),y=Genome,x=JDD_Coverage, shape=interaction(JDD_Presence,Presence)))+ geom_point(size=3) + facet_wrap(~JDD_Index) + theme_bw() +theme(legend.position="right")+scale_y_discrete(labels=function(x) gsub("Lactococcus_","L.",x)) +scale_shape_manual(label=c("True Negative","False Negative","False Positive","True Positive"),values=c(4,2,5,1),limits=c("FALSE.FALSE","TRUE.FALSE","FALSE.TRUE","TRUE.TRUE"))+scale_color_manual(label=c("True Negative","False Negative","False Positive","True Positive"),values=c('#000000','#e41a1c','#4daf4a','#000000'),limits=c("FALSE.FALSE","TRUE.FALSE","FALSE.TRUE","TRUE.TRUE"))+labs(shape="Result",color="Result")
+```
+
+#####A more relevant mock community? 
 I had planned to test this model on a mock dataset designed by Dugat-Bony et al [see -@dugat-bony_overview_2015]. 
 This microbial community dataset is relevant to our projects because it is associated with cheese ecosystems and it has been sequenced with SOLiD technology.
 Time constraints prevented this dataset to be tested as well as aforementioned negative results on the Mock Community. 
-In spite of an almost perfect match of this dataset to the scope of our project, I did not used the mixture model approach on it.
-
-* Limits identification and solutions hunt.
-* Possible usage.
-
-### Software performance
+In spite of an almost perfect match of this dataset to the scope of our project, I did not used the mixture model approach on it yet.
 
 
-In addition to scientific improvements covered above, I assess our tool performance and modify it in order to enhance them.
-While switching to standard bioinformatics files --such as BAM or GFF-- we expected a decrease in file size and an increase in software speed.
-In figure, we can see that these expected features are now a reality.
 
-Tables or plot to compare features --file size, running time-- between previous version `GeDI-Prod` versus `GeDI-Prod-vGFF`?
 
-We are also working to write a proper documentation, comment code lines and build toy datasets for the user to be guided when using our tool.
 
 
 ## Comparison
@@ -244,11 +275,34 @@ We are also working to write a proper documentation, comment code lines and buil
 
 This part could be in prospects if time is running out.
 
-## Integration
+##Integration
 
-* with Food-Microbiome Transfert
-* with Galaxy Platform
-* with others tools through the use of bioinformatics standard files.
+###Integration with the Food-Microbiome Transfert database
+
+In the scope of the Food-Microbiome Transfert project, a metadata-extended genomics database has been build thanks to a bioinformatician engineer recently in the team. 
+The interaction between our metagenomics analysis tool GeDI and this database was first described in figure \ref{fig:actors}.
+Actually, GeDI fetch genomes and annotations information from flat files in directories. This system is totally relevant and based on standard files such as FASTA and Genbank files.
+However, in the scope of the Food-Microbiome project, we planned to fetch these information directly from the database.
+
+###Integration with the Galaxy platform
+
+A tool is relevant only if is it used. In order to promote the use of our metagenomics analysis tool, we worked to integrate it to the Galaxy platform.
+The Galaxy platform is a web-based tool providing (1) easy access to command line tools and (2) data history and workflow management.
+It is hosted on the same location of the migale server.
+A bioinformatician engineer in the team attended a training to integrate new tools into the Galaxy platform.
+Our tool’s integration was his exercise throughout this course. 
+This training was an opportunity for me to craft small datasets and documents to provide him material for tests.
+Remarks and conclusions after this formation were taken into account to properly adapt our tool to some requirements, filetypes for instance.
+
+###Integration with other tools and software performance
+
+In addition to scientific improvements covered above, I assess our tool performance and modify it in order to enhance them.
+I was mainly working on converting in-house files generated by GeDI into standard filetype in bioinformatics --such as BAM and GFF. 
+We expected a decrease in file size due to the compression of alignment data with BAM files.
+Likewise, we expected an increase in software speed due to the transition to highly efficient tools such as samtools instead of home-made scripts.
+These expectations were met with order of magnitude for speed and disk space.
+
+Standard files ease the exporting to other tools. For example, industrial partners and academics will be able to export metagenomics reads alignment on their strain of interest, and visualize data with Tablet or process it for parallel downstream analyses. 
 
 ## Application
 
