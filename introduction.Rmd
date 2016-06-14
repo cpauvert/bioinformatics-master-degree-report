@@ -13,7 +13,7 @@ header-includes:
  - \usepackage{libertine}
 --- 
 
-#Introduction (7-15p)
+#Introduction
 
 
 ##Food-Microbiome projects
@@ -23,7 +23,7 @@ Daily subjects are naturally studied and food --as a complex product-- is invest
 Multiple factors drive food-related studies: from scientific curiosity to yield and quality improvements.
 Fermented foods --like cheese, sausage and beer-- provides a level of diversity and complexity worth studying given their world-wide spread.
 
-###Why? (1p)
+###Why?
 
 Industrial partners and academics are both interested by insights into cheese ecosystems using metagenomics.
 Their common interests were crystallised into two consecutive projects: (1) Food-Microbiome project and (2) Food-Microbiome Transfert project
@@ -44,7 +44,7 @@ A comprehensive database and a website are being developed to this end and are t
 Wet-lab experiments are planned in order to unravel technological abilities of unknown strains and improve genomics annotations.
 
 
-###Who? (0.75-1p)
+###Who?
 
 Food-related studies are often led by INRA --_The French National Institute for Agricultural Research_.
 INRA is an EPST --_Scientific and Technological Public Structure_-- which yields scientific knowledge concerning food, agriculture and environment since 1946.
@@ -84,7 +84,7 @@ I was more taking part of know-how transfer and integration during the second on
 
 
 
-##Cheese ecosystems particularities (1p)
+##Cheese ecosystems particularities
 
 ###Micro-organisms and definition of species
 
@@ -105,7 +105,7 @@ For convenience I will use the standard classification when referring to micro-o
 ####From milk to cheeses
 
 Cheese-making starts with a matrix composed of milk more or less transformed --raw milk or pasteurised.
-A cocktail of enzymes --rennet--trigger the milk state transition from liquid to solid, the resulting product being called curd [@button_cheese_2012].
+A cocktail of enzymes --rennet--triggers the milk state transition from liquid to solid, the resulting product being called curd [@button_cheese_2012].
 The curd will then undergo many transformations and technological processes to be manufactured into a consumable cheese.
 
 The great diversity of cheeses comes from variations in these highlighted processes. Experts proposed a classification in order to unify terms [@almena-aliste_cheese_2014].
@@ -119,7 +119,7 @@ Micro-organisms may come from two main sources: starter cultures and environment
 Starter cultures can be distinguished into two categories: manufactured and undefined.
 <!-- man-made for both. But the first has few species -->
 The first one consists of few selected strains --usually with interesting technological features-- gathered in a mixture applied on the curd.
-The second can be much more complex and results from subcultures of either old starters or previous cheese rind communities.
+The second can be much more complex and results from subcultures of either other starters or previous dairy products --cheese rind communities or yogourt for instance.
 
 While a manufactured starter composition can be trivial and documented, unravel microbial composition in undefined starters is a challenge.
 Biotic and abiotic factors are hence involved in cheese-making and can greatly impact cheese quality and microbial composition [@irlinger_cheese_2015; @monnet_growth_2015].
@@ -142,16 +142,16 @@ The environment influence is significant --e.g., others sources of micro-organis
 So cheese ecosystem exploration is not so simple because this ecosystem is influenced by several factors.
 Moreover, little is known about low abundant micro-organisms in cheese ecosystems, despite rich media and supposed easy culture.
 Finally, cheese ecosystems are an important reservoir of microbial strains given their interactions with the environment.
-
+The diversity of strains in cheese ecosystems remains to be unraveled.
 
 ####Reference genomes are not always available
 
 Many dairy strains genomes recently enriched genomics database in the scope of Food-Microbiome project [@almeida_construction_2014].
-Despite these recent --and less recent-- contributions not all reference genomes are available.
+Despite these recent --and less recent-- contributions, not all reference genomes are available.
 Some species do not have any genome representation in databases.
 
-Apart from this limiting case, two others cases emerged. First, a representative genome exists in databases but the genome sampled in the ecosystem differ. 
-For example, a genome of the same species is available but not the same strain --both sharing $9O$ to $99\%$ identity. Second, several genomes --e.g., a catalog of strains-- are available and one of them exists in the ecosystem.
+Apart from this limiting case, two others cases can be challenging. First, a representative genome exists in databases but the genome sampled in the ecosystem differ. 
+For example, a genome of the same species is available but not the same strain --both sharing $90$ to $99\%$ identity. Second, several genomes --e.g., a catalog of strains-- are available and one of them exists in the ecosystem.
 <!-- The latter could be the case if aiming to retrieve a strain when exploring a cheese community after an artificial starter inoculation.-->
 For example, recognise a specific strain in a cheese community after an artificial starter inoculation. 
 These cases are illustrated in figure \ref{fig:no-reference-genome}.
@@ -162,7 +162,7 @@ These cases are illustrated in figure \ref{fig:no-reference-genome}.
 
 ###Why study cheese ecosystems?
 
-Cheese ecosystems harbour an important diversity of micro-organisms --especially strains [@montel_traditional_2014].
+Cheese ecosystems harbour an important diversity of micro-organisms [@montel_traditional_2014].
 Diversity stem from the necessary functional redundancy in a community for the ecosystem to be reliable against environmental changes [@konopka_what_2009].
 For example, these microbial communities enable resistance to pathogens such as phages or others unwanted bacteria like _Salmonella_ [@ortolani_microbiological_2010; @callon_microbial_2014].
 
@@ -171,9 +171,9 @@ Hence, academics and industrial partners are exploring cheese ecosystems to unra
 
 
 
-## State-of-art tools for ecosystem exploration (2.5-3p) {#state}
+##State-of-art tools for ecosystem exploration {#state}
 
-### Methods (1p)
+###Methods
 
 ####From culture to metagenomics
 
@@ -210,8 +210,9 @@ These reads embody coding DNA sequences --CDS-- which provide insights into pote
 
 
 #####Application to cheese ecosystems
-Both sequencing technologies were used in cheese ecosystem exploration. Delbes et al. rely on amplicon sequencing combined with culture experiments for validation to provide a microbial overview of raw milk cheeses [-@delbes_monitoring_2007]. Ercolini reviewed the use of shotgun sequencing specifically in food microbiology [see -@ercolini_high-throughput_2013].
-
+Both sequencing technologies were used in cheese ecosystem exploration. Delbes and al. relied on amplicon sequencing combined with culture experiments for validation to provide a microbial overview of raw milk cheeses [-@delbes_monitoring_2007]. Ercolini reviewed the use of shotgun sequencing specifically in food microbiology [see -@ercolini_high-throughput_2013].
+Wolfe and al. exploited both amplicon and shotgun metagenomics sequencing to cheese ecosystems [see -@wolfe_cheese_2014].
+Dugat-bony and al. decided to combine the latter with metatranscriptomics and biochemicals analyses [see -@dugat-bony_overview_2015].
 
 
 ###Post-sequencing strategies (1.5-2p)
@@ -224,7 +225,7 @@ Some methods and strategies are summarised in figure \ref{fig:ecosys} and detail
 
 
 #####How to deal with millions of DNA sequences?
-The information embodied in these reads enables several applications: (1) micro-organisms identification to distinct taxonomic levels or (2) new genomes assembly, (3) metabolism prediction and (4) micro-organisms quantification [@sharpton_introduction_2014].
+The information embodied in these reads enables several applications: (1) micro-organisms identification to distinct taxonomic levels or (2) micro-organisms quantification, (3)  new genomes assembly and (4) metabolism prediction [@sharpton_introduction_2014].
 
 #####Micro-organisms identification
 Several metagenomics reads analysis strategies are available to this end (see bottom frame \ref{fig:ecosys}).
@@ -233,7 +234,7 @@ Accessing reads composition --in tetranucleotides or $k$-mers-- is another strat
 It relies on previous reads composition profiles associated with known organisms [@wood_kraken:_2014; @mchardy_accurate_2007].
 Otherwise, reads can be aligned --or mapped-- to public and user-made references [@ahn_sigma:_2015;@lindner_metagenomic_2015].
 <!-- mismatches -->
-Typically 16S rDNA reads will be compared to a bank --e.g., SILVA-- whereas reads from shotgun sequencing will be aligned to one or several reference genomes. This approach yields perfect matches as well as inexact matches.
+Typically 16S rDNA reads will be compared to a bank --e.g., SILVA-- whereas reads from shotgun sequencing will be aligned to several reference genomes or marker genes. This approach yields perfect matches as well as inexact matches.
 
 Genome assembly is mentioned here due to potential identification of new species. However, specific conditions regarding input data for assembly makes this strategy quite distinct from others listed here.
 
@@ -263,14 +264,17 @@ In the scope of Food-Microbiome projects, we rely on existing reference genomes 
 
 I have focused my research on a in-house metagenomics analysis tool --named GeDI-- during my bioinformatics apprenticeship.
 This two-year work can be crystallised into four axes --tackled or soon-to-be.
-I have explored several _improvements_ in terms of scientific methods: identify a species when the exact reference genomes does not exist for instance.
-I have also worked on computational features improvements.
-As similar tools were published, I started working on the _comparison_ between our approach and others tools.
+
+The primary goal was to develop a method to automatically identify species and strains in the ecosystem.
+To this end, I relied on shotgun metagenomics reads alignments on a set of reference genomes.
+However, specific cases leads to the exploration of several _improvements_ in terms of scientific methods.
+For instance, reference genomes are likely to differ from the strains actually present in the ecosystem, hence micro-organism identification has to be tailored.
+I have also worked on computational features improvements such as compatibility by using standard bioinformatics files. This conversion leads to space usage and speed improvements.
+
+As similar tools were published, I started working on the _comparison_ between our approach and others tools --e.g., MicrobeGPS [@lindner_metagenomic_2015].
 I then worked on GeDI _integration_ with the metadata extended genomics database developed in the Food-Microbiome Transfert project and others tools.
 Finally, I have drafted results yields by GeDI _applications_ to simulated and real datasets.
-
-
-
+For illustration purpose, I will present how one strain is represented in 9 cheese samples.
 
 
 
