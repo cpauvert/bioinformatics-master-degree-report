@@ -163,7 +163,7 @@ They appear (1) to be specific enough to express distinct enough to
 
 
 #####A mixture model to unravel contributors genomes
-Among available reference genomes, We want to be able to distinguish (1) exact strains that yields the metagenomics reads --if available, (2) close strains or species, and (3) absent genomes.
+Among available reference genomes, we want to be able to distinguish (1) exact strains that yields the metagenomics reads --if available, (2) close strains or species, and (3) absent genomes.
 
 Metagenomics sequencing is a proxy to infer the presence of micro-organisms.
 Unfortunately the link between DNA reads and corresponding micro-organism is lost contrary to a single genome sequencing.

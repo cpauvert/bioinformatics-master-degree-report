@@ -252,10 +252,10 @@ Depending on ecosystem complexity, species level identification provides ecosyst
 However only strain level identification --more accurate than previously-- can shed light on environmental adaptation or distinguish specific metabolic pathways for instance.
 Network analysis can complement ecosystem exploration up to genus or species level and thus provide an extended view of the ecosystem [@parente_foodmicrobionet:_2016]. 
 
-## Aims
+##Aims
 
 Microbial communities are (1) ubiquitous --e.g., soil, plants, fermented foods, etc.-- and (2) necessary for host health or manufacturing processes.
-Their study highly benefits from high-throughput technologies such as metagenomics sequencing.
+Their study highly benefited from high-throughput technologies such as metagenomics sequencing.
 However, metagenomics data analysis comes with methodological and computational challenges.
 Among them, strain level identification remains for a time ideal in metagenomics. 
 Recently this challenge shifts from hypothetical to achievable thanks to the scientific and industrial community efforts.

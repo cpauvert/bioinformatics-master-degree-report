@@ -20,9 +20,10 @@ header-includes:
 
 ###Food-Microbiome projects
 
-Cheese flora is a microbial community. Like other microbial communities, it benefits from recent advances in metagenomics. On one hand, technological advances with high-throughput sequencing provided insights into these communities. On the other, computational developments enabled to better analyse data generated with the emergence of new algorithms or tools.
+Cheese flora is a microbial community. Like other microbial communities, it benefits from recent advances in metagenomics. On one hand, technological advances with high-throughput sequencing provided insights into these communities. On the other hand, computational developments enabled better data analysis with the emergence of new algorithms or tools.
 
 Although lacking some challenges others communities may face such as hard-to-cultivate micro-organisms for instance, cheese ecosystems nevertheless provided a few such as an important diversity of strains.
+
 The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential.
 In the scope of these two projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem --if possible to the strain level-- and (2) characterise low-abundant micro-organisms.
 
@@ -37,10 +38,9 @@ For instance, reference genomes are likely to differ from the strains actually p
 ####Previous approaches
 
 I have been trying to take into account the discrepancy between between reference genomes and genomes from the environment since I began. 
-Previous approaches were able to detect wheter the exact strain was present both in the ecosystem and as a reference genome onto which reads are mapped.
-Unfortunately
+Previous approaches were only able to detect when whether the exact strain was present both in the ecosystem and as a reference genome onto which reads are mapped.
 
-####Mixture model
+####Mixture model of distribution
 Last year, I tried to tackle the modeling issues through a new angle: CDS coverage densities.
 I worked on a proof of concept based on a mixture model and thus I designed simulated datasets in order to document this idea.
 A new collaboration enables accelerated developments concerning the model.

@@ -97,7 +97,11 @@ In February 2016, I presented my work on the mixture model to the monthly bioinf
 
 #####Short reads alignment on reference genome
 
-`bowtie` version 1 because cheese samples were sequenced with SOLiD technology.
+Bowtie (v. 0.12) [@langmead_ultrafast_2009] is a reads aligner software meant to assess efficiently this issue [@schbath_mapping_2012].
+Index creation is done before the alignment and we use the default parameters of `bowtie-build`.
+We align here short reads of 35 bases with up to 3 mismatches included.
+We used the following parameters: `-a –best –strata -M 1` which means that an alignment is outputed for each reads aligned once, if more, one alignment is randomly choose from the those with less mismatches.
+We use this version of  `bowtie` because cheese samples were sequenced with SOLiD technology and `bowtie` does not support this technology anymore.
 
 #####Synthetic metagenomics samples creation
 
@@ -132,15 +136,85 @@ These toolbox were either called from our tool with a Python library `pysam` (v0
 
 ###Mixture model of distributions {#modele}
 
+
+Reads alignment on a reference genome is not trivial in metagenomics.
+Aligned reads can stem from one or *multiples* organisms.
+These contributors genomes are the ecosystem genomes.
+They would be sequenced and they harbour genomics regions --of at least 35 bases long-- similar to the reference genome.
+These ecosystem genomes can be: (1)  exactly the same as the reference, or (2) a close strain or close species genome, or (4) a genome that share only these short aligned regions --e.g., mobile elements.
+
+Contributors genomes are gathered in _classes_  --or clusters in literature-- based on closeness to the reference. 
+Each closeness class is represented by a distinct distribution.
+The observed distribution is modeled as a mixture of these distributions.
+The posterior cluster probability of one CDS will be a proxy of an organism contribution to the alignment.
+We describe here the construction of a mixture model.
+
+Reference genomes are independently considered.
+Let $X_{i}$ a random variable describing the aligned reads number per base --or coverage-- of a genome CDS $i$.
+$X_{i}$ is defined on $\left[ 0; + \infty \right[$. 
+We suppose $x_{1}, \ldots, x_{n} $ values of $n$ random variables noted $X_{1}, \ldots, X_{n}$, where $n$ is the genome total number of CDS.
+Contributor genome closeness class with the reference is noted $c$ and $ c \in \mathcal{C} = \left\lbrace 0,1,2,3 \right\rbrace $. 
+Let $Z_{ic}= (Z_{i0}, \dots, Z_{i3})$ a latent variable stating the contributor genome closeness class whose reads were aligned on CDS $i$.
+$Z_{ic}$ equals $1$ if reads aligned on CDS $i$ stem from --a genome-- closeness class $c$, and $0$ if not.
+With $Z_i$ we model the heterogeous origin of reads aligned on CDS $i$.
+The observed coverage density is modeled with a mixture model of distributions: each closeness class is a mixture component.
+We then estimate mixture model parameters.
+
+
 #####Contribution
 
-#####Distribution
+The contribution of a given distribution to the model matches the ratio of class $c$ in the mixture. 
+This contribution is noted $\pi_c = \mathbb{P}(Z_{ic} = 1)$. [^4] 
+CDS are considered independent so the contribution of class $c$ for the CDS $i$ is equal for each $i \in [1;n]$.
+Then $\sum_{\, c \, \in \, \mathcal{C}} \pi_c = 1$.
 
-#####Modele
+#####Distribution
+The distribution probability of class $c$ is the distribution of $X_i$ knowing that reads stem from --a genome belonging to-- class $c$.
+It is noted  $f_c \: (x) = \, \mathbb{P}( X_i = x  | Z_{ic} = 1 )$.
+
+#####Model
+
+Hence the mixture model is stated as follow:
+
+$$f(x,\Theta) =  \sum_{c \; \in \; \mathcal{C}} \pi_c \; f_c \; (x) 
+\begin{cases}
+x  & \mbox{\footnotesize Observed CDS coverage} \\
+\Theta & \mbox{\footnotesize  Model parameters} \\
+\mathcal{C} & \mbox{\footnotesize  Closeness classes} \\
+\pi_c  & \mbox{\footnotesize  Distribution contribution to the model}\\
+f_c \: (x) & \mbox{\footnotesize  Identified zero-inflated distribution of class } c \\
+\end{cases}$$ 
+
+In our cases, we choose the following parametric forms for every distribution $f_c$: 3 Gaussian and one log-normal.
+However, these distributions are zero-inflated. In other words, chance to draw a null value from this distribution will be augmented.
+This mathematical adaptation enables the inclusion of CDS without any aligned reads in the model.
+To this end, we introduce $\rho_c$ the ratio of CDS uncovered by reads from class $c$. 
+Hence we have:
+
+* For class $c \in \{ 0,1,2\}$ :
+    $$f_c\; (x) = \underbrace{\rho_c 1\!\!1_{\{x=0\}}}_{\mathclap{\text{Uncovered CDS ratio}}} + \overbrace{(1- \rho_c) 1\!\!1_{\{x\neq0\}} \; \underbrace{\Phi(x; \mu_c ,\sigma_c^2 )}_\text{Gaussian density}}^\text{Covered CDS ratio}$$
+* For class $c = 3$ :
+    $$f_c\; (x) = \rho_c 1\!\!1_{\{x=0\}} + (1- \rho_c) 1\!\!1_{\{x\neq0\}} \; \underbrace{\frac{1}{x} \Phi(\ln(x); \mu_c ,\sigma_c^2 )}_{\text{log-normal density}}$$
 
 #####Parameters estimation
 
+We have to estimate model parameters $\Theta$, which encompass:
+* contributions $\pi_c$,
+* ratio $\rho_c$ for each class $c$,
+* $f_c$ distribution parameters $\theta_c$ for each class $c$.
+
+These are estimated using maximum likelihood method computed on every CDS of the reference genome. To this end, we use the Expectation-Maximization algorithm [@dempster_maximum_1977].
+
 #####Expectation-Maximization algorithm
+
+This algorithm consists of iteratively increasing the model log-likelihood.
+In others words, the E step gives the conditional probabilities that data --CDS coverage-- was drawn from every class parametric distribution $f_c$ given model parameters $\Theta$.
+The next step consists in the estimation of optimal values of model parameters $\Theta$ based on previous conditional probabilities.
+To this end, we use explicit parameters formulas for Gaussians in order to estimate with respect to the maximum likelihood criterion.
+This iterative algorithm stops either when $\Theta$ values converged or until an upper bound of steps.
+With the help of Mahendra MARIADASSOU, I implemented a version of this mixture model in R.
+
+
 
 #####Output files
 I decided to rely on RDS files to store all models estimated for the sake of reusability and interoperability.
