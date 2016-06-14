@@ -103,6 +103,11 @@ In February 2016, I presented my work on the mixture model to the monthly bioinf
 
 #####In between genomes identity percentage computation
 
+#####Distribution fitting
+I relied on the R package `fitdistrplus` to fit several distributions to characterise densities presented in figure \ref{fig:distrib}.
+Maximum likelihood method is used to choose between multiple fit.
+
+
 #####Bioinformatics toolbox
 
 `SAMtools` (version) were used in the last version of our tool.
@@ -127,15 +132,21 @@ These toolbox were either called from our tool with a Python library `pysam` (v0
 
 ###Mixture model of distributions {#modele}
 
-##### Contribution
+#####Contribution
 
-##### Distribution
+#####Distribution
 
-##### Modele
+#####Modele
 
-##### Parameters estimation
+#####Parameters estimation
 
 #####Expectation-Maximization algorithm
+
+#####Output files
+I decided to rely on RDS files to store all models estimated for the sake of reusability and interoperability.
+Reports are automatically generated with a table for every BIC values.
+The observed CDS density is plotted and on top the subsequent distributions drawn from the most likely model.
+Total and non-zeros densities are plotted for exploratory purposes.
 
 ##Data
 
