@@ -14,11 +14,117 @@ header-includes:
 --- 
 
 
-# Conclusion and prospects (5p)
+#Conclusion and prospects
 
+##Conclusion
+
+###Food-Microbiome projects
+
+Cheese flora is a microbial community. Like other microbial communities, it benefits from recent advances in metagenomics. On one hand, technological advances with high-throughput sequencing provided insights into these communities. On the other, computational developments enabled to better analyse data generated with the emergence of new algorithms or tools.
+
+Although lacking some challenges others communities may face such as hard-to-cultivate micro-organisms for instance, cheese ecosystems nevertheless provided a few such as an important diversity of strains.
+The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential.
+In the scope of these two projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem --if possible to the strain level-- and (2) characterise low-abundant micro-organisms.
+
+Throughout two years of apprenticeship, I have focused my research on a in-house metagenomics analysis tool --named GeDI.
+I was mainly interested in the development of a method to automatically identify species and strains in the ecosystem.
+To this end, I relied on shotgun metagenomics reads alignments on a set of reference genomes.
+However, specific cases leads to the exploration of several _improvements_ in terms of scientific methods.
+For instance, reference genomes are likely to differ from the strains actually present in the ecosystem, hence micro-organism identification has to be tailored.
+
+###Exploratory approach for microbial strains identification
+
+####Previous approaches
+
+I have been trying to take into account the discrepancy between between reference genomes and genomes from the environment since I began. 
+Previous approaches were able to detect wheter the exact strain was present both in the ecosystem and as a reference genome onto which reads are mapped.
+Unfortunately
+
+####Mixture model
+Last year, I tried to tackle the modeling issues through a new angle: CDS coverage densities.
+I worked on a proof of concept based on a mixture model and thus I designed simulated datasets in order to document this idea.
+A new collaboration enables accelerated developments concerning the model.
+I could rapidly communicate to the scientific community in order to have feedbacks.
+
+
+####Limits 
+
+Limits tackled 
+
+* Number of components
+* Start values
+* Reads numbers influence 
+* Label switching
+
+However, the model struggle with low coverage and yields too many false negatives. It performs worse than the first approach with Lander and Waterman.
+On the Mock Community dataset, model selection is sometimes irrelevant despite being the more likely.
+
+####Model prospects 
+Altering thresholds could be a lead to decrease the false negative rate.
+However, this approach was meant to be accurate and will not be suitable for a large screening followed by refiments.
+I also consider adding other criterion in the decision rule such as the number of components for instance.
+But I foresee a difficult biological conclusion to this approach.
+Lastly I suggested to switch from a boolean decision to an index of presence or closeness.
+But this implies to let the user defined the threshold, and no consensus could emerge. 
+
+---
+
+Despite exploring deeply the limits of this new approach, no suitable pattern arise from its application results.
+While this model provides an extended view of metagenomics reads alignment, it will not be used in our tool to routinely identify micro-organisms in metagenomes.
+
+###Tool integration 
+
+Our tool can be fully integrated into the Galaxy platform thanks to the engineer training.
+Moreover, our tool now complies requirements stated by the platform.
+These requirements accelerated the expected conversion of our tool to standard bioinformatics output files.
+
+This spring cleaning leads to the removal of temporary files, and the use of compiled toolbox instead of home made scripts.
+Hence, these changes strongly reduced disk space usage and increase the software speed.
+
+
+###Application
+
+The example showed...
 
 ## Prospects
 
-* Tool will be used by industrials and academics.
-* Specific formations will be provided through the Migale platform.
-* Details on how I wanted to compare tools with ours in case of time constraints.
+###Future of GeDI
+
+We need to define what approach we will use to infer the presence or absence of micro-organisms in an ecosystem.
+
+####Comparison with other tools
+
+
+Metagenomics surely is a trendy topic in computational biology. However, strain identification in more or less complex ecosystems was not well represented in literature or  remained in prospects of papers.
+
+
+Two tools were published last year.
+Comparison with Sigma MicrobeGPS and several recently published tools.
+
+
+Use an alternative strategy to identify micro-organisms. For instance,  like the tool Kraken to rapidly screens for candidate genomes and try a specific method on this subset of genomes.
+
+
+Recently the challenge of strain retrieval in metagenomics shifts from hypothetical to achievable thanks to the scientific and industrial community efforts.
+Therefore many publications and tools are recently available and could pave the way to new analyses and exploration. 
+
+####Future improvements 
+
+I was working recently on implementing some variant calling strategies to strains in high abundance --and hence with high coverage-- in metagenomes.
+We are also starting to think how to decipher strains cocktails in ecosystems.
+
+
+###Next with Food-Microbiome Transfert and others projects
+
+The aim of the Food-Microbiome Transfert is to provide a functional web based interface transparently running our metagenomics analysis tool.
+It will be used by industrials partners and academics to gain insights into food related ecosystems.
+
+Specific trainings will be provided by the Migale platform team given their experience in Galaxy trainings and their involvement in the Food-Microbiome Transfert project.
+
+For now GeDI does not rely on the metadata concerning cheese ecosystem stored in the Food-Microbiome Transfert database. 
+However, in the near future, including these metadata could enhance visualisation and provide a new perpective on cheese ecosystems.
+
+
+The 1350 project has been submitted again
+
+Projects with industrials maybe.
