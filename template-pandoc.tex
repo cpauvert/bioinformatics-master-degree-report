@@ -251,15 +251,22 @@ $endif$
 \definecolor{Ipurple}{RGB}{237,26,92}
 
 \begin{document}
-$if(title)$
-\maketitle
-$endif$
 $if(abstract)$
 \begin{abstract}
 $abstract$
 \end{abstract}
 $endif$
 
+\include{cover}
+~
+
+\newpage
+~
+
+\input{thanks}
+
+\newpage
+~
 \frontmatter
 \pagenumbering{gobble}
 

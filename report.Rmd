@@ -1,5 +1,5 @@
 ---
-title: "Bioinformatics Master Degree Report"
+title: "Cheese ecosystems metagenomics -- Explorations & improvements around a bioinformatics tool"
 author: Charlie PAUVERT
 classoption: a4paper
 fontsize: 12pt

@@ -1,0 +1,111 @@
+\pagestyle{empty}
+\includegraphics[scale=1, height=0.1\textwidth]{logos/normandie.jpg}
+\hfill
+\includegraphics[scale=1, height=0.1\textwidth]{logos/norm.jpg}
+\hfill
+\includegraphics[scale=1, height=0.1\textwidth]{logos/st.jpg}
+\hfill
+\includegraphics[scale=1, height=0.1\textwidth]{logos/cfa.jpg}
+\vspace{0.1\textwidth}
+
+\begin{tikzpicture}[font=\normalsize]
+\node[text width=0.6\textwidth] (mast) {%
+Bioinformatics Master Degree 2.2 - Year 2014~/~2016\\
+Science and Technology Faculty\\
+Rouen University\\
+Normandy University};
+\node [right=3cm of mast] (temp) {};
+\node [above=0cm of temp, anchor=south] {\includegraphics[scale=1, width=3cm]{logos/master.jpg}};
+%\node [right=of mast.north east,anchor=north west] (univ) {\includegraphics[scale=1, width=0.2\textwidth]{logos/univ.jpg}};
+\node [below=0cm of temp,anchor=north] {\includegraphics[scale=1, width=3cm]{logos/univ.png}};
+
+\end{tikzpicture}
+\vfill
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{bact}=[rectangle, minimum width=8em,minimum height=6ex,rounded corners=0.4ex]
+\tikzstyle{lecture}=[rectangle, minimum width=3em,minimum height=1em]
+\tikzstyle{marqueur}=[rectangle, minimum width=3em,minimum height=1em, draw=black, thick]
+
+\node[ font=\large] (rap) at (0.5\paperwidth,0) {A two-year apprenticeship thesis};
+\node[font=\Large,below =of rap.south west, text width=7.4cm, text centered, draw =lightgray, trapezium, trapezium left angle=70, trapezium right angle=110,minimum height=2cm] (mtg) {\textsc{Cheese Ecosystems} \\ \textsc{Metagenomics}};
+%\node [below=of mtg, text width =0.55\textwidth, text centered,font=\Large, draw=lightgray, densely dashed, minimum height=3cm] (titre) {Explore beyond reference genome limits \& improvements around a tool };
+\node [below=of mtg, minimum width =10cm, text width =10cm, text centered,font=\Large, draw=lightgray, densely dashed, minimum height=3cm] (titre) {Explorations \& improvements \\ around a bioinformatics tool};
+\node [right=2.5cm of mtg] (boite) {};
+\node [right=0.3cm of titre] (arbre) {};
+\node [right=4.5cm of arbre] (nG) {};
+
+
+  \begin{scope}[x=15em, y=10em,scale=0.1, every node/.style={transform shape}, local bounding box=petri, shift={($(boite)$)}]
+  \foreach \n /\col in {4/Igreen, 12 /Iblue, 4 /Iblue!65, 6 /Iorange,4/Iblue!65!black,2/Igreen!65!black}{%
+	  \foreach \x in {1,...,\n}{
+	      \node[bact, draw=\col, rotate =180*rand] (\x) at (rand, rand) {};
+	  }
+  };
+  \end{scope}  
+
+  \begin{scope}[line width=3pt,grow'=east, local bounding box=div, shift={($(arbre)$)},scale=0.5, every node/.style={transform shape}]
+  \tikzstyle{level 2}=[sibling distance=1cm,solid]
+  \tikzstyle{level 3}=[sibling distance=2mm]
+  \tikzstyle{every edge}=[solid,line width=3pt]
+  \node {} child{node[fill, circle] (g1) {}  edge from parent[dashed]
+   child[Igreen]{node[fill,circle] (n1) {} 
+	  child[Igreen!65!black] 
+	  child{coordinate (s0) }
+	  }
+  child[Iorange] {node[fill,circle] {}
+	  child[Iorange!65!black]
+	  child[Iorange!85!black]{coordinate (s1) }
+	  child 
+	  child[Iorange!85]
+	  }
+  child[Iblue]{node[fill,circle]{} 
+	    child[Iblue!65!black]
+	    child[Iblue!85!black] {coordinate (s2) }
+	    child 
+	    child[Iblue!85] {coordinate (s3) }
+	    child[Iblue!75] 
+	    child[Iblue!65] {coordinate (s4) }
+	    }
+  };
+\end{scope}
+  \begin{scope}[x=15em, y=7em, scale=0.2, every node/.style={transform shape}, local bounding box=seq, shift={($(nG)$)}]
+  \foreach \n /\col in {4/Igreen, 20 /Iblue, 10 /Iblue!65, 20 /Iorange,10/Iblue!65!black,8/Igreen!65!black}{%
+	  \foreach \x in {1,...,\n}{
+	      \node[lecture, fill=\col] (l\x) at (rand, rand) {};
+	  }
+  };
+  \end{scope} 
+\node[circle, draw=lightgray,fit= (petri)] (fitP) {};
+\draw (rap.north west) -- (rap.south west);
+\draw[lightgray] (mtg) -- (fitP);
+\draw[lightgray] (mtg) -- (titre);
+\draw [ lightgray] (fitP) -- (div); 
+\draw [ lightgray] (fitP) -- (seq); 
+\draw [ lightgray] (div.east) -- (div.east-|seq.west); 
+\end{tikzpicture}
+\end{center}
+\vfill
+\begin{center}
+\textbf{Charlie PAUVERT}
+\end{center}
+
+\vfill
+\begin{tikzpicture}
+\node[text width=0.6\textwidth] (res) {Supervisors:\\
+ Anne-Laure ABRAHAM, Research Engineer\\
+and Pierre RENAULT, Research Director};
+\draw (res.north west) -- (res.south west);
+\node [below= of res.south west,text width=0.8\textwidth, anchor=north west] (eq) {Team:\\ 
+\emph{Food and Commensal Bacteria Team } (BAC)\\
+Research Unit MICALIS ~-~UMR 1319\\
+The French National Institute for Agricultural Research~-~AgroParisTech};
+\draw (eq.north west) -- (eq.south west);
+\end{tikzpicture}
+
+\vspace{0.1\textwidth}
+\includegraphics[scale=1, height=0.1\textwidth]{logos/inra.png}
+\hfill
+\includegraphics[scale=1, height=0.1\textwidth]{logos/agro.png}
+\hfill
+\includegraphics[scale=1, height=0.1\textwidth]{logos/micalis.jpg}
