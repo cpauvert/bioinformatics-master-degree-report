@@ -15,7 +15,7 @@ header-includes:
 
 
 
-#Materials and methods (7p)
+#Materials and methods
 
 ##Computing facilities
 
@@ -79,18 +79,41 @@ I also attended a yearly workshop RCAM --_Recent Computational Advances in Metag
 
 ###Good practices and tracability
 
-##### vim
+The `vim` editor is my favorite tool for every writing --scripts, summaries, reports--. I enjoy its advanced functions, ubiquity and flexibility.
 
-##### git
+I use `git` the version management system almost every day for code related projects or not. It enables proper work organisation --even when you are the only contributor. Most of my repositories are stored on the migale server.
+But I created a private [GitHub](http://github.com/cpauvert) repository to manage versions of this thesis. It also provides online storage and availability from anywhere.
 
 
-I created a private [GitHub](http://github.com/cpauvert) repository to manage versions of this thesis. It also provides online storage and availability from anywhere.
+Besides I use the R software mostly through the IDE Rstudio.
+It provides documentation, history associated with an editor and a R console (v3.1).
+Work and files can be conveniently splitted in projects.
+Moreover, Rstudio is associated with `knitR` to do litterate programming. 
+I daily use this technology to maintain reproductibility and tracability in my own analyses.
+This R package dynamically generate high-quality reports in \LaTeX.
+I rely on this package for summaries of on going work as well as personal documentation or more elaborate reports.
 
-#####GeDI development
+This modular and adaptation code philosophy with knitR is completed by illustrations with TikZ.
+Figures are generated in several possible filetypes and can easily fit in many communication support --thesis, presentation, poster.
+
 
 ###Research communication
 
+Previous tools enable easy communication with peers.
+I talk with my supervisors on a daily basis. 
+I communicate in team meetings and annually in conference.
+
+I share the office with my supervisor, consequently she can easily monitor my work. 
+Regularly we organise planned meetings before and after going to Rouen.
+These periods are concluded by summaries to my tutor.
+
+Last year, I presented twice ongoing work to the team, hence benefiting from advices in biology or scientific methods.
 In February 2016, I presented my work on the mixture model to the monthly bioinformatics meeting of the institute despite negative results.
+
+Conferences broaden the scope of communication and diffusion.
+I had the chance to present my work to every conference I attended (ECCB-JOBIM 2014, JOBIM 2015 and 2016).
+This provides an easy and comprehensive way to talk with scientists and welcome ideas and suggestions.
+I was awarded the young scientist best poster award last summer.
 
 
 ##Tools
@@ -104,35 +127,51 @@ We used the following parameters: `-a –best –strata -M 1` which means that a
 We use this version of  `bowtie` because cheese samples were sequenced with SOLiD technology and `bowtie` does not support this technology anymore.
 
 #####Synthetic metagenomics samples creation
+Grinder (v. 0.5.3) [@angly_grinder:_2012] sample one or several FASTA files to create a FASTQ file with artificial reads.
+It was used to simulate metagenomics shotgun sequencing from a microbial communinity sample, in our case it yields an important number of short DNA reads of 35 bases.
+Grinder was used because community diversity can be controlled: either manually with an abundance textfile (with `-abundance_file`), or either from a statistical distribution (with 
+`-abundance_model exponential 0.5`) with a fixed parameter but ranks are randomly sampled.
+Variable genome length are taken into account and sequencing error models are available for an accurate simulatation.
 
 #####In between genomes identity percentage computation
-
-#####Distribution fitting
-I relied on the R package `fitdistrplus` to fit several distributions to characterise densities presented in figure \ref{fig:distrib}.
-Maximum likelihood method is used to choose between multiple fit.
-
+La proximité des génomes utilisés dans le jeu de données *Streptococcus* a été évaluée avec 
+Genome closeness used in the _Streptococcus_ dataset was assessed by Gegenees (v2.2 ) [@agren_gegenees:_2012]. 
+A sliding window of 200 bases every 100 bases yields fragments for every genomes.
+All-versus-all BLAST strategy is applied to these fragments and Average Nucleotide Identity is returned.
 
 #####Bioinformatics toolbox
-
-`SAMtools` (version) were used in the last version of our tool.
-I relied on `BEDtools` (version) to provide fast and efficient alignment file and gene annotation intersection.
+`SAMtools` (1.3.1) were used in the last version of our tool.
+I relied on `BEDtools` (2.17.0) to provide fast and efficient alignment file and gene annotation intersection.
 These toolbox were either called from our tool with a Python library `pysam` (v0.14.1) or through the Python `os` module.
 
-#####Data mining and explorative analyses
+#####Data mining and exploratory analyses
+Data mining was mostly supported by the GNU toolbox --e.g. `awk, xargs, sort, sed`--,  the R software (v3.1) [@r_core_team_r:_2014] and its IDE Rstudio.
+Plots are generated with  `knitR` and the `ggplot2` package (v.1.0.0) [@wickham_ggplot2:_2009].
 
-####Metagenomics analysis tools
+#####Distribution fitting
+I relied on the R package `fitdistrplus` (v1.0-4)[@delignette-muller_fitdistrplus:_2015] to fit several distributions to characterise densities presented in figure \ref{fig:distrib}.
+Maximum likelihood method is used to choose between multiple fit.
 
-#####GeDI last year
+####A metagenomics analysis tool: GeDI
+Our tool is developed in Python (v.2.7.5). Its is a wrapper for the short read mapper `bowtie 1`. 
+The principle of the former version is described in \ref{fig:former-gedi}. 
+Besides index construction and reads alignment that are part of the mapper, several specific task are implemented in GeDI: for example CDS filtering and few computations and verifications. However as of the former version, it was only using tab separated files and in-house files. 
+Recently, an important release has seen the conversion to standard bioinfomatics filetypes: GFF for annotations, BAM for alignments, BED for regions to be excluded etc.
+This new version is depicted in figure \ref{fig:gedi}. Output files are now GFF files for each genomes with additional flags stating whether the CDS was filtered or not; its coverage total and with mismatches (see figure \ref{fig:coverage} for details}.
+
 
 ```{r former-gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Previous data flow: GeDI", fig.cap="Previous data flow: GeDI",cache=FALSE }
 \input{figures/fig-former-gedi}
 ```
 
-#####GeDI standard files
-
 ```{r gedi,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Overview of our metagenomics analysis tool: GeDI", fig.cap="Overview of our metagenomics analysis tool: GeDI. It consists of three Python (v2.7.5) modules interconnected. Each module is framed here with dashed lines and encompass data and software.",cache=FALSE }
 \input{figures/fig-gedi}
 ```
+
+```{r coverage,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Genome coverage computation after reads alignement.", fig.cap="Genome coverage computation after reads alignement. In our metagenomics analysis tool --GeDI-- we discrimate (1) coverage ($c_{\\text{Total}}$) yield by the number of reference genome positions where at least one read is mapped divided by genome length ($l_G$) and (2) coverage ($c_{\\text{Mismatchs}}$) concerning the same metric only for reads aligned with one to three mismatches compared to the reference.",cache=FALSE }
+\input{figures/fig-coverage}
+```
+
 
 ###Mixture model of distributions {#modele}
 
@@ -196,11 +235,7 @@ Hence we have:
 
 #####Parameters estimation
 
-We have to estimate model parameters $\Theta$, which encompass:
-
-* contributions $\pi_c$,
-* ratio $\rho_c$ for each class $c$,
-* $f_c$ distribution parameters $\theta_c$ for each class $c$.
+We have to estimate model parameters $\Theta$, which encompass: (1) contributions $\pi_c$, (2) ratio $\rho_c$ for each class $c$, and (3) $f_c$ distribution parameters $\theta_c$ for each class $c$.
 
 These are estimated using maximum likelihood method computed on every CDS of the reference genome. To this end, we use the Expectation-Maximization algorithm [@dempster_maximum_1977].
 
@@ -225,13 +260,21 @@ Total and non-zeros densities are plotted for exploratory purposes.
 ##Data
 
 #####Micro-organisms genomes used
+I worked with up-to-date Genbank files thanks to the servers `migale` and `genotoul`.
+Our tool GeDI is based on these flat files to generate its reference genome catalog.
+However, somes genomes come from local database in the institute where NCBI genomes meets internal contributions.
+This database contains the recent genomes of the Collective genomes project [@almeida_construction_2014].
 
-#####_Streptococcus_ training datasets
-I simulated a shotgun sequencing for each _Streptococcus_ strains listed in the table \ref{tab:strep}.
+#####Annotation files
+Standard files for gene annotation --GFF3-- were fetched from either from public databases like NCBI or from within the institute databases. 
+In the absence of such file type, I sometimes used a BioPerl script to convert GenBank files to a pair of FASTA file and GFF file.
+
+######_Streptococcus_ training datasets
+I simulated a shotgun sequencing for each _Streptococcus_ strains listed in the following table.
 These reads are then aligned separetely on _one_ reference genome: the strain _Streptococcus salivarius_ JIM8777 using the former version of GeDI--see \ref{fig:gedi}
 
 
-  **Strains**                                 **ANI** (%)     **Distance**       **Proximity**
+  **Strains**                                 **ANI** (%)     **Distance**       **Closeness**
   ------------------------------------------ ---------------- ----------------- ---------------
   _Streptococcus salivarius_ JIM8777              100.0       Exact strain             0
   _Streptococcus salivarius_ NCTC 8618            89.63       Close strain             1
@@ -246,25 +289,18 @@ These reads are then aligned separetely on _one_ reference genome: the strain _S
 
 Table: _Streptococcus_ dataset composition and distance to the reference strain (_Streptococcus salivarius_ JIM8777). Closeness classes are based on ANI _Average Nucleotide Identity_ computed with Gegenees [@agren_gegenees:_2012].
 
+Similarly a _Lactococcus_ dataset was build --termed _composition dataset_-- in which specific strains were iteratively mixed to create datasets of growing complexity.
+
 ```{r strep,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Training dataset overview", fig.cap="Training dataset overview.",cache=TRUE }
 \input{figures/fig-strep}
 ```
 
 
-#####Annotation files
-Standard files for gene annotation --GFF3-- were fetched from either from public databases like NCBI or from within the institute databases. 
-In the absence of such file type, I sometimes used a BioPerl script to convert GenBank files to a pair of FASTA file and GFF file.
 
 #####Mock Community
+The Mock Community is a micro-organism cocktails of 22 strains gathered along a staggered abundance.
+Shotgun metagenomics sequencing was performed on this community and yields 8 millions of reads --available at this address [hmpdacc.org/HMMC/](hmpdacc.org/HMMC/) or on the NCBI website under the accession number: `PRJNA48475`.
 
-
-* **Insist on EM algorithm** according to NV remarks?
-* New python libraries used in GeDI.
-
-
-```{r coverage,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Genome coverage computation after reads alignement.", fig.cap="Genome coverage computation after reads alignement. In our metagenomics analysis tool --GeDI-- we discrimate (1) coverage ($c_{\\text{Total}}$) yield by the number of reference genome positions where at least one read is mapped divided by genome length ($l_G$) and (2) coverage ($c_{\\text{Mismatchs}}$) concerning the same metric only for reads aligned with one to three mismatches compared to the reference.",cache=FALSE }
-\input{figures/fig-coverage}
-```
 
 [^1]: Industrial and academics consortium tied with INRA working on human gut microbiota using metagenomics.
 [^note]: These quantities can also be found in the literature under the term "mixing weights" and noted $\alpha_c$. 

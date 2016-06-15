@@ -92,18 +92,18 @@ While continuing on-going developments in this direction, we continue to be awar
 
 #####Comparison with other tools
 Recently the challenge of strain retrieval in metagenomics shifts from hypothetical to achievable thanks to the scientific and industrial community efforts.
-Therefore many publications and tools are recently available and could pave the way to new analyses and exploration. 
+Therefore many publications and tools are recently available and could pave the way to new analyses and exploration [@piro_dudes:_2016;@truong_metaphlan2_2015;@luo_constrains_2015;@cleary_detection_2015]. 
 
 Two tools were published last year addressing similar challenges as our project.
-A framework to compare our tool with Sigma and MicrobeGPS is already defined. We plan to use the Mock Community dataset with these tools and assess whether the same strain was foundby the three tools.
+A framework to compare our tool with Sigma [@ahn_sigma:_2015] and MicrobeGPS @lindner_metagenomic_2015]is already defined. We plan to use the Mock Community dataset with these tools and assess whether the same strain was foundby the three tools.
 
 
 
 #####Future improvements 
 
 I was working recently on implementing variant calling strategies to strains in high abundance --and hence with high coverage-- in metagenomes.
-We are also starting to think how to decipher strains cocktails in ecosystems, mostly by choosing acordingly the catalog of reference genomes and then carefully set alignment parameters to get the most out DNA reads information.
-Besides, our approach can only scale to hundreds of genomes so we plan to use a faster approach to screen for candidate genomes.
+We are also starting to think how to decipher strains cocktails in ecosystems, mostly by choosing accordingly the catalog of reference genomes and then carefully set alignment parameters to get the most out of DNA reads information.
+Besides, our approach can only scale to hundreds of genomes so we plan to use a faster approach to screen for candidate genomes with Kraken [@wood_kraken:_2014].
 Then, we will apply our method on this subset to identify micro-organisms.
 
 ###Next with Food-Microbiome Transfert and others projects

@@ -352,6 +352,15 @@ This new version of GeDI was applied to 9 cheeses samples in order to illustrate
 I wanted to highlight the importance of mismatches through the draft analysis of the representation of one strain in these samples.
 The following cheeses were used. Note that the surface of the cheese was sampled for every cheese. Each sample was sequenced with SOLiD technology.
 
+
+I used a strain reference genome _Psychrobacter aquimaris_  sequenced in the collective genome project [@almeida_construction_2014]. It consists of 126 contigs and a total of 2856 CDS and 2495 post filter.
+
+
+Roquefort, Salers and Toscanello metagenomes harbours similar coverage profiles. Half the genome is covered and less than $15\%$ covered only by reads with mismatches.
+For some cheese like Epoisses and Munster especially, the majority of genome coverage is contained in coverage yielded by reads with mismatches.
+This preliminary observations provide an illustration of the type of data GeDI could output. 
+
+
 Cheese Name               Legend         # Reads aligned
 ------------------------  ---------   ------------------
 Epoisses                  `epois`                436,056
@@ -364,16 +373,12 @@ Salers                    `salers`                72,226
 Tome des Bauges           `tome`                 102,503
 Toscanello                `tosc`                  54,974
 
+Table: Cheese samples overview after alignment to _Psychrobacter aquimaris_.
 
-
-I used a strain reference genome _Psychrobacter aquimaris_  sequenced in the collective genome project [@almeida_construction_2014]. It consists of 126 contigs and a total of 2856 CDS and 2495 post filter.
 
 ```{r cheese,echo=F, fig.align="center", fig.scap="Strain representation in cheese samples: an overview", fig.cap="Strain representation in cheese samples: an overview", cache=FALSE }
 require(ggplot2,quietly=T)
 df<-read.csv("df_strain.csv", header=T)
-ggplot(data = df, aes(x = Sample, y=Coverage, color=CoverageType, linetype=CoverageType))+ geom_boxplot(position = "dodge") +scale_color_manual(values=c("#2aa2e0", "#ed1a5c"),labels=c("Total","Mismatches"))  + theme_bw() +theme(legend.position="bottom") +labs(title="Fraction of genome covered by\n total and mismatches reads \n in cheese samples")
+ggplot(data = df, aes(x = Sample, y=Coverage, color=CoverageType))+ geom_boxplot(position = "dodge") +scale_color_manual(values=c("#2aa2e0", "#ed1a5c"),labels=c("Total","Mismatches"))  + theme_bw() +theme(legend.position="bottom") +labs(title="Fraction of genome covered by\n total and mismatches reads in cheese samples")
 ```
 
-Roquefort, Salers and Toscanello metagenomes harbours similar coverage profiles. Half the genome is covered and less than $15\%$ covered only by reads with mismatches.
-For some cheese like Epoisses and Munster especially, the majority of genome coverage is contained in coverage yielded by reads with mismatches.
-This preliminary observations provide an illustration of the type of data GeDI could output. 
