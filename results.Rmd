@@ -93,8 +93,8 @@ Hence even draft genomes could provide information on the studied metagenome.
 
 #####CDS coverage densities
 We define a strain as a _reference_ here: _Streptococcus salivarius_ JIM8777.
-Shotgun metagenomics reads are simulated from this reference genome and nine others genomes more or more distant to the reference.
-These additional genomes can be break down into 3 closeness classes: close strains, sub-species and close species --described in figure \ref{fig:strep}.
+Shotgun metagenomics reads are simulated from this reference genome and nine others genomes more or less distant to the reference.
+These additional genomes can be broken down into 3 closeness classes: close strains, sub-species and close species --described in figure \ref{fig:strep}.
 The ten reads dataset are then _independently_ processed by our tool GeDI --see former version \ref{fig:former-gedi}.
 Reads aligned in CDS that are not filtered are used to compute CDS coverage. These coverage are then normalised by CDS length and presented in the figure \ref{fig:distrib}.
 
@@ -161,7 +161,7 @@ The few CDS covered matches housekeeping genes covered by a few reads.
 #####CDS coverage densities crystallise closeness information
 CDS coverage densities seems to be a good proxy for the closeness between a reference genome and reads aligned.
 They appear (1) to be sensitive enough so that close strains reads aligned to the reference yields both a Gaussian density --see closeness class $0$ and $1$-- and (2) to be specific enough to express distinct signal between closeness class through the $\rho_c$ parameter.
-The unique shape of the more distant class --closeness class $3$-- density ensure to model noisy contributions to the alignment such as reds from any genomes.  This non specific noise signal will be used to feature reference genomes absent from the ecosystem.
+The unique shape of the more distant class --closeness class $3$-- density ensure to model noisy contributions to the alignment such as reads from any genomes.  This non specific noise signal will be used to feature reference genomes absent from the ecosystem.
 
 
 
@@ -269,7 +269,7 @@ After reads alignement on each genome, parameters are estimated for all differen
 The mixture component $c=0$ and its estimated parameters will be used for decisions rules.
 We expect this component to capture the information of the closest strain. Hence if the exact strain is present, the signal will be strong to support this information. 
 At first, I outlined two rules to decide whether the exact reference genome had contribute to the alignment observed.
-Closeness class $0$ contribution to the entire mixture model needed to be important --say $\pi_0 > 0.3$-- and the number of CDS uncovered should be negligle for a fair number of reads aligned --say $\rho_c$ < 0.01.
+Closeness class $0$ contribution to the entire mixture model needed to be important --say $\pi_0 > 0.3$-- and the number of CDS uncovered should be marginal for a fair number of reads aligned --say $\rho_c$ < 0.01.
 These thresholds stem from prior design and local observations. As the approach was still developed, I settled for the previous values and assess them onto a dataset in order to refine them if needed.
 
 
