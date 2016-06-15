@@ -152,8 +152,8 @@ We describe here the construction of a mixture model.
 Reference genomes are independently considered.
 Let $X_{i}$ a random variable describing the aligned reads number per base --or coverage-- of a genome CDS $i$.
 $X_{i}$ is defined on $\left[ 0; + \infty \right[$. 
-We suppose $x_{1}, \ldots, x_{n} $ values of $n$ random variables noted $X_{1}, \ldots, X_{n}$, where $n$ is the genome total number of CDS.
-Contributor genome closeness class with the reference is noted $c$ and $ c \in \mathcal{C} = \left\lbrace 0,1,2,3 \right\rbrace $. 
+We suppose $x_{1}, \ldots, x_{n}$ values of $n$ random variables noted $X_{1}, \ldots, X_{n}$, where $n$ is the genome total number of CDS.
+Contributor genome closeness class with the reference is noted $c$ and $c \in \mathcal{C} = \left\lbrace 0,1,2,3 \right\rbrace$. 
 Let $Z_{ic}= (Z_{i0}, \dots, Z_{i3})$ a latent variable stating the contributor genome closeness class whose reads were aligned on CDS $i$.
 $Z_{ic}$ equals $1$ if reads aligned on CDS $i$ stem from --a genome-- closeness class $c$, and $0$ if not.
 With $Z_i$ we model the heterogeous origin of reads aligned on CDS $i$.
@@ -164,7 +164,7 @@ We then estimate mixture model parameters.
 #####Contribution
 
 The contribution of a given distribution to the model matches the ratio of class $c$ in the mixture. 
-This contribution is noted $\pi_c = \mathbb{P}(Z_{ic} = 1)$. [^4] 
+This contribution is noted $\pi_c = \mathbb{P}(Z_{ic} = 1)$. [^note] 
 CDS are considered independent so the contribution of class $c$ for the CDS $i$ is equal for each $i \in [1;n]$.
 Then $\sum_{\, c \, \in \, \mathcal{C}} \pi_c = 1$.
 
@@ -185,20 +185,19 @@ x  & \mbox{\footnotesize Observed CDS coverage} \\
 f_c \: (x) & \mbox{\footnotesize  Identified zero-inflated distribution of class } c \\
 \end{cases}$$ 
 
-In our cases, we choose the following parametric forms for every distribution $f_c$: 3 Gaussian and one log-normal.
+In our case, we choose the following parametric forms for every distribution $f_c$: 3 Gaussian and one log-normal.
 However, these distributions are zero-inflated. In other words, chance to draw a null value from this distribution will be augmented.
 This mathematical adaptation enables the inclusion of CDS without any aligned reads in the model.
 To this end, we introduce $\rho_c$ the ratio of CDS uncovered by reads from class $c$. 
 Hence we have:
 
-* For class $c \in \{ 0,1,2\}$ :
-    $$f_c\; (x) = \underbrace{\rho_c 1\!\!1_{\{x=0\}}}_{\mathclap{\text{Uncovered CDS ratio}}} + \overbrace{(1- \rho_c) 1\!\!1_{\{x\neq0\}} \; \underbrace{\Phi(x; \mu_c ,\sigma_c^2 )}_\text{Gaussian density}}^\text{Covered CDS ratio}$$
-* For class $c = 3$ :
-    $$f_c\; (x) = \rho_c 1\!\!1_{\{x=0\}} + (1- \rho_c) 1\!\!1_{\{x\neq0\}} \; \underbrace{\frac{1}{x} \Phi(\ln(x); \mu_c ,\sigma_c^2 )}_{\text{log-normal density}}$$
+* For class $c \in \{ 0,1,2\}$ : $$f_c\; (x) = \underbrace{\rho_c \mathbf{1}_{\{x=0\}}}_{\mathclap{\text{Uncovered CDS ratio}}} + \overbrace{(1- \rho_c) \mathbf{1}_{\{x\neq0\}} \; \underbrace{\Phi(x; \mu_c ,\sigma_c^2 )}_\text{Gaussian density}}^\text{Covered CDS ratio}$$
+* For class $c = 3$ : $$f_c\; (x) = \rho_c \mathbf{1}_{\{x=0\}} + (1- \rho_c) \mathbf{1}_{\{x\neq0\}} \; \underbrace{\frac{1}{x} \Phi(\ln(x); \mu_c ,\sigma_c^2 )}_{\text{log-normal density}}$$
 
 #####Parameters estimation
 
 We have to estimate model parameters $\Theta$, which encompass:
+
 * contributions $\pi_c$,
 * ratio $\rho_c$ for each class $c$,
 * $f_c$ distribution parameters $\theta_c$ for each class $c$.
@@ -217,9 +216,10 @@ With the help of Mahendra MARIADASSOU, I implemented a version of this mixture m
 
 
 #####Output files
-I decided to rely on RDS files to store all models estimated for the sake of reusability and interoperability.
+I decided to rely on RDS files --R binary data filetype-- to store all models estimated for the sake of reusability and interoperability.
 Reports are automatically generated with a table for every BIC values.
-The observed CDS density is plotted and on top the subsequent distributions drawn from the most likely model.
+The most likely model is selected with respect to the BIC criterion and its start and  final parameters are outlined.
+The observed CDS density is plotted and on top the subsequent distributions are drawn from the selected model.
 Total and non-zeros densities are plotted for exploratory purposes.
 
 ##Data
@@ -262,8 +262,9 @@ In the absence of such file type, I sometimes used a BioPerl script to convert G
 * New python libraries used in GeDI.
 
 
-```{r coverage,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Genome coveragecomputation after reads alignement.", fig.cap="Genome coverage computation after reads alignement. In our metagenomics analysis tool --GeDI-- we discrimate (1) coverage ($c_{\\text{Total}}$) yield by the number of reference genome positions where at least one read is mapped divided by genome length ($l_G$) and (2) coverage ($c_{\\text{Mismatchs}}$) concerning the same metric only for reads aligned with one to three mismatches compared to the reference.",cache=FALSE }
+```{r coverage,  engine="tikz",engine.opts=list(template="template-tikz2pdf.tex"),echo=FALSE, fig.align="center",fig.scap="Genome coverage computation after reads alignement.", fig.cap="Genome coverage computation after reads alignement. In our metagenomics analysis tool --GeDI-- we discrimate (1) coverage ($c_{\\text{Total}}$) yield by the number of reference genome positions where at least one read is mapped divided by genome length ($l_G$) and (2) coverage ($c_{\\text{Mismatchs}}$) concerning the same metric only for reads aligned with one to three mismatches compared to the reference.",cache=FALSE }
 \input{figures/fig-coverage}
 ```
 
 [^1]: Industrial and academics consortium tied with INRA working on human gut microbiota using metagenomics.
+[^note]: These quantities can also be found in the literature under the term "mixing weights" and noted $\alpha_c$. 

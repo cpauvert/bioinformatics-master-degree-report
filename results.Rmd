@@ -153,12 +153,16 @@ The second curve represents CDS coverage yields by aligning the previous dataset
 This curve is slightly shifted to the left, indicating a lesser mean coverage.
 But most notably, some CDS of the reference genome are not covered at all by reads from a close strain --it is indicated by the bump on the left side of the plot.
 Interestingly, once null coverages are removed --see the right pane of the figure \ref{fig:distrib}-- the latter density looks like the exact strain coverage density.
-The less close the genome, the more CDS uncovered, shifting densities to the left. Thus, density of closeness class 4 looks more like an exponential rather than a Gaussian.
+In general, the less close the genome, the more CDS uncovered, shifting densities to the left. Thus, density of closeness class 4 looks more like an exponential rather than a Gaussian.
+The last density --closeness class $3$-- possess a representative density, breaking with Gaussian like densities previously. Only a few CDS are covered, hence a important quantity of null values shape this density.
+The few CDS covered matches housekeeping genes covered by a few reads.
 
 
 #####CDS coverage densities crystallise closeness information
 CDS coverage densities seems to be a good proxy for the closeness between a reference genome and reads aligned.
-They appear (1) to be specific enough to express distinct enough to 
+They appear (1) to be sensitive enough so that close strains reads aligned to the reference yields both a Gaussian density --see closeness class $0$ and $1$-- and (2) to be specific enough to express distinct signal between closeness class through the $\rho_c$ parameter.
+The unique shape of the more distant class --closeness class $3$-- density ensure to model noisy contributions to the alignment such as reds from any genomes.  This non specific noise signal will be used to feature reference genomes absent from the ecosystem.
+
 
 
 
@@ -239,23 +243,61 @@ This approach yields several mixture models ranked with respect to the BIC crite
 ---
 
 Several models are tested and the space of parameters is well explored. I had also written several R scripts to explore alternative models generated.
-A report is automatically created giving an overview of model estimation. However, parameters estimations seems far from the primary aims of identifying micro-organisms.
+A report is automatically created giving an overview of model estimation. However, parameters estimations seems far from the primary aims of identifying micro-organisms. I then worked on decisions rules.
 
 
-#####Decision rules concerning the mixture model output
-In order to bridge the gap from contribution estimations to a boolean vector of presence / absence of micro-organisms, 
+####Decision rules concerning the mixture model output
+
+#####Composition dataset
+In order to bridge the gap from contribution estimations to a boolean vector of presence / absence of micro-organisms, I explored decisions rules from the mixture model.
+I designed a dataset termed _composition dataset_ different from the training dataset with _Streptococcus_ but with a similar approach.
+This dataset actually consists of 3 subdatasets of growing complexity --from 1 the simpler to 3 the more complex.
+
+The first dataset encompass reads from a selected reference genome -- here _Lactococcus lactis subsp. cremoris_ A76-- mixed with reads from a _noise_ genome. This distant genome needs to be close enough from the reference to provide reads that can be aligned and distant enough from the reference to be able to distinguish them.
+I choosed _Lactococcus raffinolactis_ JIM2957 genome to be the _noise_ genome.
+I expected this data to illustrate strain identification when the reference genome is available. 
+
+The second dataset encompass reads stem from the reference genome, the noise genome and an addtional close strain --_Lactococcus lactis subsp. cremoris_ MG1363 from closeness class $1$.
+Similarly the third dataset --noted $3$-- comprise the latter dataset with a supplementary genome to stem the reads from. The sub species _Lactococcus lactis subsp. lactis_ Il1403 is the one added.
+
+From these composition of genomes, I simulated two shotgun metagenomics sequencing at two different coverages: high coverage --$1 \times$-- and low coverage --$0.1 \times$. They are respectively noted HC and LC.
+The 3 datasets at two coverages are hence aligned to 10 reference genomes distributed like the _Streptococcus_ earlier: 1 reference genome, 3 close strains, 3 sub-species and 3 close species or distant genomes.
+
+#####Decision rules
+
+After reads alignement on each genome, parameters are estimated for all differents models presented above and a model is selected thanks to the BIC criterion.
+The mixture component $c=0$ and its estimated parameters will be used for decisions rules.
+We expect this component to capture the information of the closest strain. Hence if the exact strain is present, the signal will be strong to support this information. 
+At first, I outlined two rules to decide whether the exact reference genome had contribute to the alignment observed.
+Closeness class $0$ contribution to the entire mixture model needed to be important --say $\pi_0 > 0.3$-- and the number of CDS uncovered should be negligle for a fair number of reads aligned --say $\rho_c$ < 0.01.
+These thresholds stem from prior design and local observations. As the approach was still developed, I settled for the previous values and assess them onto a dataset in order to refine them if needed.
+
 
 ####Mixture model results
 
-#####Convincing preliminary results on simulated datasets
+#####Preliminary results on simulated datasets
 
-I designed a dataset termed _composition dataset_ different from the training dataset with _Streptococcus_ but with a similar approach.
-After reads alignement on each genome, parameters are estimated for all differents models presented above and a model is selected thanks to the BIC criterion.
 
-```{r composition,fig.pos='h!',fig.align='center',cache=TRUE,warnings=FALSE,echo=FALSE}
+
+```{r composition,fig.pos='h!',fig.align='center',cache=TRUE,warnings=FALSE,echo=FALSE, fig.scap="Composition dataset outcomes after mixture model estimation.", fig.cap="Composition dataset outcomes after mixture model estimation. On the y-axis are the 10 reference genomes onto which reads alignment was done. Some of them were chosen to simulate reads from their genome sequence. The x-axis consists of the two coverages used in the simulation. Labeled facets separate results for each dataset.  Results consists in a combination of truth vectors: one stating the presence/absence according to simulated datasets and the other one yields by the outcome of decision rules mentioned above. Symbols highlights the four possible values of the combination. "}
 allG<-readRDS("lactoTabEM.RDS")
-ggplot(allG[which( allG$Component == 0 & allG$JDD_Index %in% c("1","2","3")),], aes(color=interaction(JDD_Presence,Presence),y=Genome,x=JDD_Coverage, shape=interaction(JDD_Presence,Presence)))+ geom_point(size=3) + facet_wrap(~JDD_Index) + theme_bw() +theme(legend.position="right")+scale_y_discrete(labels=function(x) gsub("Lactococcus_","L.",x)) +scale_shape_manual(label=c("True Negative","False Negative","False Positive","True Positive"),values=c(4,2,5,1),limits=c("FALSE.FALSE","TRUE.FALSE","FALSE.TRUE","TRUE.TRUE"))+scale_color_manual(label=c("True Negative","False Negative","False Positive","True Positive"),values=c('#000000','#e41a1c','#4daf4a','#000000'),limits=c("FALSE.FALSE","TRUE.FALSE","FALSE.TRUE","TRUE.TRUE"))+labs(shape="Result",color="Result")
+ggplot(allG[which( allG$Component == 0 & allG$JDD_Index %in% c("1","2","3")),], aes(color=interaction(JDD_Presence,Presence),y=Genome,x=JDD_Coverage, shape=interaction(JDD_Presence,Presence)))+ geom_point(size=3) + facet_wrap(~JDD_Index) + theme_bw() +theme(legend.position="bottom")+scale_y_discrete(labels=function(x) gsub("Lactococcus_","L.",x)) +scale_shape_manual(label=c("True Negative","False Negative","False Positive","True Positive"),values=c(4,2,5,1),limits=c("FALSE.FALSE","TRUE.FALSE","FALSE.TRUE","TRUE.TRUE"))+scale_color_manual(label=c("True Negative","False Negative","False Positive","True Positive"),values=c('#000000','#e41a1c','#4daf4a','#000000'),limits=c("FALSE.FALSE","TRUE.FALSE","FALSE.TRUE","TRUE.TRUE"))+labs(title="Reference Genome Presence/Absence\n Composition dataset", shape="Result",color="Result",x="Coverage")+guides(shape=guide_legend(ncol = 2),color=guide_legend(ncol = 2))
 ```
+
+The first observation we can state from figure \ref{fig:composition} is that in low coverage datasets no genome was considered present with the given thresholds. This high rate of false negative occurs despite an important ratio of covered CDS --data not shown.
+Exact strains were retrieved only in high coverage experiment. However, false positives were also retrieved. They matches to close strains which is not specifically a wrong outcome.
+
+The effect of threshold was assessed by encapsulate this plot into a Shiny application in order to interactively explore decision rules.
+However, no suitable pattern emerge from this exploration and there was no interesting threshold combination.
+
+#####Others datasets
+I then design a _verification_ dataset in order to assess the following questions: (1) How to determine a genome absence in a dataset despite an important number of reads aligned? and (2) Could we identify the exact strain if few reads from this strain genome are aligned in addition to this important noise signal?
+It was constructed with the reference genome mentioned above with coverage of $0.01 - 0.1\times$ to  $10-100\times$.
+The results are not show here but the conclusion is similar to earlier, this mixture model yields proper results only when the coverage is important --better than $0.1\times$. This lower bound in disappointing as this coverage values is considered high in metagenomics.
+
+I also ran Results on the Mock Community.
+The Mock Community is the real sequencing experiment conducted on a known composition microbe cocktail. This metagenomics dataset was supposed to be a trivial test but unfortunately it yields too many false negatives again.
+
 
 #####A more relevant mock community? 
 I had planned to test this model on a mock dataset designed by Dugat-Bony et al [see -@dugat-bony_overview_2015]. 
@@ -264,16 +306,6 @@ Time constraints prevented this dataset to be tested as well as aforementioned n
 In spite of an almost perfect match of this dataset to the scope of our project, I did not used the mixture model approach on it yet.
 
 
-
-
-
-
-## Comparison
-
-* to existing tools (at the time)
-* to new tools (`Sigma`, `MicrobeGPS`)
-
-This part could be in prospects if time is running out.
 
 ##Integration
 
