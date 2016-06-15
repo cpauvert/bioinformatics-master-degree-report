@@ -215,7 +215,7 @@ Wolfe and al. exploited both amplicon and shotgun metagenomics sequencing to che
 Dugat-bony and al. decided to combine the latter with metatranscriptomics and biochemicals analyses [see -@dugat-bony_overview_2015].
 
 
-###Post-sequencing strategies (1.5-2p)
+###Post-sequencing strategies
 
 High-throughput sequencing yields millions of DNA reads. This technology provides an ecosystem overview.
 However, the link between DNA read and organism is lost in the process of metagenomics sequencing --in contrast to the sequencing of one individual.
@@ -271,8 +271,7 @@ However, specific cases leads to the exploration of several _improvements_ in te
 For instance, reference genomes are likely to differ from the strains actually present in the ecosystem, hence micro-organism identification has to be tailored.
 I have also worked on computational features improvements such as compatibility by using standard bioinformatics files. This conversion leads to space usage and speed improvements.
 
-As similar tools were published, I started working on the _comparison_ between our approach and others tools --e.g., MicrobeGPS [@lindner_metagenomic_2015].
-I then worked on GeDI _integration_ with the metadata extended genomics database developed in the Food-Microbiome Transfert project and others tools.
+Recently, I was involved in GeDI _integration_ with the metadata extended genomics database developed in the Food-Microbiome Transfert project and others tools.
 Finally, I have drafted results yields by GeDI _applications_ to simulated and real datasets.
 For illustration purpose, I will present how one strain is represented in 9 cheese samples.
 
