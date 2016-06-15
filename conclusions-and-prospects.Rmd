@@ -18,11 +18,10 @@ header-includes:
 
 ##Conclusion
 
-###Food-Microbiome projects
+###Food microbiology context
 
 Cheese flora is a microbial community. Like other microbial communities, it benefits from recent advances in metagenomics. On one hand, technological advances with high-throughput sequencing provided insights into these communities. On the other hand, computational developments enabled better data analysis with the emergence of new algorithms or tools.
-
-Although lacking some challenges others communities may face such as hard-to-cultivate micro-organisms for instance, cheese ecosystems nevertheless provided a few such as an important diversity of strains.
+Cheese ecosystem benefits from multiple sources of micro-organisms --from starters to environment. Strains in cheese ecosystems possess interesting technological interests --e.g., organoleptic compounds synthesis, phage resistance. Hence, deciphering the microbial diversity of cheeses communities is relevant.
 
 The Food-Microbiome project aims to deeply understand cheese ecosystems given next-generation sequencing technologies potential.
 In the scope of these two projects, we rely on existing reference genomes to (1) identify micro-organisms present in the ecosystem --if possible to the strain level-- and (2) characterise low-abundant micro-organisms.
@@ -35,37 +34,39 @@ For instance, reference genomes are likely to differ from the strains actually p
 
 ###Exploratory approach for microbial strains identification
 
-####Previous approaches
+I have been trying to take into account the discrepancy between between reference genomes and genomes from the environment since my apprenticeship start.
+Previous approaches were only able to detect when the exact strain was present both in the ecosystem and as a reference genome onto which reads are mapped.
 
-I have been trying to take into account the discrepancy between between reference genomes and genomes from the environment since I began. 
-Previous approaches were only able to detect when whether the exact strain was present both in the ecosystem and as a reference genome onto which reads are mapped.
+#####Mixture model of distribution
+Reads aligned on a reference genome may originate from multiple contributors, hardening the task of microbial identification.
+Last year, I tried to tackle this issue through a new angle: CDS coverage densities.
+I worked on a proof of concept based on a mixture model and thus designed simulated datasets in order to document this idea.
+The mixture model of distribution is meant to split observed CDS coverage density into contributions of defined distributions.
+Therefore, mixture contributions are proxies of micro-organisms contributions to an alignment to a reference genome.
 
-####Mixture model of distribution
-Last year, I tried to tackle the modeling issues through a new angle: CDS coverage densities.
-I worked on a proof of concept based on a mixture model and thus I designed simulated datasets in order to document this idea.
-A new collaboration enables accelerated developments concerning the model.
-I could rapidly communicate to the scientific community in order to have feedbacks.
+#####Limits identified and tackled
+During the mixture development, I stumble upon some limits --algorithm or method related--, I managed to circumvent most of them.
+I extended the initial scope of four components to build three mixture models --from two to four components.
+The relevant model is chosen with respect to the BIC criterion.
 
+The EM algorithm is known to be sensitive to start values. 
+Moreover, given sequencing depth disparities in metagenomics, I wanted to document reads number influence on the distributions.
+It appears that both limits could be addressed at the same time. Therefore, I set up a strategy combining (1) prior knowledge on reads number through regressions and (2) randomness from sampling in order to provide multiples relevant start values.
 
-####Limits 
-
-Limits tackled 
-
-* Number of components
-* Start values
-* Reads numbers influence 
-* Label switching
+Label switching is the possible inversion of components distribution in the iterative process.
+If conclusions are drawn from a specific component, this common issue faced by mixture model was addressed by a sorting strategy agreeing with the model.
 
 However, the model struggle with low coverage and yields too many false negatives. It performs worse than the first approach with Lander and Waterman.
 On the Mock Community dataset, model selection is sometimes irrelevant despite being the more likely.
 
-####Model prospects 
+#####Model prospects 
 Altering thresholds could be a lead to decrease the false negative rate.
 However, this approach was meant to be accurate and will not be suitable for a large screening followed by refiments.
-I also consider adding other criterion in the decision rule such as the number of components for instance.
+I also consider adding other critera in the decision rule such as the number of components for instance.
 But I foresee a difficult biological conclusion to this approach.
 Lastly I suggested to switch from a boolean decision to an index of presence or closeness.
 But this implies to let the user defined the threshold, and no consensus could emerge. 
+However, metagenomics tools often only advice the user on thresholds to apply.
 
 ---
 
@@ -81,50 +82,38 @@ These requirements accelerated the expected conversion of our tool to standard b
 This spring cleaning leads to the removal of temporary files, and the use of compiled toolbox instead of home made scripts.
 Hence, these changes strongly reduced disk space usage and increase the software speed.
 
-
-###Application
-
-The example showed...
-
-## Prospects
+##Prospects
 
 ###Future of GeDI
 
-We need to define what approach we will use to infer the presence or absence of micro-organisms in an ecosystem.
-
-####Comparison with other tools
-
-
-Metagenomics surely is a trendy topic in computational biology. However, strain identification in more or less complex ecosystems was not well represented in literature or  remained in prospects of papers.
+Several approaches were evaluated to infer the presence or absence of micro-organisms in an ecosystem. CDS coverage holds relevant information to address this task.
+While continuing on-going developments in this direction, we continue to be aware of recent advances in metagenomics.
 
 
-Two tools were published last year.
-Comparison with Sigma MicrobeGPS and several recently published tools.
-
-
-Use an alternative strategy to identify micro-organisms. For instance,  like the tool Kraken to rapidly screens for candidate genomes and try a specific method on this subset of genomes.
-
-
+#####Comparison with other tools
 Recently the challenge of strain retrieval in metagenomics shifts from hypothetical to achievable thanks to the scientific and industrial community efforts.
 Therefore many publications and tools are recently available and could pave the way to new analyses and exploration. 
 
-####Future improvements 
+Two tools were published last year addressing similar challenges as our project.
+A framework to compare our tool with Sigma and MicrobeGPS is already defined. We plan to use the Mock Community dataset with these tools and assess whether the same strain was foundby the three tools.
 
-I was working recently on implementing some variant calling strategies to strains in high abundance --and hence with high coverage-- in metagenomes.
-We are also starting to think how to decipher strains cocktails in ecosystems.
 
+
+#####Future improvements 
+
+I was working recently on implementing variant calling strategies to strains in high abundance --and hence with high coverage-- in metagenomes.
+We are also starting to think how to decipher strains cocktails in ecosystems, mostly by choosing acordingly the catalog of reference genomes and then carefully set alignment parameters to get the most out DNA reads information.
+Besides, our approach can only scale to hundreds of genomes so we plan to use a faster approach to screen for candidate genomes.
+Then, we will apply our method on this subset to identify micro-organisms.
 
 ###Next with Food-Microbiome Transfert and others projects
 
 The aim of the Food-Microbiome Transfert is to provide a functional web based interface transparently running our metagenomics analysis tool.
 It will be used by industrials partners and academics to gain insights into food related ecosystems.
-
 Specific trainings will be provided by the Migale platform team given their experience in Galaxy trainings and their involvement in the Food-Microbiome Transfert project.
 
 For now GeDI does not rely on the metadata concerning cheese ecosystem stored in the Food-Microbiome Transfert database. 
-However, in the near future, including these metadata could enhance visualisation and provide a new perpective on cheese ecosystems.
+However, in the near future, including these metadata could enhance visualisation and provide a new perspective on cheese ecosystems.
 
-
-The 1350 project has been submitted again
-
-Projects with industrials maybe.
+Our team is involved in several projects, where the metagenomics analysis tool presented here could be use. 
+For instance, the 1350 cheeses project in collaboration with the CNIEL. This project led by Françoise IRLINGER (INRA-Grignon) was submitted again in order to gain insights into cheeses with controlled origin --AOP.

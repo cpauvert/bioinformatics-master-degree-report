@@ -13,7 +13,7 @@ header-includes:
  - \usepackage{libertine}
 --- 
 
-# Results (22p)
+#Results
 
 > "Which micro-organisms exist in the studied ecosystem?"
 
@@ -26,7 +26,7 @@ In this chapter, I will focus on my two-year work around a metagenomics analysis
 I will present (1) several approaches explored to improve the tool, followed by (2) a comparison with similar tools and (3) how this module was integrated with others, to conclude with (4) results from its application on simulated and real datasets.
 
 
-## Scientific and computational improvements of GeDI
+##Scientific and computational improvements of GeDI
 
 Two kind of improvements are highlighted concerning this tool. 
 First, scientific improvements through an exploration of micro-organisms taxonomical classification.
@@ -66,7 +66,7 @@ However, thresholds used to compare distributions were empirical and  we could n
 I then explored several leads  in order to improve automatic taxonomic identification.
 Simulated datasets enable reads distributions exploration and modeling.
 Intervals between every two successive reads aligned is supposed to follow a geometric law.
-This approach was meant to target genome with a low coverage, that is low abundant micro-organisms.
+This approach was meant to target genome with a low coverage, that corresponds to low abundant micro-organisms.
 However, this model was too strict and could only be applied if reads were aligned to the same genome reads stem from.
 For example, reads from a strain A aligned to the reference genome A would yield a reads interval distribution suitable to pass the test.
 However, it was not the case if these same reads were aligned to a close strain of genome A --say $98\%$ identity.
@@ -92,11 +92,12 @@ Minimal annotation of hypothetical CDS is automatically done nowadays.
 Hence even draft genomes could provide information on the studied metagenome.
 
 #####CDS coverage densities
+We tested this approach with simulated datasets.
 We define a strain as a _reference_ here: _Streptococcus salivarius_ JIM8777.
-Shotgun metagenomics reads are simulated from this reference genome and nine others genomes more or less distant to the reference.
+Shotgun metagenomics reads are simulated from this reference genome and nine other genomes more or less distant to the reference.
 These additional genomes can be broken down into 3 closeness classes: close strains, sub-species and close species --described in figure \ref{fig:strep}.
-The ten reads dataset are then _independently_ processed by our tool GeDI --see former version \ref{fig:former-gedi}.
-Reads aligned in CDS that are not filtered are used to compute CDS coverage. These coverage are then normalised by CDS length and presented in the figure \ref{fig:distrib}.
+The ten simulated dataset --or ten FASTQ files-- are then _independently_ processed by our tool GeDI --see former version \ref{fig:former-gedi}.
+Reads aligned in CDS are used to compute CDS coverage. These coverage are then normalised by CDS length and presented in the figure \ref{fig:distrib}.
 
 
 ```{r data, echo=F, cache=TRUE, message=FALSE, warnings=FALSE}
@@ -145,22 +146,23 @@ grid.arrange(distZ, dist, ncol=2,widths=c(0.75,1))
 
 In the left pane of the figure \ref{fig:distrib}, the first density --in blue-- represents how CDS coverage values are distributed when the same genome --the exact strain-- is used both for simulating reads and aligning them on this reference genome.
 The latter CDS coverage density follows a Gaussian distribution with a mean $\mu$ and variance $\sigma^2$. Therefore, a majority of CDS are covered around the mean --here around 0.04 reads per base in a CDS.
-On both sides of this bell curve stands CDS that are either much more covered than the mean coverage or very less covered. Their low density indicate that they are few CDS well covered and few CDS highly covered.
+On both sides of this bell curve stands CDS that are either much more covered than the mean coverage or very less covered. Their low density indicate that there are few CDS well covered and few CDS highly covered.
 No CDS are left uncovered when enough reads are aligned on the exact reference.
 Hence, there is no difference between the blue curves on pane (A) and (B) in figure \ref{fig:distrib}.
 
-The second curve represents CDS coverage yields by aligning the previous dataset on a close strain.
+The second curve represents CDS coverage yielded by previous dataset alignment on a close strain.
 This curve is slightly shifted to the left, indicating a lesser mean coverage.
 But most notably, some CDS of the reference genome are not covered at all by reads from a close strain --it is indicated by the bump on the left side of the plot.
 Interestingly, once null coverages are removed --see the right pane of the figure \ref{fig:distrib}-- the latter density looks like the exact strain coverage density.
-In general, the less close the genome, the more CDS uncovered, shifting densities to the left. Thus, density of closeness class 4 looks more like an exponential rather than a Gaussian.
-The last density --closeness class $3$-- possess a representative density, breaking with Gaussian like densities previously. Only a few CDS are covered, hence a important quantity of null values shape this density.
-The few CDS covered matches housekeeping genes covered by a few reads.
+In general, the less close the genome, the more CDS uncovered, shifting densities to the left. 
+
+The last density --closeness class $3$-- possess a representative density, breaking with previous Gaussian-like densities. Only a few CDS are covered, hence an important quantity of null values shape this density.
+The few CDS covered match housekeeping genes covered by a few reads.
 
 
 #####CDS coverage densities crystallise closeness information
 CDS coverage densities seems to be a good proxy for the closeness between a reference genome and reads aligned.
-They appear (1) to be sensitive enough so that close strains reads aligned to the reference yields both a Gaussian density --see closeness class $0$ and $1$-- and (2) to be specific enough to express distinct signal between closeness class through the $\rho_c$ parameter.
+They appear (1) to be sensitive enough so that close strains reads aligned to the reference yield both a Gaussian density --see closeness class $0$ and $1$-- and (2) to be specific enough to express distinct signal between closeness class through the $\rho_c$ parameter.
 The unique shape of the more distant class --closeness class $3$-- density ensure to model noisy contributions to the alignment such as reads from any genomes.  This non specific noise signal will be used to feature reference genomes absent from the ecosystem.
 
 
@@ -174,7 +176,7 @@ Unfortunately the link between DNA reads and corresponding micro-organism is los
 Reads aligned on a reference genome may originate from multiple contributors.
 I had worked on a mixture model of distributions in order to bypass this information loss.
 An overall idea of the approach developed is summarised in figure \ref{fig:mixture-model}.
-From the CDS coverage density yields after reads alignment, the mixture model of distribution is meant to split this observed signal into contributions of defined distributions.
+From the CDS coverage density yielded after reads alignment, the mixture model of distribution is meant to split this observed signal into contributions of defined distributions.
 In our case the distributions used are based on the four densities in figure \ref{fig:distrib}. 
 
 This approach comes down to multiple parameters estimation.
@@ -199,7 +201,7 @@ Results of these joint explorations are described below.
 
 #####Number of classes
 Four classes of distribution were relevant given the training dataset I designed.
-However, they might be some cases where this number is either (1) too high, hence many superficial parameters needs to be estimated or (2) too low, thus the observed distribution will not be described properly.
+However, there might be some cases where this number is either (1) too high, hence many superficial parameters needs to be estimated or (2) too low, thus the observed distribution will not be described properly.
 To this end, I down-sized the model considering that four classes of closeness was the upper bound. I hence removed iteratively intermediate Gaussian distributions building a simpler model of two and three distributions.
 The Gaussian distribution is meant to capture the information embodied in reads aligned from a close --at best exact-- strain.
 The log-normal distribution intend to fit noise or distant genomes reads alignment.
@@ -230,7 +232,7 @@ Reads number is an input parameter when crafting simulated datasets. However, it
 Actually only the latter is known with real datasets, so our predictions needs to rely on this effective number rather than the input parameter.
 This information is provided on the x-axis of figure \ref{fig:rho}, where its variation is highlighted with the ratio of aligned CDS in the reference genome.
 Despite stating the obvious, we see that the more close the genome is to the reference, the more reads effectively aligned.
-Aligned CDS ratio shows a plateau for each class as long as reads number increase.
+Aligned CDS ratio shows a plateau for each class as long as reads number increases.
 This reflects the fraction of CDS shared by the reference genome and the genome from which reads where sequenced.
 
 The aforementioned tendency could be captured with non linear regression. The fit for each class was based on Michaelis-Menten formula and each parameters --such as $V_m$ or $K$ yields significant estimations.
@@ -260,7 +262,7 @@ I expected this data to illustrate strain identification when the reference geno
 The second dataset encompass reads stem from the reference genome, the noise genome and an addtional close strain --_Lactococcus lactis subsp. cremoris_ MG1363 from closeness class $1$.
 Similarly the third dataset --noted $3$-- comprise the latter dataset with a supplementary genome to stem the reads from. The sub species _Lactococcus lactis subsp. lactis_ Il1403 is the one added.
 
-From these composition of genomes, I simulated two shotgun metagenomics sequencing at two different coverages: high coverage --$1 \times$-- and low coverage --$0.1 \times$. They are respectively noted HC and LC.
+From these composition of genomes, I simulated three datasets mimicking shotgun metagenomics sequencing at two different coverages: High Coverage ($1 \times$) and Low Coverage ($0.1 \times$). They are respectively noted HC and LC. Their genome composition is the same and is outlined in figure \ref{fig:composition} where genomes used in the simulation are depicted with triangles and circles. 
 The 3 datasets at two coverages are hence aligned to 10 reference genomes distributed like the _Streptococcus_ earlier: 1 reference genome, 3 close strains, 3 sub-species and 3 close species or distant genomes.
 
 #####Decision rules
@@ -268,7 +270,7 @@ The 3 datasets at two coverages are hence aligned to 10 reference genomes distri
 After reads alignement on each genome, parameters are estimated for all differents models presented above and a model is selected thanks to the BIC criterion.
 The mixture component $c=0$ and its estimated parameters will be used for decisions rules.
 We expect this component to capture the information of the closest strain. Hence if the exact strain is present, the signal will be strong to support this information. 
-At first, I outlined two rules to decide whether the exact reference genome had contribute to the alignment observed.
+At first, I outlined two rules to decide whether the exact reference genome had contributed to the alignment observed.
 Closeness class $0$ contribution to the entire mixture model needed to be important --say $\pi_0 > 0.3$-- and the number of CDS uncovered should be marginal for a fair number of reads aligned --say $\rho_c$ < 0.01.
 These thresholds stem from prior design and local observations. As the approach was still developed, I settled for the previous values and assess them onto a dataset in order to refine them if needed.
 
@@ -279,24 +281,31 @@ These thresholds stem from prior design and local observations. As the approach 
 
 
 
-```{r composition,fig.pos='h!',fig.align='center',cache=TRUE,warnings=FALSE,echo=FALSE, fig.scap="Composition dataset outcomes after mixture model estimation.", fig.cap="Composition dataset outcomes after mixture model estimation. On the y-axis are the 10 reference genomes onto which reads alignment was done. Some of them were chosen to simulate reads from their genome sequence. The x-axis consists of the two coverages used in the simulation. Labeled facets separate results for each dataset.  Results consists in a combination of truth vectors: one stating the presence/absence according to simulated datasets and the other one yields by the outcome of decision rules mentioned above. Symbols highlights the four possible values of the combination. "}
+```{r composition,fig.pos='h!',fig.align='center',cache=TRUE,warnings=FALSE,echo=FALSE, fig.scap="Composition dataset outcomes after mixture model estimation.", fig.cap="Composition dataset outcomes after mixture model estimation. On the y-axis are the 10 reference genomes onto which reads alignment was done. Some of them were chosen to simulate reads from their genome sequence. The x-axis consists of the two coverages used in the simulation. Labeled facets separate results for each dataset.  Results consists in a combination of truth vectors: one stating the presence/absence according to simulated datasets and the other one yields by the outcome of decision rules mentioned above. Symbols highlights the four possible values of the combination. Triangles and circles shapes depict genomes used to simulate data."}
 allG<-readRDS("lactoTabEM.RDS")
 ggplot(allG[which( allG$Component == 0 & allG$JDD_Index %in% c("1","2","3")),], aes(color=interaction(JDD_Presence,Presence),y=Genome,x=JDD_Coverage, shape=interaction(JDD_Presence,Presence)))+ geom_point(size=3) + facet_wrap(~JDD_Index) + theme_bw() +theme(legend.position="bottom")+scale_y_discrete(labels=function(x) gsub("Lactococcus_","L.",x)) +scale_shape_manual(label=c("True Negative","False Negative","False Positive","True Positive"),values=c(4,2,5,1),limits=c("FALSE.FALSE","TRUE.FALSE","FALSE.TRUE","TRUE.TRUE"))+scale_color_manual(label=c("True Negative","False Negative","False Positive","True Positive"),values=c('#000000','#e41a1c','#4daf4a','#000000'),limits=c("FALSE.FALSE","TRUE.FALSE","FALSE.TRUE","TRUE.TRUE"))+labs(title="Reference Genome Presence/Absence\n Composition dataset", shape="Result",color="Result",x="Coverage")+guides(shape=guide_legend(ncol = 2),color=guide_legend(ncol = 2))
 ```
 
-The first observation we can state from figure \ref{fig:composition} is that in low coverage datasets no genome was considered present with the given thresholds. This high rate of false negative occurs despite an important ratio of covered CDS --data not shown.
-Exact strains were retrieved only in high coverage experiment. However, false positives were also retrieved. They matches to close strains which is not specifically a wrong outcome.
+The first observation we can state from figure \ref{fig:composition} is the following: in Low Coverage datasets no genome was considered present with the given thresholds. This high rate of false negative occurs despite an important ratio of covered CDS --data not shown.
+Exact strains were retrieved only in High Coverage experiment. However, false positives were also retrieved. They matches to close strains which is not specifically a wrong outcome.
 
 The effect of threshold was assessed by encapsulate this plot into a Shiny application in order to interactively explore decision rules.
 However, no suitable pattern emerge from this exploration and there was no interesting threshold combination.
 
-#####Others datasets
-I then design a _verification_ dataset in order to assess the following questions: (1) How to determine a genome absence in a dataset despite an important number of reads aligned? and (2) Could we identify the exact strain if few reads from this strain genome are aligned in addition to this important noise signal?
-It was constructed with the reference genome mentioned above with coverage of $0.01 - 0.1\times$ to  $10-100\times$.
-The results are not show here but the conclusion is similar to earlier, this mixture model yields proper results only when the coverage is important --better than $0.1\times$. This lower bound in disappointing as this coverage values is considered high in metagenomics.
+####Others datasets
 
-I also ran Results on the Mock Community.
-The Mock Community is the real sequencing experiment conducted on a known composition microbe cocktail. This metagenomics dataset was supposed to be a trivial test but unfortunately it yields too many false negatives again.
+#####Verification dataset
+I then design a _verification_ dataset in order to assess the following questions: (1) how to determine a genome absence in a dataset despite an important number of reads aligned? and (2) could we identify the exact strain if few reads from this strain genome were aligned in addition to this important noise signal?
+It was constructed with the reference genome mentioned above with combination of coverages --$0.01 - 0.1\times$ to  $10-100\times$.
+The results are not shown here but the conclusion is similar to earlier, this mixture model yields proper results only when the coverage is important --that is better than $0.1\times$. This lower bound in disappointing as this coverage values is considered high in metagenomics.
+
+
+#####Mock Community 
+I also ran the mixture model on a published dataset: the Mock Community. It is the real sequencing experiment conducted on a known composition microbe cocktail. This metagenomics dataset was supposed to be a trivial test but unfortunately it yields too many false negatives again: around $50\%$ of species are not retrieved with previous thresholds.
+Some false negatives could be discarded after some models modifications. For instance, label switching  is the possible inversion of components in a mixture model. Mainly due to the iterative process, it is known to cause issues in classification.
+To circumvent this issue, I set up a sorting strategy on gaussian components. It consists in labelling to $0$ the first component yields by a double sort: (1) ascending sort of $\rho_c$, then (2) descending sort of $\pi_c$. This sorting strategy relies on the prior that the closest strain contributing to the alignment will have few CDS uncovered --small $\rho_0$-- and could be the major contributor of the component --high $\pi_0$.
+I am aware that this strategy may prevent the discovery of low -abundant micro-organisms. 
+Although these modifications decrease the false negative rate, it was still too important.
 
 
 #####A more relevant mock community? 
@@ -311,14 +320,15 @@ In spite of an almost perfect match of this dataset to the scope of our project,
 
 ###Integration with the Food-Microbiome Transfert database
 
-In the scope of the Food-Microbiome Transfert project, a metadata-extended genomics database has been build thanks to a bioinformatician engineer recently in the team. 
+In the scope of the Food-Microbiome Transfert project, a metadata-extended genomics database has been build thanks to a bioinformatician engineer in the team since 8 months. 
 The interaction between our metagenomics analysis tool GeDI and this database was first described in figure \ref{fig:actors}.
 Actually, GeDI fetch genomes and annotations information from flat files in directories. This system is totally relevant and based on standard files such as FASTA and Genbank files.
 However, in the scope of the Food-Microbiome project, we planned to fetch these information directly from the database.
 
 ###Integration with the Galaxy platform
 
-A tool is relevant only if is it used. In order to promote the use of our metagenomics analysis tool, we worked to integrate it to the Galaxy platform.
+A tool is relevant only if is it used. We planned to be able to run GeDI from the web interface in order to promote the use of our metagenomics analysis tool.
+Therefore, we worked to integrate GeDI to the Galaxy platform thus taking advantage of Galaxy API to run softwares.
 The Galaxy platform is a web-based tool providing (1) easy access to command line tools and (2) data history and workflow management.
 It is hosted on the same location of the migale server.
 A bioinformatician engineer in the team attended a training to integrate new tools into the Galaxy platform.
@@ -332,11 +342,38 @@ In addition to scientific improvements covered above, I assess our tool performa
 I was mainly working on converting in-house files generated by GeDI into standard filetype in bioinformatics --such as BAM and GFF. 
 We expected a decrease in file size due to the compression of alignment data with BAM files.
 Likewise, we expected an increase in software speed due to the transition to highly efficient tools such as samtools instead of home-made scripts.
-These expectations were met with order of magnitude for speed and disk space.
+These expectations were met with a 4-fold decrease in running time and 7-fold decrease in disk space.
 
-Standard files ease the exporting to other tools. For example, industrial partners and academics will be able to export metagenomics reads alignment on their strain of interest, and visualize data with Tablet or process it for parallel downstream analyses. 
+Standard files ease the exporting to other tools. For example, industrial partners and academics will be able to export metagenomics reads alignment on their strain of interest, and visualize data with Tablet [@milne_using_2013] or process it for parallel downstream analyses. 
 
-## Application
+##Application
 
-* to simulated datasets
-* to cheese metagenomics analysis : 6 samples
+This new version of GeDI was applied to 9 cheeses samples in order to illustrate the tools ability.
+I wanted to highlight the importance of mismatches through the draft analysis of the representation of one strain in these samples.
+The following cheeses were used. Note that the surface of the cheese was sampled for every cheese. Each sample was sequenced with SOLiD technology.
+
+Cheese Name               Legend         # Reads aligned
+------------------------  ---------   ------------------
+Epoisses                  `epois`                436,056
+Gorgonzola                `gorg`                  77,697
+Munster                   `muns`                 139,804
+Saint-Nectaire fermier    `necferm`               65,914
+Saint-Nectaire laitier    `neclait`             4008,074
+Roquefort                 `roque`                 68,080
+Salers                    `salers`                72,226
+Tome des Bauges           `tome`                 102,503
+Toscanello                `tosc`                  54,974
+
+
+
+I used a strain reference genome _Psychrobacter aquimaris_  sequenced in the collective genome project [@almeida_construction_2014]. It consists of 126 contigs and a total of 2856 CDS and 2495 post filter.
+
+```{r cheese,echo=F, fig.align="center", fig.scap="Strain representation in cheese samples: an overview", fig.cap="Strain representation in cheese samples: an overview", cache=FALSE }
+require(ggplot2,quietly=T)
+df<-read.csv("df_strain.csv", header=T)
+ggplot(data = df, aes(x = Sample, y=Coverage, color=CoverageType, linetype=CoverageType))+ geom_boxplot(position = "dodge") +scale_color_manual(values=c("#2aa2e0", "#ed1a5c"),labels=c("Total","Mismatches"))  + theme_bw() +theme(legend.position="bottom") +labs(title="Fraction of genome covered by\n total and mismatches reads \n in cheese samples")
+```
+
+Roquefort, Salers and Toscanello metagenomes harbours similar coverage profiles. Half the genome is covered and less than $15\%$ covered only by reads with mismatches.
+For some cheese like Epoisses and Munster especially, the majority of genome coverage is contained in coverage yielded by reads with mismatches.
+This preliminary observations provide an illustration of the type of data GeDI could output. 
