@@ -1,5 +1,8 @@
 # Bioinformatics Master Degree Report
 
+Thesis sources are provided to whom is interested in TikZ figures and biofinformatics.
+Have a glance at `report-cpauvert-2016.pdf`!
+
 ## Compilation usage
 
 For the complete report
@@ -14,22 +17,13 @@ To compile only a chapter, say _introduction_:
 make introduction.pdf
 ```
 
+## Preview TikZ figures
 
-
-Interesting note: don't forget to add
+Use the dedicated script `preview` to compile only specific TikZ figures:
 ```
-set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
+./preview figures/fig-mixture-model.tex
 ```
 
-to `~/.vimrc` to prevent from autocompleting pdf files in command line.
-
-## Spell-checking
-
-In order to correctly write in English.
-
-```
-aspell --lang=en_GB -c FILE
-```
 
 ## Figures TikZ
 
@@ -60,3 +54,19 @@ Results      |    10      |   0.34|    17.24  |    14      |     22.6   |     22
 Discussion   |    6       |   0.21|    10.34  |    -       |     -      |     -
 Conclusion   |    3       |   0.10|     5.17  |    3       |     4.8    |     4.8
 Total        |    29      |    -  |     50    |    32      |     50     |     50
+
+### Spell-checking
+
+In order to correctly write in English.
+
+```
+aspell --lang=en_GB -c FILE
+```
+
+### Vim customisation
+Interesting note: don't forget to add
+```
+set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
+```
+
+to `~/.vimrc` to prevent from autocompleting pdf files in command line.
