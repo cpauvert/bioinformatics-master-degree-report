@@ -4,6 +4,9 @@ Thesis sources are provided to whom is interested in TikZ figures and biofinform
 
 Have a glance at `report-cpauvert-2016.pdf`!
 
+This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
+
+
 ## Compilation usage
 
 For the complete report
